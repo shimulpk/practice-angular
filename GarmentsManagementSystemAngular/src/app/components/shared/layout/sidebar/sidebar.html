@@ -1,86 +1,142 @@
 <div class="sidebar">
 
-    <div class="brand">
+    <!-- Logo -->
+    <div class="logo">
         <i class="bi bi-box-seam-fill"></i>
         <span>Garments ERP</span>
     </div>
 
-    <ul class="nav flex-column mt-3">
+    <!-- Menu -->
+    <ul class="nav flex-column">
 
         <li class="nav-item">
             <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
                 <i class="bi bi-speedometer2"></i>
-                Dashboard
+                <span>Dashboard</span>
             </a>
         </li>
 
+        <!-- Master Data -->
         <li class="nav-item">
-            <a routerLink="/buyers" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-people-fill"></i>
-                Buyers
+
+            <a class="nav-link"
+               data-bs-toggle="collapse"
+               href="#masterMenu">
+
+                <span>
+                    <i class="bi bi-database"></i>
+                    Master Data
+                </span>
+
+                <i class="bi bi-chevron-down"></i>
+
             </a>
+
+            <div class="collapse show" id="masterMenu">
+
+                <ul class="submenu">
+
+                    <li>
+                        <a routerLink="/buyers" routerLinkActive="active">
+                            <i class="bi bi-people"></i>
+                            Buyer
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/suppliers" routerLinkActive="active">
+                            <i class="bi bi-truck"></i>
+                            Supplier
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/uoms" routerLinkActive="active">
+                            <i class="bi bi-rulers"></i>
+                            UOM
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/colors" routerLinkActive="active">
+                            <i class="bi bi-palette"></i>
+                            Color
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/sizes" routerLinkActive="active">
+                            <i class="bi bi-aspect-ratio"></i>
+                            Size
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
         </li>
 
         <li class="nav-item">
             <a routerLink="/styles" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-palette-fill"></i>
-                Styles
+                <i class="bi bi-brush"></i>
+                <span>Styles</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a routerLink="/bom" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-diagram-3-fill"></i>
-                BOM
+                <i class="bi bi-diagram-3"></i>
+                <span>BOM</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a routerLink="/orders" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-cart-check-fill"></i>
-                Orders
+                <i class="bi bi-cart-check"></i>
+                <span>Orders</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a routerLink="/inventory" routerLinkActive="active" class="nav-link">
                 <i class="bi bi-boxes"></i>
-                Inventory
+                <span>Inventory</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a routerLink="/procurement" routerLinkActive="active" class="nav-link">
+                <i class="bi bi-bag-check"></i>
+                <span>Procurement</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a routerLink="/production" routerLinkActive="active" class="nav-link">
                 <i class="bi bi-gear-wide-connected"></i>
-                Production
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a routerLink="/procurement" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-truck"></i>
-                Procurement
+                <span>Production</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a routerLink="/reports" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-bar-chart-fill"></i>
-                Reports
+                <i class="bi bi-bar-chart"></i>
+                <span>Reports</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a routerLink="/users" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-person-fill"></i>
-                Users
+                <i class="bi bi-person-circle"></i>
+                <span>Users</span>
             </a>
         </li>
 
         <li class="nav-item">
             <a routerLink="/settings" routerLinkActive="active" class="nav-link">
-                <i class="bi bi-gear-fill"></i>
-                Settings
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
             </a>
         </li>
 
