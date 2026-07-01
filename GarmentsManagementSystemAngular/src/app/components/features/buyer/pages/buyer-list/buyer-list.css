@@ -1,0 +1,31 @@
+.card{
+
+    border:none;
+
+    border-radius:12px;
+
+}
+
+.table th{
+
+    white-space:nowrap;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.btn{
+
+    border-radius:6px;
+
+}
+
+h3{
+
+    font-weight:600;
+
+}

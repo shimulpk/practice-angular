@@ -1,1 +1,135 @@
-<p>buyer-list works!</p>
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3 class="mb-0">
+            Buyer List
+        </h3>
+
+        <a
+            routerLink="/buyers/add"
+            class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Add Buyer
+
+        </a>
+
+    </div>
+
+    <div
+        *ngIf="loading"
+        class="text-center my-5">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <div
+        class="card shadow-sm"
+        *ngIf="!loading">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover table-bordered align-middle mb-0">
+
+                <thead class="table-dark">
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Buyer Code</th>
+
+                    <th>Buyer Name</th>
+
+                    <th>Country</th>
+
+                    <th>Currency</th>
+
+                    <th>Status</th>
+
+                    <th width="180">Action</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr *ngFor="let buyer of buyers; let i=index">
+
+                    <td>{{ i + 1 }}</td>
+
+                    <td>{{ buyer.buyerCode }}</td>
+
+                    <td>{{ buyer.buyerName }}</td>
+
+                    <td>{{ buyer.country }}</td>
+
+                    <td>{{ buyer.currency }}</td>
+
+                    <td>
+
+                        <span
+                            class="badge"
+                            [ngClass]="buyer.active ? 'bg-success' : 'bg-danger'">
+
+                            {{ buyer.active ? 'Active' : 'Inactive' }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            [routerLink]="['/buyers/view', buyer.id]"
+                            class="btn btn-sm btn-info me-1">
+
+                            <i class="bi bi-eye"></i>
+
+                        </a>
+
+                        <a
+                            [routerLink]="['/buyers/edit', buyer.id]"
+                            class="btn btn-sm btn-warning me-1">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                        </a>
+
+                        <button
+                            class="btn btn-sm btn-danger"
+                            (click)="deleteBuyer(buyer.id)">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr *ngIf="buyers.length===0">
+
+                    <td
+                        colspan="7"
+                        class="text-center">
+
+                        No Buyer Found
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
