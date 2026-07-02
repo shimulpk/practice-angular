@@ -1,12 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BuyerService } from '../../services/buyer.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BuyerRequest } from '../../models/buyer-request';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-buyer-form',
-  imports: [],
+  imports: [CommonModule,ReactiveFormsModule,RouterModule],
    standalone: true,
   templateUrl: './buyer-form.html',
   styleUrl: './buyer-form.css',

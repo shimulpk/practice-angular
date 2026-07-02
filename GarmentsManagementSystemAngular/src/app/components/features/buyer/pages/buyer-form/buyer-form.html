@@ -1,1 +1,317 @@
-<p>buyer-form works!</p>
+<div class="container-fluid">
+
+    <div class="card shadow">
+
+        <div class="card-header d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+
+                {{ buyerId ? 'Edit Buyer' : 'Add Buyer' }}
+
+            </h4>
+
+            <a
+                routerLink="/buyers"
+                class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back
+
+            </a>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="buyerForm"
+                (ngSubmit)="save()">
+
+                <div class="row">
+
+                    <!-- Buyer Code -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Buyer Code
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="buyerCode">
+
+                        <div
+                            class="text-danger mt-1"
+                            *ngIf="buyerForm.get('buyerCode')?.touched && buyerForm.get('buyerCode')?.invalid">
+
+                            Buyer Code is required.
+
+                        </div>
+
+                    </div>
+
+                    <!-- Buyer Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Buyer Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="buyerName">
+
+                        <div
+                            class="text-danger mt-1"
+                            *ngIf="buyerForm.get('buyerName')?.touched && buyerForm.get('buyerName')?.invalid">
+
+                            Buyer Name is required.
+
+                        </div>
+
+                    </div>
+
+                    <!-- Country -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Country
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="country">
+
+                    </div>
+
+                    <!-- Currency -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Currency
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="currency">
+
+                    </div>
+
+                    <!-- Website -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Website
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="website">
+
+                    </div>
+
+                    <!-- Payment Terms -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Payment Terms
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="paymentTerms">
+
+                    </div>
+
+                    <!-- Address -->
+
+                    <div class="col-md-12 mb-4">
+
+                        <label class="form-label">
+
+                            Address
+
+                        </label>
+
+                        <textarea
+                            rows="3"
+                            class="form-control"
+                            formControlName="address">
+
+                        </textarea>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <!-- Contact Section -->
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5 class="mb-0">
+
+                        Buyer Contacts
+
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn btn-success"
+                        (click)="addContact()">
+
+                        <i class="bi bi-plus-circle"></i>
+
+                        Add Contact
+
+                    </button>
+
+                </div>
+
+                <div formArrayName="contacts">
+
+                    <div
+                        class="card mb-3 border-primary"
+                        *ngFor="let contact of contacts.controls; let i=index"
+                        [formGroupName]="i">
+
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-md-3 mb-3">
+
+                                    <label class="form-label">
+
+                                        Contact Name
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        formControlName="contactName">
+
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+
+                                    <label class="form-label">
+
+                                        Designation
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        formControlName="designation">
+
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+
+                                    <label class="form-label">
+
+                                        Email
+
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        formControlName="email">
+
+                                </div>
+
+                                <div class="col-md-2 mb-3">
+
+                                    <label class="form-label">
+
+                                        Phone
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        formControlName="phone">
+
+                                </div>
+
+                                <div class="col-md-1 d-flex align-items-end">
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-danger w-100"
+                                        (click)="removeContact(i)">
+
+                                        <i class="bi bi-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="text-end mt-4">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary me-2">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        Save
+
+                    </button>
+
+                    <a
+                        routerLink="/buyers"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
