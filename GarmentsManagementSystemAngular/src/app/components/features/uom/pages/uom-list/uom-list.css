@@ -19,67 +19,13 @@
     box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
 }
 
-.card-header {
-    padding: 16px 24px;
-}
+/* ==========================================
+   Header
+========================================== */
 
-.card-header h4 {
-    margin: 0;
+h3 {
     font-weight: 600;
-}
-
-/* ==========================================
-   Card Body
-========================================== */
-
-.card-body {
-    padding: 25px;
-}
-
-/* ==========================================
-   Section Title
-========================================== */
-
-.section-title {
-    color: #0d6efd;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-/* ==========================================
-   Labels
-========================================== */
-
-.form-label {
-    font-weight: 600;
-    color: #495057;
-    margin-bottom: 6px;
-}
-
-/* ==========================================
-   Information Box
-========================================== */
-
-.info-box {
-
-    min-height: 45px;
-
-    display: flex;
-
-    align-items: center;
-
-    padding: 10px 14px;
-
-    background: #f8f9fa;
-
-    border: 1px solid #dee2e6;
-
-    border-radius: 8px;
-
-    color: #212529;
-
-    font-weight: 500;
-
+    color: #2c3e50;
 }
 
 /* ==========================================
@@ -87,29 +33,24 @@
 ========================================== */
 
 .table {
-
     margin-bottom: 0;
-
 }
 
-.table th {
-
+.table thead th {
     white-space: nowrap;
-
     vertical-align: middle;
-
+    text-align: center;
+    font-weight: 600;
 }
 
-.table td {
-
+.table tbody td {
     vertical-align: middle;
-
+    text-align: center;
 }
 
 .table tbody tr:hover {
-
     background: #f8f9fa;
-
+    transition: .2s;
 }
 
 /* ==========================================
@@ -117,11 +58,9 @@
 ========================================== */
 
 .badge {
-
     font-size: 13px;
-
     padding: 8px 12px;
-
+    font-weight: 600;
 }
 
 /* ==========================================
@@ -129,39 +68,32 @@
 ========================================== */
 
 .btn {
-
     border-radius: 8px;
-
     font-weight: 500;
-
 }
 
 .btn i {
+    margin-right: 4px;
+}
 
-    margin-right: 5px;
+.btn-sm {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 8px;
+}
 
+.btn-sm i {
+    margin: 0;
 }
 
 /* ==========================================
-   Loading Spinner
+   Spinner
 ========================================== */
 
 .spinner-border {
-
     width: 3rem;
-
     height: 3rem;
-
-}
-
-/* ==========================================
-   Horizontal Line
-========================================== */
-
-hr {
-
-    margin: 30px 0;
-
 }
 
 /* ==========================================
@@ -170,42 +102,29 @@ hr {
 
 @media (max-width: 992px) {
 
-    .card-body {
+    .table {
+        font-size: 14px;
+    }
 
-        padding: 20px;
-
+    h3 {
+        font-size: 22px;
     }
 
 }
 
 @media (max-width: 768px) {
 
-    .container-fluid {
-
-        padding: 15px;
-
+    .table {
+        font-size: 13px;
     }
 
-    .card-body {
-
-        padding: 15px;
-
+    .btn-sm {
+        width: 32px;
+        height: 32px;
     }
 
-    .card-header .d-flex {
-
-        flex-direction: column;
-
-        align-items: flex-start !important;
-
-        gap: 15px;
-
-    }
-
-    .card-header .btn {
-
-        width: 100%;
-
+    h3 {
+        font-size: 20px;
     }
 
 }

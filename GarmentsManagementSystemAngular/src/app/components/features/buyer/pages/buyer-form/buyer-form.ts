@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BuyerService } from '../../services/buyer.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -7,25 +7,43 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-buyer-form',
-  imports: [CommonModule,ReactiveFormsModule,RouterModule],
+  imports: [CommonModule,ReactiveFormsModule],
    standalone: true,
   templateUrl: './buyer-form.html',
   styleUrl: './buyer-form.css',
 })
 export class BuyerForm implements OnInit{
 
-   private fb = inject(FormBuilder);
-  private buyerService = inject(BuyerService);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
+   loading = false;
 
-   buyerId?: number;
+  isEdit = false;
+
+  buyerId = 0;
 
   buyerForm!: FormGroup;
 
+  constructor(
+    private fb: FormBuilder,
+    private buyerService: BuyerService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
   ngOnInit(): void {
-   this.buyerForm = this.fb.group({
-buyerCode: ['', Validators.required],
+
+    this.initializeForm();
+
+    this.checkEditMode();
+
+  }
+ 
+    // Form Initialize
+  
+  initializeForm(): void {
+
+    this.buyerForm = this.fb.group({
+
+      buyerCode: ['', Validators.required],
 
       buyerName: ['', Validators.required],
 
@@ -35,85 +53,97 @@ buyerCode: ['', Validators.required],
 
       website: [''],
 
-      currency: [''],
+      currency: ['', Validators.required],
 
-      paymentTerms: [''],
+      paymentTerms: ['', Validators.required],
 
-      contacts: this.fb.array([])
+      contacts: this.fb.array([
+        this.createContact()
+      ])
 
-   });
-
-   this.addContact();
-   this.buyerId = Number(this.route.snapshot.paramMap.get('id'));
-
-    if (this.buyerId) {
-
-      this.loadBuyer(this.buyerId);
-
-    }
+    });
 
   }
 
+   
+    // Contact Form
+   
+  createContact(): FormGroup {
+
+    return this.fb.group({
+
+      contactName: ['', Validators.required],
+
+      designation: [''],
+
+      email: ['', Validators.email],
+
+      phone: ['']
+
+    });
+
+  }
+
+  
+    // Contact Array
+  
   get contacts(): FormArray {
 
     return this.buyerForm.get('contacts') as FormArray;
 
   }
 
+  //  Add Contact
+   
+  addContact(): void {
 
-   addContact(): void {
-
-    this.contacts.push(
-
-      this.fb.group({
-
-        contactName: [''],
-
-        designation: [''],
-
-        email: [''],
-
-        phone: ['']
-
-      })
-
-    );
+    this.contacts.push(this.createContact());
 
   }
 
-    removeContact(index: number): void {
+  // Remove Contact
+  
+  removeContact(index: number): void {
 
-    this.contacts.removeAt(index);
+    if (this.contacts.length > 1) {
+
+      this.contacts.removeAt(index);
+
+    }
 
   }
 
-   loadBuyer(id: number): void {
+  // Check Edit Mode
+   
+  checkEditMode(): void {
+
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (!id) {
+
+      return;
+
+    }
+
+    this.isEdit = true;
+
+    this.buyerId = Number(id);
+
+    this.loadBuyer(this.buyerId);
+
+  }
+
+  // Load Buyer
+   
+  loadBuyer(id: number): void {
+
+    this.loading = true;
 
     this.buyerService.getById(id).subscribe({
 
       next: (buyer) => {
 
-        this.contacts.clear();
-
-        buyer.contacts.forEach(contact => {
-
-          this.contacts.push(
-
-            this.fb.group({
-
-              contactName: [contact.contactName],
-
-              designation: [contact.designation],
-
-              email: [contact.email],
-
-              phone: [contact.phone]
-
-            })
-
-          );
-
-        });
+        this.loading = false;
 
         this.buyerForm.patchValue({
 
@@ -133,13 +163,46 @@ buyerCode: ['', Validators.required],
 
         });
 
+        this.contacts.clear();
+
+        buyer.contacts.forEach(contact => {
+
+          this.contacts.push(
+
+            this.fb.group({
+
+              contactName: [contact.contactName, Validators.required],
+
+              designation: [contact.designation],
+
+              email: [contact.email, Validators.email],
+
+              phone: [contact.phone]
+
+            })
+
+          );
+
+        });
+
+      },
+
+      error: error => {
+
+        console.error(error);
+
+        this.loading = false;
+
       }
 
     });
 
   }
 
-  save(): void {
+
+  //  Save / Update
+ 
+  saveBuyer(): void {
 
     if (this.buyerForm.invalid) {
 
@@ -151,23 +214,80 @@ buyerCode: ['', Validators.required],
 
     const request: BuyerRequest = this.buyerForm.value;
 
-    if (this.buyerId) {
+    if (this.isEdit) {
 
-      this.buyerService.update(this.buyerId, request).subscribe({
-
-        next: () => this.router.navigate(['/buyers'])
-
-      });
+      this.updateBuyer(request);
 
     } else {
 
-      this.buyerService.create(request).subscribe({
-
-        next: () => this.router.navigate(['/buyers'])
-
-      });
+      this.createBuyer(request);
 
     }
+
+  }
+
+ 
+  //  Create Buyer
+  
+  createBuyer(request: BuyerRequest): void {
+
+    this.buyerService.create(request).subscribe({
+
+      next: () => {
+
+        alert('Buyer Created Successfully');
+
+        this.router.navigate(['/buyers']);
+
+      },
+
+      error: error => {
+
+        console.error(error);
+
+      }
+
+    });
+
+  }
+
+
+    // Update Buyer
+  
+  updateBuyer(request: BuyerRequest): void {
+
+    this.buyerService.update(this.buyerId, request).subscribe({
+
+      next: () => {
+
+        alert('Buyer Updated Successfully');
+
+        this.router.navigate(['/buyers']);
+
+      },
+
+      error: error => {
+
+        console.error(error);
+
+      }
+
+    });
+
+  }
+
+  
+    // Reset
+  
+  resetForm(): void {
+
+    this.buyerForm.reset();
+
+    this.contacts.clear();
+
+    this.contacts.push(this.createContact());
+
+  }
 
 }
 
@@ -180,4 +300,4 @@ buyerCode: ['', Validators.required],
 
 
 
-}
+

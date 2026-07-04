@@ -2,87 +2,61 @@
 
     <div class="card shadow">
 
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header bg-primary text-white">
 
             <h4 class="mb-0">
 
-                {{ buyerId ? 'Edit Buyer' : 'Add Buyer' }}
+                <i class="bi bi-people-fill"></i>
+
+                {{ isEdit ? 'Update Buyer' : 'Add Buyer' }}
 
             </h4>
-
-            <a
-                routerLink="/buyers"
-                class="btn btn-secondary">
-
-                <i class="bi bi-arrow-left"></i>
-
-                Back
-
-            </a>
 
         </div>
 
         <div class="card-body">
 
-            <form
-                [formGroup]="buyerForm"
-                (ngSubmit)="save()">
+            <form [formGroup]="buyerForm" (ngSubmit)="saveBuyer()">
 
                 <div class="row">
 
                     <!-- Buyer Code -->
 
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
 
                         <label class="form-label">
 
-                            Buyer Code
+                            Buyer Code <span class="text-danger">*</span>
 
                         </label>
 
                         <input
-                            type="text"
-                            class="form-control"
-                            formControlName="buyerCode">
-
-                        <div
-                            class="text-danger mt-1"
-                            *ngIf="buyerForm.get('buyerCode')?.touched && buyerForm.get('buyerCode')?.invalid">
-
-                            Buyer Code is required.
-
-                        </div>
+                                type="text"
+                                class="form-control"
+                                formControlName="buyerCode">
 
                     </div>
 
                     <!-- Buyer Name -->
 
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
 
                         <label class="form-label">
 
-                            Buyer Name
+                            Buyer Name <span class="text-danger">*</span>
 
                         </label>
 
                         <input
-                            type="text"
-                            class="form-control"
-                            formControlName="buyerName">
-
-                        <div
-                            class="text-danger mt-1"
-                            *ngIf="buyerForm.get('buyerName')?.touched && buyerForm.get('buyerName')?.invalid">
-
-                            Buyer Name is required.
-
-                        </div>
+                                type="text"
+                                class="form-control"
+                                formControlName="buyerName">
 
                     </div>
 
                     <!-- Country -->
 
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
 
                         <label class="form-label">
 
@@ -90,27 +64,44 @@
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            formControlName="country">
+                        <select
+                                class="form-select"
+                                formControlName="country">
+
+                            <option value="">Select Country</option>
+
+                            <option>Bangladesh</option>
+
+                            <option>China</option>
+
+                            <option>India</option>
+
+                            <option>Pakistan</option>
+
+                            <option>Vietnam</option>
+
+                            <option>Turkey</option>
+
+                        </select>
 
                     </div>
 
-                    <!-- Currency -->
+                    <!-- Address -->
 
                     <div class="col-md-6 mb-3">
 
                         <label class="form-label">
 
-                            Currency
+                            Address
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            formControlName="currency">
+                        <textarea
+                                rows="3"
+                                class="form-control"
+                                formControlName="address">
+
+                        </textarea>
 
                     </div>
 
@@ -125,9 +116,41 @@
                         </label>
 
                         <input
-                            type="text"
-                            class="form-control"
-                            formControlName="website">
+                                type="text"
+                                class="form-control"
+                                formControlName="website">
+
+                    </div>
+
+                    <!-- Currency -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Currency
+
+                        </label>
+
+                        <select
+                                class="form-select"
+                                formControlName="currency">
+
+                            <option value="">Select Currency</option>
+
+                            <option>USD</option>
+
+                            <option>BDT</option>
+
+                            <option>EUR</option>
+
+                            <option>GBP</option>
+
+                            <option>JPY</option>
+
+                            <option>CNY</option>
+
+                        </select>
 
                     </div>
 
@@ -141,29 +164,29 @@
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            formControlName="paymentTerms">
+                        <select
+                                class="form-select"
+                                formControlName="paymentTerms">
 
-                    </div>
+                            <option value="">Select Payment Terms</option>
 
-                    <!-- Address -->
+                            <option>Cash</option>
 
-                    <div class="col-md-12 mb-4">
+                            <option>Advance</option>
 
-                        <label class="form-label">
+                            <option>TT</option>
 
-                            Address
+                            <option>LC</option>
 
-                        </label>
+                            <option>30 Days</option>
 
-                        <textarea
-                            rows="3"
-                            class="form-control"
-                            formControlName="address">
+                            <option>45 Days</option>
 
-                        </textarea>
+                            <option>60 Days</option>
+
+                            <option>90 Days</option>
+
+                        </select>
 
                     </div>
 
@@ -171,142 +194,199 @@
 
                 <hr>
 
-                <!-- Contact Section -->
+                <!-- Contact Section এখানে শুরু হবে -->
+                 <!-- ========================= -->
+<!-- Contact Information -->
+<!-- ========================= -->
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <h5 class="mb-0">
+    <h5 class="mb-0">
 
-                        Buyer Contacts
+        <i class="bi bi-person-lines-fill"></i>
 
-                    </h5>
+        Contact Information
 
-                    <button
-                        type="button"
-                        class="btn btn-success"
-                        (click)="addContact()">
+    </h5>
 
-                        <i class="bi bi-plus-circle"></i>
+    <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            (click)="addContact()">
 
-                        Add Contact
+        <i class="bi bi-plus-circle"></i>
 
-                    </button>
+        Add Contact
 
-                </div>
+    </button>
 
-                <div formArrayName="contacts">
+</div>
 
-                    <div
-                        class="card mb-3 border-primary"
-                        *ngFor="let contact of contacts.controls; let i=index"
-                        [formGroupName]="i">
+<div formArrayName="contacts">
 
-                        <div class="card-body">
+    <div
+            *ngFor="let contact of contacts.controls; let i = index"
+            [formGroupName]="i"
+            class="card mb-3 border-primary">
 
-                            <div class="row">
+        <div
+                class="card-header d-flex justify-content-between align-items-center">
 
-                                <div class="col-md-3 mb-3">
+            <strong>
 
-                                    <label class="form-label">
+                Contact {{ i + 1 }}
 
-                                        Contact Name
+            </strong>
 
-                                    </label>
+            <button
+                    type="button"
+                    class="btn btn-danger btn-sm"
+                    (click)="removeContact(i)"
+                    [disabled]="contacts.length==1">
 
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        formControlName="contactName">
+                <i class="bi bi-trash"></i>
 
-                                </div>
+            </button>
 
-                                <div class="col-md-3 mb-3">
+        </div>
 
-                                    <label class="form-label">
+        <div class="card-body">
 
-                                        Designation
+            <div class="row">
 
-                                    </label>
+                <!-- Contact Name -->
 
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        formControlName="designation">
+                <div class="col-md-6 mb-3">
 
-                                </div>
+                    <label class="form-label">
 
-                                <div class="col-md-3 mb-3">
+                        Contact Name
 
-                                    <label class="form-label">
+                        <span class="text-danger">*</span>
 
-                                        Email
+                    </label>
 
-                                    </label>
-
-                                    <input
-                                        type="email"
-                                        class="form-control"
-                                        formControlName="email">
-
-                                </div>
-
-                                <div class="col-md-2 mb-3">
-
-                                    <label class="form-label">
-
-                                        Phone
-
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        formControlName="phone">
-
-                                </div>
-
-                                <div class="col-md-1 d-flex align-items-end">
-
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger w-100"
-                                        (click)="removeContact(i)">
-
-                                        <i class="bi bi-trash"></i>
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <input
+                            type="text"
+                            class="form-control"
+                            formControlName="contactName">
 
                 </div>
 
-                <div class="text-end mt-4">
+                <!-- Designation -->
 
-                    <button
-                        type="submit"
-                        class="btn btn-primary me-2">
+                <div class="col-md-6 mb-3">
 
-                        <i class="bi bi-check-circle"></i>
+                    <label class="form-label">
 
-                        Save
+                        Designation
 
-                    </button>
+                    </label>
 
-                    <a
-                        routerLink="/buyers"
-                        class="btn btn-secondary">
-
-                        Cancel
-
-                    </a>
+                    <input
+                            type="text"
+                            class="form-control"
+                            formControlName="designation">
 
                 </div>
+
+                <!-- Email -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+
+                        Email
+
+                    </label>
+
+                    <input
+                            type="email"
+                            class="form-control"
+                            formControlName="email">
+
+                </div>
+
+                <!-- Phone -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+
+                        Phone
+
+                    </label>
+
+                    <input
+                            type="text"
+                            class="form-control"
+                            formControlName="phone">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Action button -->
+
+<div class="d-flex justify-content-end gap-2 mt-4">
+
+    <!-- Cancel -->
+
+    <button
+            type="button"
+            class="btn btn-secondary"
+            routerLink="/buyers">
+
+        <i class="bi bi-arrow-left-circle"></i>
+
+        Back
+
+    </button>
+
+    <!-- Reset -->
+
+    <button
+            type="button"
+            class="btn btn-warning"
+            (click)="resetForm()">
+
+        <i class="bi bi-arrow-clockwise"></i>
+
+        Reset
+
+    </button>
+
+    <!-- Save / Update -->
+
+    <button
+            type="submit"
+            class="btn"
+            [ngClass]="isEdit ? 'btn-success' : 'btn-primary'"
+            [disabled]="buyerForm.invalid || loading">
+
+        <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm me-2">
+        </span>
+
+        <i
+                *ngIf="!loading"
+                class="bi"
+                [ngClass]="isEdit ? 'bi-check-circle' : 'bi-save'">
+        </i>
+
+        {{ isEdit ? 'Update Buyer' : 'Save Buyer' }}
+
+    </button>
+
+</div>
+
 
             </form>
 

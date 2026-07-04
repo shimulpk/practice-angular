@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h3 class="mb-0">
+
+        Style List
+
+    </h3>
+
+    <a
+        routerLink="/styles/add"
+        class="btn btn-primary">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Add Style
+
+    </a>
+
+</div>
+
+<!-- Loading -->
+
+<div
+    *ngIf="loading"
+    class="text-center my-5">
+
+    <div class="spinner-border text-primary"></div>
+
+</div>
+
+<!-- Data Table -->
+
+<div
+    class="card shadow-sm"
+    *ngIf="!loading">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover table-bordered align-middle mb-0">
+
+            <thead class="table-dark">
+
+            <tr>
+
+                <th>#</th>
+
+                <th>Style Code</th>
+
+                <th>Style Name</th>
+
+                <th>Style Type</th>
+
+                <th>Approval Status</th>
+
+                <th>Size Set</th>
+
+                <th>Status</th>
+
+                <th width="180">Action</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let style of styles; let i = index">
+
+                <td>{{ i + 1 }}</td>
+
+                <td>{{ style.styleCode }}</td>
+
+                <td>{{ style.styleName }}</td>
+
+                <td>{{ style.styleType }}</td>
+
+                <td>{{ style.approvalStatus }}</td>
+
+                <td>{{ style.sizeSet }}</td>
+
+                <td>
+
+                    <span
+                        class="badge"
+                        [ngClass]="style.active ? 'bg-success' : 'bg-danger'">
+
+                        {{ style.active ? 'Active' : 'Inactive' }}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <a
+                        [routerLink]="['/styles/view', style.id]"
+                        class="btn btn-sm btn-info me-1">
+
+                        <i class="bi bi-eye"></i>
+
+                    </a>
+
+                    <a
+                        [routerLink]="['/styles/edit', style.id]"
+                        class="btn btn-sm btn-warning me-1">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+
+                    <button
+                        class="btn btn-sm btn-danger"
+                        (click)="deleteStyle(style.id)">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            <tr *ngIf="styles.length === 0">
+
+                <td
+                    colspan="8"
+                    class="text-center">
+
+                    No Style Found
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

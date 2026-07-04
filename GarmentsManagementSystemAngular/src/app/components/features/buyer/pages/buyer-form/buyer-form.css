@@ -1,0 +1,261 @@
+/* ==========================================
+   Page
+========================================== */
+
+.container-fluid {
+    padding: 20px;
+    background: #f4f6f9;
+    min-height: calc(100vh - 80px);
+}
+
+/* ==========================================
+   Card
+========================================== */
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+}
+
+.card-header {
+    padding: 16px 24px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* ==========================================
+   Section Title
+========================================== */
+
+h5 {
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+hr {
+    margin: 30px 0;
+}
+
+/* ==========================================
+   Label
+========================================== */
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 6px;
+}
+
+.text-danger {
+    font-size: 14px;
+}
+
+/* ==========================================
+   Input
+========================================== */
+
+.form-control,
+.form-select {
+
+    height: 45px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ced4da;
+
+    transition: .25s;
+
+}
+
+textarea.form-control {
+
+    height: auto;
+
+    resize: vertical;
+
+    min-height: 90px;
+
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #0d6efd;
+
+    box-shadow: 0 0 0 .18rem rgba(13,110,253,.15);
+
+}
+
+/* ==========================================
+   Contact Card
+========================================== */
+
+.border-primary {
+
+    border: 1px solid #0d6efd !important;
+
+}
+
+.card-header strong {
+
+    font-size: 15px;
+
+}
+
+.card.mb-3 {
+
+    transition: .25s;
+
+}
+
+.card.mb-3:hover {
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.btn {
+
+    border-radius: 8px;
+
+    font-weight: 500;
+
+}
+
+.btn i {
+
+    margin-right: 5px;
+
+}
+
+.btn-primary,
+.btn-success,
+.btn-warning,
+.btn-secondary {
+
+    min-width: 120px;
+
+}
+
+/* Small Button */
+
+.btn-sm {
+
+    min-width: auto;
+
+    border-radius: 6px;
+
+}
+
+/* ==========================================
+   Spinner
+========================================== */
+
+.spinner-border-sm {
+
+    width: 1rem;
+
+    height: 1rem;
+
+}
+
+/* ==========================================
+   Disabled
+========================================== */
+
+button:disabled {
+
+    cursor: not-allowed;
+
+    opacity: .7;
+
+}
+
+/* ==========================================
+   Validation
+========================================== */
+
+.form-control.ng-invalid.ng-touched,
+.form-select.ng-invalid.ng-touched {
+
+    border-color: #dc3545;
+
+}
+
+.form-control.ng-valid.ng-touched,
+.form-select.ng-valid.ng-touched {
+
+    border-color: #198754;
+
+}
+
+/* ==========================================
+   Contact Card Header
+========================================== */
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 992px) {
+
+    .card-body {
+
+        padding: 20px;
+
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .container-fluid {
+
+        padding: 15px;
+
+    }
+
+    .card-body {
+
+        padding: 15px;
+
+    }
+
+    .btn {
+
+        width: 100%;
+
+        margin-bottom: 10px;
+
+    }
+
+    .d-flex.justify-content-end {
+
+        flex-direction: column;
+
+    }
+
+}

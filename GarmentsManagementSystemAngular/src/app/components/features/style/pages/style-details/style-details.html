@@ -1,0 +1,200 @@
+<div class="container-fluid">
+
+    <!-- Loading -->
+
+    <div
+        *ngIf="loading"
+        class="text-center my-5">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <!-- Details -->
+
+    <div
+        class="card shadow"
+        *ngIf="!loading && style">
+
+        <div
+            class="card-header d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+
+                Style Details
+
+            </h4>
+
+            <div>
+
+                <a
+                    [routerLink]="['/styles/edit', style.id]"
+                    class="btn btn-warning me-2">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Edit
+
+                </a>
+
+                <a
+                    routerLink="/styles"
+                    class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <!-- Style Code -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Style Code
+
+                    </label>
+
+                    <p>{{ style.styleCode }}</p>
+
+                </div>
+
+                <!-- Style Name -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Style Name
+
+                    </label>
+
+                    <p>{{ style.styleName }}</p>
+
+                </div>
+
+                <!-- Style Type -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Style Type
+
+                    </label>
+
+                    <p>{{ style.styleType }}</p>
+
+                </div>
+
+                <!-- Approval Status -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Approval Status
+
+                    </label>
+
+                    <p>
+
+                        <span
+                            class="badge"
+                            [ngClass]="{
+
+                                'bg-success': style.approvalStatus === 'Approved',
+
+                                'bg-warning text-dark': style.approvalStatus === 'Pending',
+
+                                'bg-danger': style.approvalStatus === 'Rejected'
+
+                            }">
+
+                            {{ style.approvalStatus }}
+
+                        </span>
+
+                    </p>
+
+                </div>
+
+                <!-- Size Set -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Size Set
+
+                    </label>
+
+                    <p>{{ style.sizeSet }}</p>
+
+                </div>
+
+                <!-- Active -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Status
+
+                    </label>
+
+                    <p>
+
+                        <span
+                            class="badge"
+                            [ngClass]="style.active ? 'bg-success' : 'bg-danger'">
+
+                            {{ style.active ? 'Active' : 'Inactive' }}
+
+                        </span>
+
+                    </p>
+
+                </div>
+
+                <!-- Description -->
+
+                <div class="col-12 mb-3">
+
+                    <label class="fw-bold">
+
+                        Description
+
+                    </label>
+
+                    <p>{{ style.description || 'N/A' }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- No Data -->
+
+    <div
+        *ngIf="!loading && !style"
+        class="alert alert-warning text-center">
+
+        Style Not Found.
+
+    </div>
+
+</div>

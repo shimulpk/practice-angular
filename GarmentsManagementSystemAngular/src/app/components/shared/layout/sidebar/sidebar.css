@@ -1,103 +1,296 @@
-.sidebar{
-    width:260px;
-    height:100vh;
-    position:fixed;
-    left:0;
-    top:0;
-    background:#1e293b;
-    color:#fff;
-    overflow-y:auto;
-    box-shadow:3px 0 12px rgba(0,0,0,.15);
-}
+/* ===========================================
+   Sidebar
+=========================================== */
 
-/* Logo */
-
-.logo{
-    height:70px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    font-size:22px;
-    font-weight:600;
-    border-bottom:1px solid rgba(255,255,255,.1);
-    background:#0f172a;
-}
-
-.logo i{
-    font-size:28px;
-    color:#0d6efd;
-}
-
-/* Menu */
-
-.nav{
-    padding:15px 0;
-}
-
-.nav-link{
-    color:#cbd5e1;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:13px 20px;
-    transition:.3s;
-    text-decoration:none;
-}
-
-.nav-link span{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.nav-link:hover{
-    background:#334155;
-    color:#fff;
-}
-
-.nav-link.active{
-    background:#0d6efd;
-    color:#fff;
-}
-
-/* Submenu */
-
-.submenu{
-    list-style:none;
-    margin:0;
-    padding:0;
-    background:#172554;
-}
-
-.submenu li a{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:11px 50px;
-    text-decoration:none;
-    color:#dbeafe;
-    transition:.3s;
-    font-size:14px;
-}
-
-.submenu li a:hover{
-    background:#2563eb;
-    color:#fff;
-}
-
-.submenu li a.active{
-    background:#0d6efd;
-    color:#fff;
+.sidebar {
+    width: 290px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #1e293b;
+    color: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 3px 0 12px rgba(0, 0, 0, .15);
+    z-index: 1000;
 }
 
 /* Scrollbar */
 
-.sidebar::-webkit-scrollbar{
-    width:6px;
+.sidebar::-webkit-scrollbar {
+    width: 7px;
 }
 
-.sidebar::-webkit-scrollbar-thumb{
-    background:#64748b;
-    border-radius:10px;
+.sidebar::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 10px;
+}
+
+/* ===========================================
+   Logo
+=========================================== */
+
+.logo {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    background: #0f172a;
+}
+
+.logo i {
+    color: #3b82f6;
+    font-size: 28px;
+}
+
+/* ===========================================
+   Menu
+=========================================== */
+
+.menu,
+.submenu,
+.child-menu {
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+.menu {
+
+    padding: 12px 0;
+
+}
+
+/* ===========================================
+   Main Menu
+=========================================== */
+
+.menu-title {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 20px;
+
+    cursor: pointer;
+
+    color: #f8fafc;
+
+    text-decoration: none;
+
+    transition: .3s;
+
+    user-select: none;
+
+}
+
+.menu-title span {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+}
+
+.menu-title:hover {
+
+    background: #334155;
+
+}
+
+.menu-title i {
+
+    font-size: 16px;
+
+}
+
+/* ===========================================
+   First Level
+=========================================== */
+
+.submenu {
+
+    background: #172033;
+
+}
+
+.submenu li a,
+.submenu-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    text-decoration: none;
+
+    color: #cbd5e1;
+
+    padding: 12px 20px 12px 48px;
+
+    transition: .25s;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+.submenu li a span,
+.submenu-title span {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.submenu li a:hover,
+.submenu-title:hover {
+
+    background: #2563eb;
+
+    color: white;
+
+}
+
+/* ===========================================
+   Nested Menu
+=========================================== */
+
+.child-menu {
+
+    background: #111827;
+
+}
+
+.child-menu li a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: #d1d5db;
+
+    padding: 11px 20px 11px 72px;
+
+    font-size: 13px;
+
+    transition: .25s;
+
+}
+
+.child-menu li a:hover {
+
+    background: #1d4ed8;
+
+    color: #fff;
+
+}
+
+/* ===========================================
+   Icons
+=========================================== */
+
+.menu i,
+.submenu i,
+.child-menu i {
+
+    min-width: 18px;
+
+    text-align: center;
+
+}
+
+/* ===========================================
+   Active Router
+=========================================== */
+
+a.active {
+
+    background: #0d6efd !important;
+
+    color: #fff !important;
+
+    font-weight: 600;
+
+}
+
+/* ===========================================
+   Animation
+=========================================== */
+
+.submenu,
+.child-menu {
+
+    animation: fadeIn .25s ease;
+
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-6px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ===========================================
+   Responsive
+=========================================== */
+
+@media (max-width:991px){
+
+    .sidebar{
+
+        width:260px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .sidebar{
+
+        width:230px;
+
+    }
+
+    .logo{
+
+        font-size:18px;
+
+    }
+
 }

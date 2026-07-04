@@ -1,0 +1,175 @@
+<div class="container-fluid">
+
+    <!-- Loading -->
+
+    <div
+        *ngIf="loading"
+        class="text-center my-5">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <!-- Details -->
+
+    <div
+        class="card shadow"
+        *ngIf="!loading && uom">
+
+        <div
+            class="card-header d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+
+                UOM Details
+
+            </h4>
+
+            <div>
+
+                <a
+                    [routerLink]="['/uoms/edit', uom.id]"
+                    class="btn btn-warning me-2">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Edit
+
+                </a>
+
+                <a
+                    routerLink="/uoms"
+                    class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Product Name
+
+                    </label>
+
+                    <p>{{ uom.productName }}</p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Size
+
+                    </label>
+
+                    <p>{{ uom.size }}</p>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="fw-bold">
+
+                        Body
+
+                    </label>
+
+                    <p>{{ uom.body }}</p>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="fw-bold">
+
+                        Sleeve
+
+                    </label>
+
+                    <p>{{ uom.sleeve }}</p>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="fw-bold">
+
+                        Pocket
+
+                    </label>
+
+                    <p>{{ uom.pocket }}</p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Wastage
+
+                    </label>
+
+                    <p>{{ uom.wastage }} %</p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">
+
+                        Shrinkage
+
+                    </label>
+
+                    <p>{{ uom.shrinkage }} %</p>
+
+                </div>
+
+                <div class="col-12">
+
+                    <div class="alert alert-success">
+
+                        <h5 class="mb-0">
+
+                            <i class="bi bi-calculator-fill"></i>
+
+                            Total Base Fabric :
+                            <strong>{{ uom.totalBaseFabric }}</strong>
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- No Data -->
+
+    <div
+        *ngIf="!loading && !uom"
+        class="alert alert-warning text-center">
+
+        UOM Not Found.
+
+    </div>
+
+</div>

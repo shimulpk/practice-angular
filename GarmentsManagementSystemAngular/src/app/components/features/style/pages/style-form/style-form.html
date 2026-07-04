@@ -1,0 +1,298 @@
+<div class="container-fluid">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h3>
+
+                {{ isEdit ? 'Edit Style' : 'Add Style' }}
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="styleForm"
+                (ngSubmit)="saveStyle()">
+
+                <div class="row">
+
+                    <!-- Style Code -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Style Code
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="styleCode">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="styleForm.get('styleCode')?.touched &&
+                                   styleForm.get('styleCode')?.invalid">
+
+                            Style Code is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Style Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Style Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="styleName">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="styleForm.get('styleName')?.touched &&
+                                   styleForm.get('styleName')?.invalid">
+
+                            Style Name is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Style Type -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Style Type
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="styleType">
+
+                            <option value="">
+
+                                Select Style Type
+
+                            </option>
+
+                            <option value="T-Shirt">
+
+                                T-Shirt
+
+                            </option>
+
+                            <option value="Polo Shirt">
+
+                                Polo Shirt
+
+                            </option>
+
+                            <option value="Shirt">
+
+                                Shirt
+
+                            </option>
+
+                            <option value="Pant">
+
+                                Pant
+
+                            </option>
+
+                            <option value="Trouser">
+
+                                Trouser
+
+                            </option>
+
+                            <option value="Jacket">
+
+                                Jacket
+
+                            </option>
+
+                            <option value="Hoodie">
+
+                                Hoodie
+
+                            </option>
+
+                            <option value="Sweater">
+
+                                Sweater
+
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="text-danger"
+                            *ngIf="styleForm.get('styleType')?.touched &&
+                                   styleForm.get('styleType')?.invalid">
+
+                            Style Type is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Approval Status -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Approval Status
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="approvalStatus">
+
+                            <option value="">
+
+                                Select Status
+
+                            </option>
+
+                            <option value="Pending">
+
+                                Pending
+
+                            </option>
+
+                            <option value="Approved">
+
+                                Approved
+
+                            </option>
+
+                            <option value="Rejected">
+
+                                Rejected
+
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="text-danger"
+                            *ngIf="styleForm.get('approvalStatus')?.touched &&
+                                   styleForm.get('approvalStatus')?.invalid">
+
+                            Approval Status is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Size Set -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Size Set
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="e.g. S,M,L,XL"
+                            formControlName="sizeSet">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="styleForm.get('sizeSet')?.touched &&
+                                   styleForm.get('sizeSet')?.invalid">
+
+                            Size Set is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Description -->
+
+                    <div class="col-md-12 mb-3">
+
+                        <label class="form-label">
+
+                            Description
+
+                        </label>
+
+                        <textarea
+                            rows="4"
+                            class="form-control"
+                            formControlName="description">
+
+                        </textarea>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        {{ isEdit ? 'Update' : 'Save' }}
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="resetForm()">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                        Reset
+
+                    </button>
+
+                    <a
+                        routerLink="/styles"
+                        class="btn btn-danger">
+
+                        <i class="bi bi-x-circle"></i>
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

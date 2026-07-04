@@ -1,0 +1,110 @@
+/* ===========================
+   Page
+=========================== */
+
+.container-fluid {
+    padding: 20px;
+}
+
+/* ===========================
+   Card
+=========================== */
+
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ===========================
+   Header
+=========================== */
+
+h3 {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* ===========================
+   Table
+=========================== */
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f5f9ff;
+}
+
+/* ===========================
+   Badge
+=========================== */
+
+.badge {
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 20px;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn-sm {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    font-weight: 500;
+}
+
+.btn i {
+    font-size: 15px;
+}
+
+/* ===========================
+   Spinner
+=========================== */
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+
+    h3 {
+        font-size: 22px;
+    }
+
+    .btn-primary {
+        font-size: 14px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+}

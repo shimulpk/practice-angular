@@ -1,0 +1,322 @@
+<div class="container-fluid">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h3>
+
+                {{ isEdit ? 'Edit BOM' : 'Add BOM' }}
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="bomForm"
+                (ngSubmit)="saveBom()">
+
+                <div class="row">
+
+                    <!-- Serial -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Serial No
+
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            formControlName="serial">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="bomForm.get('serial')?.touched &&
+                                   bomForm.get('serial')?.invalid">
+
+                            Serial is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Style -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Style
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="styleId">
+
+                            <option value="">
+
+                                Select Style
+
+                            </option>
+
+                            <option
+                                *ngFor="let style of styles"
+                                [value]="style.id">
+
+                                {{ style.styleCode }} - {{ style.styleName }}
+
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="text-danger"
+                            *ngIf="bomForm.get('styleId')?.touched &&
+                                   bomForm.get('styleId')?.invalid">
+
+                            Style is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Material Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Material Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="materialName">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="bomForm.get('materialName')?.touched &&
+                                   bomForm.get('materialName')?.invalid">
+
+                            Material Name is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Unit -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Unit
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="unit">
+
+                            <option value="">
+
+                                Select Unit
+
+                            </option>
+
+                            <option value="Yard">
+
+                                Yard
+
+                            </option>
+
+                            <option value="Meter">
+
+                                Meter
+
+                            </option>
+
+                            <option value="Kg">
+
+                                Kg
+
+                            </option>
+
+                            <option value="Piece">
+
+                                Piece
+
+                            </option>
+
+                            <option value="Roll">
+
+                                Roll
+
+                            </option>
+
+                        </select>
+
+                        <small
+                            class="text-danger"
+                            *ngIf="bomForm.get('unit')?.touched &&
+                                   bomForm.get('unit')?.invalid">
+
+                            Unit is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Base Fabric -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Base Fabric
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="baseFabric">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="bomForm.get('baseFabric')?.touched &&
+                                   bomForm.get('baseFabric')?.invalid">
+
+                            Base Fabric is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Quantity -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Quantity
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            formControlName="quantity">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="bomForm.get('quantity')?.touched &&
+                                   bomForm.get('quantity')?.invalid">
+
+                            Quantity is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Unit Price -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Unit Price
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            formControlName="unitPrice">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="bomForm.get('unitPrice')?.touched &&
+                                   bomForm.get('unitPrice')?.invalid">
+
+                            Unit Price is required
+
+                        </small>
+
+                    </div>
+
+                    <!-- Total Cost -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Total Cost
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="Automatically Calculated by Backend"
+                            readonly>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        {{ isEdit ? 'Update' : 'Save' }}
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="resetForm()">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                        Reset
+
+                    </button>
+
+                    <a
+                        routerLink="/bom"
+                        class="btn btn-danger">
+
+                        <i class="bi bi-x-circle"></i>
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

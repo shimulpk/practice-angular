@@ -1,0 +1,197 @@
+<div class="container-fluid">
+
+    <div class="card shadow">
+
+        <div class="card-header d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+
+                {{ isEdit ? 'Update UOM' : 'Add UOM' }}
+
+            </h4>
+
+            <a
+                routerLink="/uoms"
+                class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back
+
+            </a>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="uomForm"
+                (ngSubmit)="saveUom()">
+
+                <div class="row">
+
+                    <!-- Product Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Product Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="productName">
+
+                    </div>
+
+                    <!-- Size -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Size
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="size">
+
+                    </div>
+
+                    <!-- Body -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Body
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            formControlName="body">
+
+                    </div>
+
+                    <!-- Sleeve -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Sleeve
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            formControlName="sleeve">
+
+                    </div>
+
+                    <!-- Pocket -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Pocket
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            formControlName="pocket">
+
+                    </div>
+
+                    <!-- Wastage -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Wastage (%)
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            formControlName="wastage">
+
+                    </div>
+
+                    <!-- Shrinkage -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Shrinkage (%)
+
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            class="form-control"
+                            formControlName="shrinkage">
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="resetForm()">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                        Reset
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        <i
+                            class="bi"
+                            [class.bi-plus-circle]="!isEdit"
+                            [class.bi-pencil-square]="isEdit">
+
+                        </i>
+
+                        {{ isEdit ? 'Update UOM' : 'Save UOM' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

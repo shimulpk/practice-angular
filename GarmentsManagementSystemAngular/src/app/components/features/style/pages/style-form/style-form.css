@@ -1,0 +1,111 @@
+/* ==========================================
+   Page
+========================================== */
+
+.container-fluid {
+    padding: 20px;
+    background: #f4f6f9;
+    min-height: calc(100vh - 80px);
+}
+
+/* ==========================================
+   Card
+========================================== */
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+}
+
+.card-header {
+    background: #0d6efd;
+    color: #fff;
+    padding: 15px 20px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* ==========================================
+   Form
+========================================== */
+
+.card-body {
+    padding: 30px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+    height: 45px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: .25s;
+}
+
+textarea.form-control {
+    height: auto;
+    resize: vertical;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+}
+
+.text-danger {
+    font-size: 13px;
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.btn {
+    min-width: 110px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn i {
+    margin-right: 6px;
+}
+
+/* ==========================================
+   Divider
+========================================== */
+
+hr {
+    margin: 30px 0 20px;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .d-flex {
+        flex-direction: column;
+    }
+
+}
