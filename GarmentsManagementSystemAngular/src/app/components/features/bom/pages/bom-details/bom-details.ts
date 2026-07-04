@@ -13,60 +13,95 @@ import { BomService } from '../../services/bom.service';
 })
 export class BomDetails implements OnInit{
 
-   bom?: BomResponse;
+    boms: BomResponse[] = [];
 
   loading = false;
 
+  styleId = 0;
+
   constructor(
-
     private bomService: BomService,
-
     private route: ActivatedRoute,
-
     private cdr: ChangeDetectorRef
-
   ) { }
 
   ngOnInit(): void {
-    const id = Number(
-      this.route.snapshot.paramMap.get('id')
+
+    this.styleId = Number(
+      this.route.snapshot.paramMap.get('styleId')
     );
 
-    if (id) {
+    this.loadBomItems();
 
-      this.loadBom(id);
-
-    }
   }
 
-
-    loadBom(id: number): void {
+  loadBomItems(): void {
 
     this.loading = true;
 
-    this.bomService.getById(id).subscribe({
+    this.bomService.getByStyle(this.styleId)
+      .subscribe({
 
-      next: (response) => {
+        next: (response) => {
 
-        this.bom = response;
+          this.boms = response;
 
-        this.loading = false;
+          this.loading = false;
+          this.cdr.markForCheck();
 
-        this.cdr.markForCheck();
+        },
 
-      },
+        error: (error) => {
 
-      error: (error) => {
+          console.error(error);
 
-        console.error(error);
+          this.loading = false;
 
-        this.loading = false;
+        }
 
-      }
-
-    });
+      });
 
   }
+
+  deleteBom(id: number): void {
+
+    if (!confirm('Delete this BOM Item?')) {
+
+      return;
+
+    }
+
+    this.bomService.delete(id)
+      .subscribe({
+
+        next: () => {
+
+          this.loadBomItems();
+
+        },
+
+        error: (error) => {
+
+          console.error(error);
+
+        }
+
+      });
+
+  }
+
+  get grandTotal(): number {
+
+    return this.boms.reduce(
+
+      (total, item) => total + Number(item.totalCost),
+
+      0
+
+    );
+
+  }
+
 
 
 }

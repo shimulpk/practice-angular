@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { StyleResponse } from '../../../style/models/style-response';
+
 import { BomService } from '../../services/bom.service';
-import { StyleService } from '../../../style/services/style.service';
+
 import { BomRequest } from '../../models/bom-request';
 
 @Component({
@@ -16,9 +16,7 @@ import { BomRequest } from '../../models/bom-request';
 })
 export class BomForm implements OnInit{
 
-   bomForm!: FormGroup;
-
-  styles: StyleResponse[] = [];
+     bomForm!: FormGroup;
 
   loading = false;
 
@@ -26,99 +24,68 @@ export class BomForm implements OnInit{
 
   bomId = 0;
 
+  styleId = 0;
+
   constructor(
 
     private fb: FormBuilder,
 
     private bomService: BomService,
 
-    private styleService: StyleService,
-
     private router: Router,
 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
+    private cdr: ChangeDetectorRef
 
   ) { }
 
   ngOnInit(): void {
 
+    this.styleId = Number(
+      this.route.snapshot.paramMap.get('styleId')
+    );
+
     this.initializeForm();
-    this.loadStyles();
+
     this.checkEditMode();
+
   }
 
-   // Form Initialize
+  // ===========================
+  // Form Initialize
+  // ===========================
 
   initializeForm(): void {
 
     this.bomForm = this.fb.group({
 
-      serial: [
-        '',
-        Validators.required
-      ],
+      serial: ['', Validators.required],
 
-      styleId: [
-        '',
-        Validators.required
-      ],
+      materialName: ['', Validators.required],
 
-      materialName: [
-        '',
-        Validators.required
-      ],
+      unit: ['', Validators.required],
 
-      unit: [
-        '',
-        Validators.required
-      ],
+      baseFabric: ['',],
 
-      baseFabric: [
-        '',
-        Validators.required
-      ],
+      quantity: [0, Validators.required],
 
-      quantity: [
-        '',
-        Validators.required
-      ],
-
-      unitPrice: [
-        '',
-        Validators.required
-      ]
+      unitPrice: [0, Validators.required]
 
     });
 
   }
 
-  // Load Style Dropdown
-
-  loadStyles(): void {
-
-    this.styleService.getAll().subscribe({
-
-      next: (response) => {
-
-        this.styles = response;
-
-      },
-
-      error: (error) => {
-
-        console.error(error);
-
-      }
-
-    });
-
-  }
-
-  // Check Edit Mode
+  // ===========================
+  // Edit Mode
+  // ===========================
 
   checkEditMode(): void {
 
-    const id = this.route.snapshot.paramMap.get('id');
+    const id =
+      this.route.snapshot.paramMap.get('id');
+
+      console.log(id+'++++++++++++++++++++++++++++++++++++++')
 
     if (!id) {
 
@@ -131,54 +98,64 @@ export class BomForm implements OnInit{
     this.bomId = Number(id);
 
     this.loadBom(this.bomId);
+    console.log(this.loadBom(this.bomId));
 
   }
 
+  // ===========================
   // Load BOM
+  // ===========================
 
   loadBom(id: number): void {
 
     this.loading = true;
 
-    this.bomService.getById(id).subscribe({
+    this.bomService.getById(id)
+      .subscribe({
 
-      next: (bom) => {
+        next: (bom) => {
 
-        this.loading = false;
+          this.loading = false;
 
-        this.bomForm.patchValue({
+          console.log(bom);
 
-          serial: bom.serial,
+          this.styleId = bom.styleId;
 
-          styleId: bom.styleId,
+          this.bomForm.patchValue({
 
-          materialName: bom.materialName,
+            serial: bom.serial,
 
-          unit: bom.unit,
+            materialName: bom.materialName,
 
-          baseFabric: bom.baseFabric,
+            unit: bom.unit,
 
-          quantity: bom.quantity,
+            baseFabric: bom.baseFabric,
 
-          unitPrice: bom.unitPrice
+            quantity: bom.quantity,
 
-        });
+            unitPrice: bom.unitPrice
 
-      },
+          });
 
-      error: (error) => {
+          this.cdr.markForCheck();
 
-        console.error(error);
+        },
 
-        this.loading = false;
+        error: (error) => {
 
-      }
+          console.error(error);
 
-    });
+          this.loading = false;
+
+        }
+
+      });
 
   }
 
+  // ===========================
   // Save
+  // ===========================
 
   saveBom(): void {
 
@@ -190,13 +167,21 @@ export class BomForm implements OnInit{
 
     }
 
-    const request: BomRequest = this.bomForm.value;
+    const request: BomRequest = {
+
+      ...this.bomForm.value,
+
+      styleId: this.styleId
+
+    };
 
     if (this.isEdit) {
 
       this.updateBom(request);
 
-    } else {
+    }
+
+    else {
 
       this.createBom(request);
 
@@ -204,31 +189,39 @@ export class BomForm implements OnInit{
 
   }
 
+  // ===========================
   // Create
+  // ===========================
 
   createBom(request: BomRequest): void {
 
-    this.bomService.create(request).subscribe({
+    this.bomService.create(request)
+      .subscribe({
 
-      next: () => {
+        next: () => {
 
-        alert('BOM Created Successfully');
+          alert('BOM Item Added Successfully');
 
-        this.router.navigate(['/bom']);
+          this.router.navigate([
+            '/bom/style',
+            this.styleId
+          ]);
 
-      },
+        },
 
-      error: (error) => {
+        error: (error) => {
 
-        console.error(error);
+          console.error(error);
 
-      }
+        }
 
-    });
+      });
 
   }
 
+  // ===========================
   // Update
+  // ===========================
 
   updateBom(request: BomRequest): void {
 
@@ -239,9 +232,14 @@ export class BomForm implements OnInit{
 
       next: () => {
 
-        alert('BOM Updated Successfully');
+        alert('BOM Item Updated Successfully');
 
-        this.router.navigate(['/bom']);
+        this.router.navigate([
+          '/bom/style',
+          this.styleId
+        ]);
+
+      
 
       },
 
@@ -255,14 +253,21 @@ export class BomForm implements OnInit{
 
   }
 
+  // ===========================
   // Reset
+  // ===========================
 
   resetForm(): void {
 
-    this.bomForm.reset();
+    this.bomForm.reset({
+
+      quantity: 0,
+
+      unitPrice: 0
+
+    });
 
   }
-
 
 
 }

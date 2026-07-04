@@ -1,32 +1,46 @@
 <div class="container-fluid">
 
-    <!-- Loading -->
+    <!-- Header -->
 
-    <div
-        *ngIf="loading"
-        class="text-center my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <div class="spinner-border text-primary"></div>
+        <div>
 
-    </div>
+            <h3 class="mb-1">
 
-    <!-- Details -->
-
-    <div
-        class="card shadow"
-        *ngIf="!loading && bom">
-
-        <div class="card-header d-flex justify-content-between align-items-center">
-
-            <h3 class="mb-0">
+                <i class="bi bi-diagram-3-fill"></i>
 
                 BOM Details
 
             </h3>
 
+            <p class="text-muted mb-0" *ngIf="boms.length > 0">
+
+                <strong>{{ boms[0].styleCode }}</strong>
+
+                -
+
+                {{ boms[0].styleName }}
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <a
+                class="btn btn-success me-2"
+                [routerLink]="['/bom/style', styleId, 'add']">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Add BOM Item
+
+            </a>
+
             <a
                 routerLink="/bom"
-                class="btn btn-light btn-sm">
+                class="btn btn-secondary">
 
                 <i class="bi bi-arrow-left"></i>
 
@@ -36,121 +50,145 @@
 
         </div>
 
+    </div>
+
+    <!-- Loading -->
+
+    <div
+        *ngIf="loading"
+        class="text-center py-5">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <!-- No Data -->
+
+    <div
+        *ngIf="!loading && boms.length === 0"
+        class="alert alert-warning text-center">
+
+        <h5>No BOM Items Found</h5>
+
+        <p class="mb-3">
+
+            This style doesn't have any BOM items yet.
+
+        </p>
+
+        <a
+            class="btn btn-success"
+            [routerLink]="['/bom/style', styleId, 'add']">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Add First BOM Item
+
+        </a>
+
+    </div>
+
+    <!-- BOM Table -->
+
+    <div
+        class="card"
+        *ngIf="!loading && boms.length > 0">
+
         <div class="card-body">
 
-            <div class="row">
+            <div class="table-responsive">
 
-                <div class="col-md-6 mb-3">
+                <table class="table table-bordered table-hover align-middle">
 
-                    <label class="fw-bold">
+                    <thead class="table-dark">
 
-                        Serial No
+                        <tr>
 
-                    </label>
+                            <th>#</th>
 
-                    <p>{{ bom.serial }}</p>
+                            <th>Material</th>
 
-                </div>
+                            <th>Unit</th>
 
-                <div class="col-md-6 mb-3">
+                            <!-- <th>Base Fabric</th> -->
 
-                    <label class="fw-bold">
+                            <th>Qty</th>
 
-                        Style Code
+                            <th>Unit Price</th>
 
-                    </label>
+                            <th>Total Cost</th>
 
-                    <p>{{ bom.styleCode }}</p>
+                            <th width="150">Action</th>
 
-                </div>
+                        </tr>
 
-                <div class="col-md-6 mb-3">
+                    </thead>
 
-                    <label class="fw-bold">
+                    <tbody>
 
-                        Style Name
+                        <tr *ngFor="let item of boms; let i = index">
 
-                    </label>
+                            <td>{{ i + 1 }}</td>
 
-                    <p>{{ bom.styleName }}</p>
+                            <td>{{ item.materialName }}</td>
 
-                </div>
+                            <td>{{ item.unit }}</td>
 
-                <div class="col-md-6 mb-3">
+                            <!-- <td>{{ item.baseFabric }}</td> -->
 
-                    <label class="fw-bold">
+                            <td>{{ item.quantity }}</td>
 
-                        Material Name
+                            <td>{{ item.unitPrice | number:'1.2-2' }}</td>
 
-                    </label>
+                            <td>{{ item.totalCost | number:'1.2-2' }}</td>
 
-                    <p>{{ bom.materialName }}</p>
+                            <td>
 
-                </div>
+                                <a
+                                    class="btn btn-warning btn-sm me-2"
+                                    [routerLink]="['/bom/edit', item.id]">
 
-                <div class="col-md-6 mb-3">
+                                    <i class="bi bi-pencil-square"></i>
 
-                    <label class="fw-bold">
+                                </a>
 
-                        Unit
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="deleteBom(item.id!)">
 
-                    </label>
+                                    <i class="bi bi-trash"></i>
 
-                    <p>{{ bom.unit }}</p>
+                                </button>
 
-                </div>
+                            </td>
 
-                <div class="col-md-6 mb-3">
+                        </tr>
 
-                    <label class="fw-bold">
+                    </tbody>
 
-                        Base Fabric
+                    <tfoot class="table-light">
 
-                    </label>
+                        <tr>
 
-                    <p>{{ bom.baseFabric }}</p>
+                            <th colspan="6" class="text-end">
 
-                </div>
+                                Grand Total
 
-                <div class="col-md-6 mb-3">
+                            </th>
 
-                    <label class="fw-bold">
+                            <th>
 
-                        Quantity
+                                {{ grandTotal | number:'1.2-2' }}
 
-                    </label>
+                            </th>
 
-                    <p>{{ bom.quantity }}</p>
+                            <th></th>
 
-                </div>
+                        </tr>
 
-                <div class="col-md-6 mb-3">
+                    </tfoot>
 
-                    <label class="fw-bold">
-
-                        Unit Price
-
-                    </label>
-
-                    <p>{{ bom.unitPrice | number:'1.2-2' }}</p>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <label class="fw-bold">
-
-                        Total Cost
-
-                    </label>
-
-                    <p class="text-success fw-bold">
-
-                        {{ bom.totalCost | number:'1.2-2' }}
-
-                    </p>
-
-                </div>
+                </table>
 
             </div>
 
