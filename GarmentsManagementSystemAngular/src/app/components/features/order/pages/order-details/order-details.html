@@ -1,12 +1,14 @@
 <div class="container-fluid">
 
-    <!-- Header -->
+    <!-- ========================= -->
+    <!-- Action Buttons -->
+    <!-- ========================= -->
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3 no-print">
 
-        <h3>
+        <h3 class="mb-0">
 
-            <i class="bi bi-receipt"></i>
+            <i class="bi bi-cart-check-fill"></i>
 
             Order Details
 
@@ -15,19 +17,8 @@
         <div>
 
             <a
-                class="btn btn-warning me-2"
-                *ngIf="order"
-                [routerLink]="['/orders/edit', order.id]">
-
-                <i class="bi bi-pencil"></i>
-
-                Edit
-
-            </a>
-
-            <a
                 routerLink="/orders"
-                class="btn btn-secondary">
+                class="btn btn-secondary me-2">
 
                 <i class="bi bi-arrow-left"></i>
 
@@ -35,119 +26,117 @@
 
             </a>
 
+            <button
+                class="btn btn-primary me-2"
+                (click)="printOrder()">
+
+                <i class="bi bi-printer"></i>
+
+                Print
+
+            </button>
+
+            <button
+                class="btn btn-danger"
+                (click)="downloadPdf()">
+
+                <i class="bi bi-file-earmark-pdf"></i>
+
+                Download PDF
+
+            </button>
+
         </div>
 
     </div>
 
-    <!-- Loading -->
+    <!-- ========================= -->
+    <!-- Printable Area -->
+    <!-- ========================= -->
 
     <div
-        *ngIf="loading"
-        class="text-center py-5">
+        id="print-section"
+        class="card shadow">
 
-        <div class="spinner-border text-primary"></div>
+        <div class="card-header bg-primary text-white">
 
-    </div>
-
-    <!-- Details -->
-
-    <div
-        class="card"
-        *ngIf="!loading && order">
-
-        <div class="card-body">
-
-            <!-- Order Information -->
-
-            <h5 class="mb-3">
+            <h4 class="mb-0">
 
                 Order Information
 
-            </h5>
+            </h4>
 
-            <div class="row mb-4">
+        </div>
 
-                <div class="col-md-4">
-                    <strong>Order ID</strong><br>
-                    {{ order.orderId }}
-                </div>
+        <div
+            class="card-body"
+            *ngIf="order">
 
-                <div class="col-md-4">
-                    <strong>PO Number</strong><br>
-                    {{ order.poNumber }}
-                </div>
+            <!-- Header Information -->
 
-                <div class="col-md-4">
-                    <strong>Status</strong><br>
-                    <span class="badge bg-success">
-                        {{ order.status }}
-                    </span>
-                </div>
+            <div class="row">
 
-                <div class="col-md-4 mt-3">
-                    <strong>Order Date</strong><br>
-                    {{ order.orderDate }}
-                </div>
+                <div class="col-md-4 mb-3">
 
-                <div class="col-md-4 mt-3">
-                    <strong>Ship Date</strong><br>
-                    {{ order.shipDate }}
-                </div>
+                    <strong>Order ID</strong>
 
-                <div class="col-md-4 mt-3">
-                    <strong>Shipping Address</strong><br>
-                    {{ order.shippingAddress }}
-                </div>
-
-            </div>
-
-            <hr>
-
-            <!-- Buyer & Style -->
-
-            <div class="row mb-4">
-
-                <div class="col-md-6">
-
-                    <h5>Buyer</h5>
-
-                    <p>
-
-                        <strong>Code :</strong>
-
-                        {{ order.buyerCode }}
-
-                    </p>
-
-                    <p>
-
-                        <strong>Name :</strong>
-
-                        {{ order.buyerName }}
-
-                    </p>
+                    <p>{{order.orderId}}</p>
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4 mb-3">
 
-                    <h5>Style</h5>
+                    <strong>PO Number</strong>
 
-                    <p>
+                    <p>{{order.poNumber}}</p>
 
-                        <strong>Code :</strong>
+                </div>
 
-                        {{ order.styleCode }}
+                <div class="col-md-4 mb-3">
 
-                    </p>
+                    <strong>Status</strong>
 
-                    <p>
+                    <p>{{order.status}}</p>
 
-                        <strong>Name :</strong>
+                </div>
 
-                        {{ order.styleName }}
+                <div class="col-md-4 mb-3">
 
-                    </p>
+                    <strong>Buyer</strong>
+
+                    <p>{{order.buyerName}}</p>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <strong>Style</strong>
+
+                    <p>{{order.styleName}}</p>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <strong>Shipping Address</strong>
+
+                    <p>{{order.shippingAddress}}</p>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <strong>Order Date</strong>
+
+                    <p>{{order.orderDate}}</p>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <strong>Ship Date</strong>
+
+                    <p>{{order.shipDate}}</p>
 
                 </div>
 
@@ -155,7 +144,9 @@
 
             <hr>
 
+            <!-- ========================= -->
             <!-- Order Items -->
+            <!-- ========================= -->
 
             <h5 class="mb-3">
 
@@ -163,62 +154,50 @@
 
             </h5>
 
-            <div class="table-responsive">
+            <table class="table table-bordered">
 
-                <table class="table table-bordered table-hover">
+                <thead class="table-light">
 
-                    <thead class="table-dark">
+                <tr>
 
-                        <tr>
+                    <th>Type</th>
 
-                            <th>#</th>
+                    <th>Size</th>
 
-                            <th>Type</th>
+                    <th>Quantity</th>
 
-                            <th>Size</th>
+                    <th>Unit Price</th>
 
-                            <th>Color</th>
+                    <th>Line Total</th>
 
-                            <th>Quantity</th>
+                </tr>
 
-                            <th>Unit Price</th>
+                </thead>
 
-                            <th>Line Total</th>
+                <tbody>
 
-                        </tr>
+                <tr
+                    *ngFor="let item of order.items">
 
-                    </thead>
+                    <td>{{item.type}}</td>
 
-                    <tbody>
+                    <td>{{item.size}}</td>
 
-                        <tr
-                            *ngFor="let item of order.items; let i=index">
+                    <td>{{item.quantity}}</td>
 
-                            <td>{{ i + 1 }}</td>
+                    <td>{{item.unitPrice | number:'1.2-2'}}</td>
 
-                            <td>{{ item.type }}</td>
+                    <td>{{item.lineTotal | number:'1.2-2'}}</td>
 
-                            <td>{{ item.size }}</td>
+                </tr>
 
-                            <td>{{ item.color }}</td>
+                </tbody>
 
-                            <td>{{ item.quantity }}</td>
+            </table>
 
-                            <td>{{ item.unitPrice }}</td>
-
-                            <td>{{ item.lineTotal }}</td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <hr>
-
+            <!-- ========================= -->
             <!-- Summary -->
+            <!-- ========================= -->
 
             <div class="row justify-content-end">
 
@@ -230,7 +209,7 @@
 
                             <th>Total Quantity</th>
 
-                            <td>{{ order.totalQuantity }}</td>
+                            <td>{{order.totalQuantity}}</td>
 
                         </tr>
 
@@ -238,23 +217,31 @@
 
                             <th>Subtotal</th>
 
-                            <td>{{ order.subtotal }}</td>
+                            <td>{{order.subtotal | number:'1.2-2'}}</td>
 
                         </tr>
 
                         <tr>
 
-                            <th>VAT (5%)</th>
+                            <th>VAT (%)</th>
 
-                            <td>{{ order.vat }}</td>
+                            <td>{{order.vatPercent}}</td>
 
                         </tr>
 
-                        <tr class="table-primary">
+                        <tr>
+
+                            <th>VAT Amount</th>
+
+                            <td>{{order.vat | number:'1.2-2'}}</td>
+
+                        </tr>
+
+                        <tr class="table-success">
 
                             <th>Grand Total</th>
 
-                            <th>{{ order.grandTotal }}</th>
+                            <th>{{order.grandTotal | number:'1.2-2'}}</th>
 
                         </tr>
 

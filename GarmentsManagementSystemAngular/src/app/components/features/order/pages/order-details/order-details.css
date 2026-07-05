@@ -1,152 +1,164 @@
-/* ===================================
-   Container
-=================================== */
+/* ==========================================
+   Page
+========================================== */
 
 .container-fluid {
     padding: 20px;
+    background: #f8f9fa;
 }
 
-/* ===================================
-   Header
-=================================== */
-
-h3 {
-    font-weight: 600;
-    color: #343a40;
-}
-
-h3 i {
-    margin-right: 8px;
-}
-
-/* ===================================
+/* ==========================================
    Card
-=================================== */
+========================================== */
 
 .card {
     border: none;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
+    overflow: hidden;
 }
 
-.card-body {
-    padding: 25px;
+.card-header {
+    padding: 15px 20px;
 }
 
-/* ===================================
-   Section Titles
-=================================== */
-
-h5 {
+.card-header h4 {
+    margin: 0;
     font-weight: 600;
-    color: #0d6efd;
-    margin-bottom: 15px;
 }
 
-/* ===================================
-   Info
-=================================== */
+/* ==========================================
+   Information
+========================================== */
 
 strong {
-    color: #495057;
+    color: #0d6efd;
+    font-weight: 600;
 }
 
 p {
-    margin-bottom: 10px;
-}
-
-/* ===================================
-   Badge
-=================================== */
-
-.badge {
-    font-size: 13px;
-    padding: 6px 12px;
-}
-
-/* ===================================
-   Table
-=================================== */
-
-.table {
     margin-bottom: 0;
+    color: #495057;
 }
+
+/* ==========================================
+   Table
+========================================== */
 
 .table th {
     text-align: center;
     vertical-align: middle;
-    white-space: nowrap;
 }
 
 .table td {
     vertical-align: middle;
 }
 
-.table-primary th,
-.table-primary td {
-    font-size: 16px;
-    font-weight: 700;
+.table-success th {
+    font-size: 18px;
 }
 
-/* ===================================
+.table-success td {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ==========================================
    Buttons
-=================================== */
+========================================== */
 
 .btn {
-    border-radius: 8px;
+
+    min-width: 120px;
+
 }
 
-.btn i {
-    margin-right: 5px;
-}
+/* ==========================================
+   Print
+========================================== */
 
-/* ===================================
-   Divider
-=================================== */
+@media print {
 
-hr {
-    margin: 25px 0;
-}
+    body {
 
-/* ===================================
-   Loading
-=================================== */
+        background: white !important;
 
-.spinner-border {
-    width: 3rem;
-    height: 3rem;
-}
+    }
 
-/* ===================================
-   Responsive
-=================================== */
+    .no-print {
 
-@media (max-width: 768px) {
+        display: none !important;
+
+    }
 
     .container-fluid {
-        padding: 12px;
+
+        padding: 0;
+
+        margin: 0;
+
     }
 
-    .card-body {
-        padding: 18px;
+    .card {
+
+        box-shadow: none !important;
+
+        border: none !important;
+
     }
 
-    h3 {
-        font-size: 22px;
+    .card-header {
+
+        background: #0d6efd !important;
+
+        color: white !important;
+
+        -webkit-print-color-adjust: exact;
+
+        print-color-adjust: exact;
+
     }
 
-    .table {
-        font-size: 14px;
-    }
+    table {
 
-    .btn {
         width: 100%;
-        margin-bottom: 10px;
+
+        border-collapse: collapse;
+
     }
 
-    .d-flex {
-        flex-direction: column;
-        align-items: stretch !important;
+    table th,
+    table td {
+
+        border: 1px solid #000 !important;
+
+    }
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:768px){
+
+    .container-fluid{
+
+        padding:10px;
+
+    }
+
+    .btn{
+
+        margin-bottom:10px;
+
+        width:100%;
+
+    }
+
+    .d-flex{
+
+        display:block !important;
+
     }
 
 }

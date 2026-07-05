@@ -120,7 +120,8 @@ export class OrderForm implements OnInit{
 
     status: ['PENDING', Validators.required],
 
-    shippingAddress: ['', Validators.required]
+    shippingAddress: ['', Validators.required],
+    vatPercent: [null, Validators.required]
 
   });
 
@@ -447,6 +448,7 @@ private buildRequest(): any {
     status: form.status,
 
     shippingAddress: form.shippingAddress,
+     vatPercent: form.vatPercent,
 
     items
 

@@ -34,6 +34,8 @@ export interface OrderResponse {
 
   vat: number;
 
+  vatPercent: number;
+
   grandTotal: number;
 
   totalAmount: number;
