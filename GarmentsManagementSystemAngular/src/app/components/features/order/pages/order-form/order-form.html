@@ -1,1 +1,467 @@
-<p>order-form works!</p>
+<div class="container-fluid">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                <i class="bi bi-cart-plus"></i>
+
+                {{ isEdit ? 'Edit Order' : 'Create Order' }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="orderForm"
+                (ngSubmit)="saveOrder()">
+
+                <div class="row">
+
+                    <!-- Order ID -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Order ID
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="orderId">
+
+                    </div>
+
+                    <!-- PO -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            PO Number
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="poNumber">
+
+                    </div>
+
+                    <!-- Buyer -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Buyer
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="buyerId">
+
+                            <option
+                                [ngValue]="null">
+
+                                Select Buyer
+
+                            </option>
+
+                            <option
+                                *ngFor="let buyer of buyers"
+                                [value]="buyer.id">
+
+                                {{ buyer.buyerName }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Shipping Address -->
+
+                    <div class="col-md-12 mb-3">
+
+                        <label class="form-label">
+
+                            Shipping Address
+
+                        </label>
+
+                        <textarea
+                            rows="2"
+                            class="form-control"
+                            formControlName="shippingAddress">
+                        </textarea>
+
+                    </div>
+
+                    <!-- Style -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Style
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="styleId">
+
+                            <option
+                                [ngValue]="null">
+
+                                Select Style
+
+                            </option>
+
+                            <option
+                                *ngFor="let style of styles"
+                                [value]="style.id">
+
+                                {{ style.styleName }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Order Date -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Order Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            formControlName="orderDate">
+
+                    </div>
+
+                    <!-- Ship Date -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Ship Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            formControlName="shipDate">
+
+                    </div>
+
+                    <!-- Status -->
+
+                    <div class="col-md-4 mb-4">
+
+                        <label class="form-label">
+
+                            Status
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="status">
+
+                            <option value="PENDING">
+
+                                PENDING
+
+                            </option>
+
+                            <option value="CONFIRMED">
+
+                                CONFIRMED
+
+                            </option>
+
+                            <option value="REJECTED">
+
+                                REJECTED
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- ===================== -->
+                <!-- Short Sleeve -->
+                <!-- ===================== -->
+
+                <div
+                    *ngIf="showShortSleeve"
+                    class="mb-5">
+
+                    <h4 class="text-primary">
+
+                        Short Sleeve Shirt
+
+                    </h4>
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+
+                       <tr>
+                           <th>Size</th>
+                           <th>Quantity</th>
+                           <th>Unit Price</th>
+                           <th>Line Total</th>
+                       </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr
+                            *ngFor="let row of shortSleeveRows">
+
+                            <td>
+
+                                {{ row.size }}
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    [(ngModel)]="row.quantity"
+                                    [ngModelOptions]="{standalone:true}">
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    [(ngModel)]="row.unitPrice"
+                                    [ngModelOptions]="{standalone:true}">
+
+                            </td>
+
+                            <td class="text-end fw-bold">
+
+                              {{ (row.quantity || 0) * (row.unitPrice || 0) | number:'1.2-2' }}
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- ===================== -->
+                <!-- Full Sleeve -->
+                <!-- ===================== -->
+
+                <div
+                    *ngIf="showFullSleeve"
+                    class="mb-5">
+
+                    <h4 class="text-success">
+
+                        Full Sleeve Shirt
+
+                    </h4>
+
+                    <table class="table table-bordered">
+
+                        <thead class="table-light">
+
+                       <tr>
+                          <th>Size</th>
+                          <th>Quantity</th>
+                          <th>Unit Price</th>
+                          <th>Line Total</th>
+                     </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr
+                            *ngFor="let row of fullSleeveRows">
+
+                            <td>
+
+                                {{ row.size }}
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    [(ngModel)]="row.quantity"
+                                    [ngModelOptions]="{standalone:true}">
+
+                            </td>
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    [(ngModel)]="row.unitPrice"
+                                    [ngModelOptions]="{standalone:true}">
+
+                            </td>
+
+
+                            <td class="text-end fw-bold">
+
+                              {{ (row.quantity || 0) * (row.unitPrice || 0) | number:'1.2-2' }}
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+                <div class="card mt-4">
+
+    <div class="card-header bg-dark text-white">
+
+        <h5 class="mb-0">
+
+            Order Summary
+
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-borderless">
+
+            <tr>
+
+                <th>Total Quantity</th>
+
+                <td>{{ getTotalQuantity() }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>Subtotal</th>
+
+                <td>{{ getSubtotal() | number:'1.2-2' }}</td>
+
+            </tr>
+
+            <tr>
+
+                <th>VAT (%)</th>
+
+                <td>
+
+                    <input
+                        type="number"
+                        class="form-control w-25"
+                        formControlName="vatPercent">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <th>VAT Amount</th>
+
+                <td>
+
+                    {{ getVatAmount() | number:'1.2-2' }}
+
+                </td>
+
+            </tr>
+
+            <tr class="table-primary">
+
+                <th>Grand Total</th>
+
+                <th>
+
+                    {{ getGrandTotal() | number:'1.2-2' }}
+
+                </th>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+                <!-- Buttons -->
+
+                <div class="text-end">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary me-2"
+                        (click)="resetForm()">
+
+                        Reset
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        {{ isEdit ? 'Update' : 'Save' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

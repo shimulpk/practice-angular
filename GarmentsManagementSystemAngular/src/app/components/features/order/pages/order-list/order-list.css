@@ -1,0 +1,131 @@
+/* ===================================
+   Container
+=================================== */
+
+.container-fluid {
+    padding: 20px;
+}
+
+/* ===================================
+   Header
+=================================== */
+
+h3 {
+    font-weight: 600;
+    color: #343a40;
+}
+
+h3 i {
+    margin-right: 8px;
+}
+
+/* ===================================
+   Card
+=================================== */
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* ===================================
+   Table
+=================================== */
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* ===================================
+   Badge
+=================================== */
+
+.badge {
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
+/* ===================================
+   Buttons
+=================================== */
+
+.btn-sm {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary i,
+.btn-sm i {
+    margin: 0;
+}
+
+/* ===================================
+   Loading
+=================================== */
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* ===================================
+   Empty State
+=================================== */
+
+.text-muted {
+    font-size: 16px;
+    padding: 20px;
+}
+
+/* ===================================
+   Responsive
+=================================== */
+
+@media (max-width: 768px) {
+
+    .container-fluid {
+        padding: 12px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+}

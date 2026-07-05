@@ -51,6 +51,14 @@ export const routes: Routes = [
 
 
 {
+  path: 'orders',
+
+  loadChildren: () =>
+    import('./components/features/order/routes/order.routes')
+      .then(m => m.ORDER_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },
