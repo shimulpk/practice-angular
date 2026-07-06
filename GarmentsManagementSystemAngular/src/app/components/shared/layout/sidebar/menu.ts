@@ -87,6 +87,7 @@ export const MENU: MenuItem[] = [
         route: '/orders'
       },
 
+      
       {
         title: 'Raw Material Check',
         icon: 'bi bi-search',
@@ -94,10 +95,24 @@ export const MENU: MenuItem[] = [
       },
 
       {
+        title: 'Raw Material Details',
+        icon: 'bi bi-box-seam',
+        route: '/raw-material-details'
+      },
+
+       {
+        title: ' Fabric Record Check',
+        icon: 'bi bi-box-seam',
+        route: '/fabric-record-check'
+      },
+
+       {
         title: 'View Fabric Record',
         icon: 'bi bi-box-seam',
-        route: '/fabric-record'
+        route: '/view-fabric-record'
       }
+
+
 
     ]
 

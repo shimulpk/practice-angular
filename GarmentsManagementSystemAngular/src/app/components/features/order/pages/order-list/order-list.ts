@@ -3,17 +3,24 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { OrderResponse } from '../../models/order-response';
 import { OrderService } from '../../services/order.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order-list',
    standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule,FormsModule],
   templateUrl: './order-list.html',
   styleUrl: './order-list.css',
 })
 export class OrderList implements OnInit{
 
     orders: OrderResponse[] = [];
+
+    filteredOrders: OrderResponse[] = [];
+
+         searchText = '';
+
+       selectedStatus = 'ALL';
 
   loading = false;
 
@@ -39,6 +46,8 @@ export class OrderList implements OnInit{
         next: (response) => {
 
           this.orders = response;
+          this.filteredOrders = [...response];
+
 
           this.loading = false;
 
@@ -90,6 +99,88 @@ export class OrderList implements OnInit{
       });
 
   }
+
+
+
+  filterOrders(): void {
+
+  this.filteredOrders = this.orders.filter(order => {
+
+    const keyword = this.searchText.toLowerCase();
+
+    const matchesSearch =
+
+      order.orderId.toLowerCase().includes(keyword) ||
+
+      order.poNumber.toLowerCase().includes(keyword) ||
+
+      order.buyerName.toLowerCase().includes(keyword) ||
+
+      order.styleName.toLowerCase().includes(keyword);
+
+    const matchesStatus =
+
+      this.selectedStatus === 'ALL' ||
+
+      order.status === this.selectedStatus;
+
+    return matchesSearch && matchesStatus;
+
+  });
+
+}
+
+
+
+// Card View Total Orders
+getTotalOrders(): number {
+
+  return this.orders.length;
+
+}
+
+
+// Card View Pending Orders
+getPendingOrders(): number {
+
+  return this.orders.filter(
+
+    order => order.status === 'PENDING'
+
+  ).length;
+
+}
+
+
+// Card View Confirmed Orders
+getConfirmedOrders(): number {
+
+  return this.orders.filter(
+
+    order => order.status === 'CONFIRMED'
+
+  ).length;
+
+}
+
+
+// Card View Rejected Orders
+getRejectedOrders(): number {
+
+  return this.orders.filter(
+
+    order => order.status === 'REJECTED'
+
+  ).length;
+
+}
+
+
+
+
+
+
+
 
 
 }
