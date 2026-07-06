@@ -1,7 +1,6 @@
 export interface RmcDetailsResponse {
 
-
-     id: number;
+    id: number;
 
   materialName: string;
 

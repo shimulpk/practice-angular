@@ -91,13 +91,13 @@ export const MENU: MenuItem[] = [
       {
         title: 'Raw Material Check',
         icon: 'bi bi-search',
-        route: '/raw-material-check'
+        route: '/raw-material-check/add'
       },
 
       {
         title: 'Raw Material Details',
         icon: 'bi bi-box-seam',
-        route: '/raw-material-details'
+        route: '/raw-material-check'
       },
 
        {

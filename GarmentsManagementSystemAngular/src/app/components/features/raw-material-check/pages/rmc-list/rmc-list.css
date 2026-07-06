@@ -1,0 +1,48 @@
+.container-fluid {
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.table th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    font-size: 15px;
+}
+
+.badge {
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
+.btn-group .btn {
+    padding: 5px 10px;
+}
+
+.btn-sm {
+    min-width: auto; 
+}
+
+@media (max-width: 768px) {
+    .card-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start !important;
+    }
+    
+    .card-header a {
+        width: 100%;
+        text-align: center;
+    }
+}

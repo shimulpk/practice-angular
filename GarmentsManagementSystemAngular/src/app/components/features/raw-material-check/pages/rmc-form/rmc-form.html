@@ -1,0 +1,108 @@
+<div class="container-fluid mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                Raw Material Check
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="rmcForm"
+                (ngSubmit)="generate()">
+
+                <div class="row">
+
+                    <div class="col-md-8 mb-3">
+
+                        <label class="form-label">
+
+                            Select Order
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="orderId">
+
+                            <option [ngValue]="null">
+
+                                -- Select Order --
+
+                            </option>
+
+                           <option
+                              *ngFor="let order of orders"
+                                    [value]="order.id">
+
+                              {{order.orderId}}
+    -
+                                {{order.buyerName}}
+    -
+                                 {{order.styleName}}
+                               
+                                     (Qty: {{order.totalQuantity}})
+
+                            </option>
+
+                        </select>
+
+                        <div
+                            class="text-danger mt-1"
+                            *ngIf="rmcForm.get('orderId')?.touched
+                            && rmcForm.get('orderId')?.invalid">
+
+                            Order is required.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-3">
+
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                        [disabled]="loading">
+
+                        <span *ngIf="loading">
+
+                            Generating...
+
+                        </span>
+
+                        <span *ngIf="!loading">
+
+                            Generate Raw Material Check
+
+                        </span>
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary ms-2"
+                        routerLink="/raw-material-details">
+
+                        View Generated List
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

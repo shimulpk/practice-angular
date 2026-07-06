@@ -1,0 +1,220 @@
+<div class="container-fluid mt-4" *ngIf="rmc">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h4 class="mb-0">
+
+                    Raw Material Check Details
+
+                    
+                </h4>
+
+                 <button
+        class="btn btn-success me-2"
+        (click)="printReport()">
+
+        <i class="bi bi-printer"></i>
+
+        Print
+
+    </button>
+
+    <button
+        class="btn btn-danger me-2"
+        (click)="downloadPdf()">
+
+        <i class="bi bi-file-earmark-pdf"></i>
+
+        PDF
+
+    </button>
+
+                <a
+                    routerLink="/raw-material-check"
+                    class="btn btn-light">
+
+                    Back
+
+                </a>
+
+            </div>
+
+        </div>
+
+       <div
+    class="card-body"id="print-section">
+
+            <!-- ========================= -->
+            <!-- Header Information -->
+            <!-- ========================= -->
+
+            <div class="row mb-4">
+
+                <div class="col-md-4">
+
+                    <strong>Buyer</strong>
+
+                    <p>{{rmc.buyerName}}</p>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <strong>Style</strong>
+
+                    <p>{{rmc.styleName}}</p>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <strong>Order Quantity</strong>
+
+                    <p>{{rmc.totalOrderQty}}</p>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <strong>Grand Material Cost</strong>
+
+                    <p>
+
+                        {{rmc.grandTotalCost | number:'1.2-2'}}
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <strong>Created Date</strong>
+
+                    <p>
+
+                        {{rmc.createdAt | date:'dd-MMM-yyyy hh:mm a'}}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ========================= -->
+            <!-- Material Table -->
+            <!-- ========================= -->
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Material</th>
+
+                            <th>Unit</th>
+
+                            <th>Qty / Piece</th>
+
+                            <th>Required Qty</th>
+
+                            <th>Unit Price</th>
+
+                            <th>Total Cost</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr
+                            *ngFor="
+                            let item of rmc.rmcDetailsList;
+                            let i=index">
+
+                            <td>
+
+                                {{i+1}}
+
+                            </td>
+
+                            <td>
+
+                                {{item.materialName}}
+
+                            </td>
+
+                            <td>
+
+                                {{item.unit}}
+
+                            </td>
+
+                            <td>
+
+                                {{item.qtyPerPiece}}
+
+                            </td>
+
+                            <td>
+
+                                {{item.totalQtyRequired}}
+
+                            </td>
+
+                            <td>
+
+                                {{item.unitPrice | number:'1.2-2'}}
+
+                            </td>
+
+                            <td>
+
+                                {{item.totalMaterialCost | number:'1.2-2'}}
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                    <tfoot>
+
+                        <tr class="table-primary">
+
+                            <th colspan="6"
+                                class="text-end">
+
+                                Grand Total
+
+                            </th>
+
+                            <th>
+
+                                {{rmc.grandTotalCost
+                                | number:'1.2-2'}}
+
+                            </th>
+
+                        </tr>
+
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

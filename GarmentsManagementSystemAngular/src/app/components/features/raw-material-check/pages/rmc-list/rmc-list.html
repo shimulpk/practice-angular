@@ -1,0 +1,68 @@
+<div class="container-fluid mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Raw Material Check List</h4>
+            <a routerLink="add" class="btn btn-light btn-sm fw-semibold">
+                <i class="bi bi-plus-lg"></i> New RMC Check
+            </a>
+        </div>
+
+        <div class="card-body">
+            <div *ngIf="loading" class="text-center my-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <div *ngIf="!loading && rmcList.length === 0" class="text-center my-5">
+                <i class="bi bi-folder-x text-muted display-1"></i>
+                <p class="mt-3 text-muted fs-5">No Raw Material Checks generated yet.</p>
+                <a routerLink="add" class="btn btn-primary mt-2">Generate First RMC</a>
+            </div>
+
+            <div class="table-responsive" *ngIf="!loading && rmcList.length > 0">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width: 60px;">#</th>
+                            <th>Buyer Name</th>
+                            <th>Style Name</th>
+                            <th class="text-center">Order Qty</th>
+                            <th class="text-end">Grand Total Cost</th>
+                            <th class="text-center">Created Date</th>
+                            <th class="text-center" style="width: 150px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rmc of rmcList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ rmc.buyerName }}</td>
+                            <td><span class="badge bg-secondary">{{ rmc.styleName }}</span></td>
+                            <td class="text-center">{{ rmc.totalOrderQty }}</td>
+                            <td class="text-end fw-bold text-success">
+                                {{ rmc.grandTotalCost | number:'1.2-2' }}
+                            </td>
+                            <td class="text-center text-muted">
+                                {{ rmc.createdAt | date:'dd-MMM-yyyy hh:mm a' }}
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a [routerLink]="['/raw-material-check', rmc.id]" 
+                                       class="btn btn-outline-primary btn-sm" 
+                                       title="View Details">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
+                                    <button (click)="deleteRmc(rmc.id)" 
+                                            class="btn btn-outline-danger btn-sm" 
+                                            title="Delete">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

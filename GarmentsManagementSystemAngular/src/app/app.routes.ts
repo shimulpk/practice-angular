@@ -59,6 +59,13 @@ export const routes: Routes = [
 },
 
 {
+  path: 'raw-material-check',
+  loadChildren: () =>
+    import('./components/features/raw-material-check/routes/rmc.routes')
+      .then(m => m.RMC_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },
