@@ -1,0 +1,75 @@
+<div class="container-fluid mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                Fabric Record Check
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="fabricForm"
+                (ngSubmit)="generate()">
+
+                <div class="row">
+
+                    <div class="col-md-8 mb-3">
+
+                        <label class="form-label">
+
+                            Select Order
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            formControlName="orderId">
+
+                            <option [ngValue]="null">
+
+                                -- Select Order --
+
+                            </option>
+
+                            <option
+                                *ngFor="let order of orders"
+                                [value]="order.id">
+
+                                {{order.orderId}}
+                                -
+                                {{order.buyerName}}
+                                -
+                                {{order.styleName}}
+                                (Qty: {{order.totalQuantity}})
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn btn-success"
+                    type="submit"
+                    [disabled]="loading">
+
+                    {{loading ? 'Generating...' : 'Generate Fabric Record'}}
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

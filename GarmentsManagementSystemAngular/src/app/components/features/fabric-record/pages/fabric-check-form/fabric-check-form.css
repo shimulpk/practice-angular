@@ -12,15 +12,14 @@
     font-weight:600;
 }
 
-.table th,
-.table td{
-    vertical-align:middle;
+.form-label{
+    font-weight:600;
+}
+
+.form-select{
+    height:45px;
 }
 
 .btn{
-    border-radius:6px;
-}
-
-.table tbody tr:hover{
-    background:#f8f9fa;
+    min-width:220px;
 }

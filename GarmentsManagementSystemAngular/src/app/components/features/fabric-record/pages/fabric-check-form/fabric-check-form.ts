@@ -4,19 +4,19 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { OrderResponse } from '../../../order/models/order-response';
 import { OrderService } from '../../../order/services/order.service';
-import { RmcCheckService } from '../../services/rmc-check.service';
+import { FabricRecordService } from '../../services/fabric-record.service';
 
 @Component({
-  selector: 'app-rmc-form',
-    standalone: true,
-  imports: [  CommonModule,ReactiveFormsModule,RouterModule],
-  templateUrl: './rmc-form.html',
-  styleUrl: './rmc-form.css',
+  selector: 'app-fabric-check-form',
+   standalone: true,
+  imports: [CommonModule,ReactiveFormsModule,RouterModule],
+  templateUrl: './fabric-check-form.html',
+  styleUrl: './fabric-check-form.css',
 })
-export class RmcForm  implements OnInit{
+export class FabricCheckForm implements OnInit{
 
 
-   rmcForm!: FormGroup;
+  fabricForm!: FormGroup;
 
   orders: OrderResponse[] = [];
 
@@ -25,27 +25,25 @@ export class RmcForm  implements OnInit{
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
-    private rmcService: RmcCheckService,
+    private fabricService: FabricRecordService,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) { }
 
-   ngOnInit(): void {
 
-    this.createForm();
+  ngOnInit(): void {
+   this.createForm();
 
     this.loadOrders();
-
   }
 
-
-   // ==========================
+    // ==========================
   // Create Form
   // ==========================
 
   createForm(): void {
 
-    this.rmcForm = this.fb.group({
+    this.fabricForm = this.fb.group({
 
       orderId: [
         null,
@@ -55,6 +53,7 @@ export class RmcForm  implements OnInit{
     });
 
   }
+
 
   // ==========================
   // Load Orders
@@ -89,19 +88,15 @@ export class RmcForm  implements OnInit{
 
   }
 
-  // ==========================
-  // Generate RMC
+   // ==========================
+  // Generate Fabric Record
   // ==========================
 
   generate(): void {
 
-    if (this.rmcForm.invalid) {
+    if (this.fabricForm.invalid) {
 
-      this.rmcForm.markAllAsTouched();
-
-
-
-        console.log(this.rmcForm.value);
+      this.fabricForm.markAllAsTouched();
 
       return;
 
@@ -109,31 +104,35 @@ export class RmcForm  implements OnInit{
 
     this.loading = true;
 
-    this.rmcService.generate(this.rmcForm.value)
+    this.fabricService.generate(
+      this.fabricForm.value
+    ).subscribe({
 
-      .subscribe({
+      next: (response) => {
 
-    
-        next: (response) => {
+        alert('Fabric Record Generated Successfully');
 
-          alert('Raw Material Check Generated Successfully');
+        this.router.navigate([
+          '/fabric-record-check',
+          response.id
+        ]);
 
-        console.log(response);
-         this.router.navigate(['/raw-material-check',response.id]);
+      },
 
-        },
+      error: (error) => {
 
-        error: (error) => {
+        console.error(error);
 
-          console.error(error);
+        this.loading = false;
 
-          this.loading = false;
+      }
 
-        }
-
-      });
+    });
 
   }
+
+
+
 
 
 }

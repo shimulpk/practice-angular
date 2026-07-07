@@ -101,15 +101,15 @@ export const MENU: MenuItem[] = [
       },
 
        {
-        title: ' Fabric Record Check',
+        title: 'Fabric Record Check',
         icon: 'bi bi-box-seam',
-        route: '/fabric-record-check'
+        route: '/fabric-record-check/add'
       },
 
        {
         title: 'View Fabric Record',
         icon: 'bi bi-box-seam',
-        route: '/view-fabric-record'
+        route: '/fabric-record-check'
       }
 
 

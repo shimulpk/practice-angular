@@ -13,59 +13,85 @@ import { RmcCheckService } from '../../services/rmc-check.service';
 })
 export class RmcList implements OnInit{
 
-  rmcList: RmcCheckResponse[] = [];
+  rmcChecks: RmcCheckResponse[] = [];
+
   loading = false;
 
   constructor(
     private rmcService: RmcCheckService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
-  
-  ngOnInit(): void {
-   this.loadAllRmc();
+
+    ngOnInit(): void {
+
+    this.loadRmcChecks();
+
   }
 
 
+  // Load All
   // ==========================
-  // Load All RMC Checks
-  // ==========================
-  loadAllRmc(): void {
+
+  loadRmcChecks(): void {
+
     this.loading = true;
-    this.rmcService.getAll().subscribe({
-      next: (response) => {
-        this.rmcList = response;
-        this.loading = false;
-        console.log(response);
-        this.cdr.markForCheck();
-      },
-      error: (error) => {
-        console.error('Error loading RMC list:', error);
-        this.loading = false;
-      },
-    });
+
+    this.rmcService.getAll()
+      .subscribe({
+
+        next: (response) => {
+
+          this.rmcChecks = response;
+
+          this.loading = false;
+
+          this.cdr.markForCheck();
+
+        },
+
+        error: (error) => {
+
+          console.error(error);
+
+          this.loading = false;
+
+        }
+
+      });
+
   }
 
+  // ==========================
+  // Delete
+  // ==========================
 
-  // ==========================
-  // Delete RMC Check
-  // ==========================
   deleteRmc(id: number): void {
-    if (confirm('Are you sure you want to delete this Raw Material Check?')) {
-      this.rmcService.delete(id).subscribe({
-        next: (response) => {
-          alert(response || 'RMC Check Deleted Successfully');
-          // Delete houa item list theke filter kore fele deoa
-          this.rmcList = this.rmcList.filter((item) => item.id !== id);
-          this.cdr.markForCheck();
-        },
-        error: (error) => {
-          console.error('Error deleting RMC:', error);
-          alert('Failed to delete RMC Check');
-        },
-      });
+
+    if (!confirm('Are you sure you want to delete this RMC?')) {
+
+      return;
+
     }
 
+    this.rmcService.delete(id)
+      .subscribe({
+
+        next: () => {
+
+          alert('RMC Deleted Successfully');
+
+          this.loadRmcChecks();
+
+        },
+
+        error: (error) => {
+
+          console.error(error);
+
+        }
+
+      });
 
   }
 

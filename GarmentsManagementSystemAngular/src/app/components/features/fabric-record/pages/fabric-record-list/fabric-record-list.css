@@ -1,0 +1,56 @@
+.container-fluid {
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card-header h4 {
+    margin: 0;
+}
+
+.table {
+    margin-top: 10px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table thead th {
+    white-space: nowrap;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.btn {
+    border-radius: 6px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+
+    .card-header {
+        display: block !important;
+    }
+
+    .card-header a {
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+}

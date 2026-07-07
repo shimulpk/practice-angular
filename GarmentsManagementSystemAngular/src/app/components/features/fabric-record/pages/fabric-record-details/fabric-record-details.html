@@ -1,0 +1,186 @@
+<div class="container-fluid mt-4" *ngIf="fabric">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+                Fabric Record Details
+            </h4>
+
+            <div>
+
+                <button
+                    class="btn btn-success me-2"
+                    (click)="printRecord()">
+
+                    <i class="bi bi-printer"></i>
+                    Print
+
+                </button>
+
+                <button
+                    class="btn btn-danger me-2"
+                    (click)="downloadPdf()">
+
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    PDF
+
+                </button>
+
+                <a
+                    routerLink="/fabric-record-check"
+                    class="btn btn-light">
+
+                    Back
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div
+            class="card-body"
+            id="print-section">
+
+            <!-- ========================= -->
+            <!-- Summary -->
+            <!-- ========================= -->
+
+            <div class="row mb-4">
+
+                <div class="col-md-3">
+                    <strong>Order No</strong>
+                    <p>{{fabric.orderCode}}</p>
+                </div>
+
+                <div class="col-md-3">
+                    <strong>PO Number</strong>
+                    <p>{{fabric.poNumber}}</p>
+                </div>
+
+                <div class="col-md-3">
+                    <strong>Style</strong>
+                    <p>{{fabric.styleName}}</p>
+                </div>
+
+                <div class="col-md-3">
+                    <strong>Created Date</strong>
+                    <p>{{fabric.createdAt | date:'dd-MMM-yyyy hh:mm a'}}</p>
+                </div>
+
+                <div class="col-md-3">
+                    <strong>Total Fabric Required</strong>
+                    <p>{{fabric.totalFabricRequired}}</p>
+                </div>
+
+            </div>
+
+            <!-- ========================= -->
+            <!-- Details Table -->
+            <!-- ========================= -->
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-dark">
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Product</th>
+
+                        <th>Size</th>
+
+                        <th>Type</th>
+
+                        <th>Qty</th>
+
+                        <th>Base Fabric</th>
+
+                        <th>Required Fabric</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr
+                        *ngFor="let item of fabric.details; let i=index">
+
+                        <td>{{i+1}}</td>
+
+                        <td>{{item.productName}}</td>
+
+                        <td>{{item.size}}</td>
+
+                        <td>{{item.type}}</td>
+
+                        <td>{{item.qty}}</td>
+
+                        <td>{{item.baseFabric}}</td>
+
+                        <td>{{item.calculatedFabric}}</td>
+
+                        <td>
+
+                            <span
+                                *ngIf="item.hasUom"
+                                class="badge bg-success">
+
+                                Available
+
+                            </span>
+
+                            <span
+                                *ngIf="!item.hasUom"
+                                class="badge bg-danger">
+
+                                Missing UOM
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                    <tfoot>
+
+                    <tr class="table-primary">
+
+                        <th colspan="6"
+                            class="text-end">
+
+                            Total Fabric
+
+                        </th>
+
+                        <th>
+
+                            {{fabric.totalFabricRequired}}
+
+                        </th>
+
+                        <th></th>
+
+                    </tr>
+
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

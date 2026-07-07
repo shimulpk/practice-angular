@@ -1,10 +1,34 @@
 <div class="container-fluid mt-4" *ngIf="rmc">
 
+    
+                                                                 <button
+                                                       class="btn btn-success me-2"
+                                                        (click)="printReport()">
+
+                                                       <i class="bi bi-printer"></i>
+
+                                                                  Print
+
+                                                                 </button>
+
+                                                                     <button
+                                                        class="btn btn-danger me-2"
+                                                            (click)="downloadPdf()">
+
+                                                         <i class="bi bi-file-earmark-pdf"></i>
+
+                                                                       PDF
+
+                                                                  </button>
+
     <div class="card shadow">
+        
 
         <div class="card-header bg-primary text-white">
+            
 
             <div class="d-flex justify-content-between align-items-center">
+
 
                 <h4 class="mb-0">
 
@@ -13,25 +37,7 @@
                     
                 </h4>
 
-                 <button
-        class="btn btn-success me-2"
-        (click)="printReport()">
 
-        <i class="bi bi-printer"></i>
-
-        Print
-
-    </button>
-
-    <button
-        class="btn btn-danger me-2"
-        (click)="downloadPdf()">
-
-        <i class="bi bi-file-earmark-pdf"></i>
-
-        PDF
-
-    </button>
 
                 <a
                     routerLink="/raw-material-check"
@@ -51,6 +57,16 @@
             <!-- ========================= -->
             <!-- Header Information -->
             <!-- ========================= -->
+
+            <div class="row mb-4">
+
+                <div class="col-md-4">
+
+                    <strong>Order No</strong>
+
+                    <p>{{rmc.orderNumber}}</p>
+
+                </div>
 
             <div class="row mb-4">
 

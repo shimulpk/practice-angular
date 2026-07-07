@@ -66,6 +66,13 @@ export const routes: Routes = [
 },
 
 {
+  path: 'fabric-record-check',
+  loadChildren: () =>
+    import('./components/features/fabric-record/routes/fabric.routes')
+      .then(m => m.Fabric_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },

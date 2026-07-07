@@ -6,6 +6,8 @@ export interface RmcCheckResponse {
 
   orderId: number;
 
+  orderNumber: string;
+
   styleId: number;
 
   buyerName: string;
