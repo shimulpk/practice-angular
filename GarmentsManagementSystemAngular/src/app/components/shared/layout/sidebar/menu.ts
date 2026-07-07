@@ -150,17 +150,18 @@ export const MENU: MenuItem[] = [
         route: '/vendors'
       },
 
-      {
-        title: 'Create PO',
+      { title: 'Purchase Requisition', 
+        icon: 'bi bi-file-earmark-text',
+         route: '/purchase-requisition' }, 
+      
+      { title: 'Create PO', 
         icon: 'bi bi-file-earmark-plus',
-        route: '/purchase-order/add'
-      },
+         route: '/purchase-order/add' },
 
-      {
-        title: 'View PO',
-        icon: 'bi bi-card-list',
-        route: '/purchase-order'
-      }
+         
+      { title: 'View PO List',
+         icon: 'bi bi-card-list',
+          route: '/purchase-order' }
 
     ]
 
@@ -198,36 +199,24 @@ export const MENU: MenuItem[] = [
         route: '/items'
       },
 
-      {
-        title: 'Stock In',
-        icon: 'bi bi-box-arrow-in-down',
-        route: '/stock-in'
-      },
-
-      {
-        title: 'Stock Out',
-        icon: 'bi bi-box-arrow-up',
-        route: '/stock-out'
-      },
-
-      {
-        title: 'Inventory List',
-        icon: 'bi bi-box',
-        route: '/inventory-list'
-      },
-
-      {
-        title: 'Create Requisition',
-        icon: 'bi bi-file-earmark-plus',
-        route: '/requisition/add'
-      },
-
-      {
-        title: 'View Requisition',
-        icon: 'bi bi-card-list',
-        route: '/requisition'
-      }
-
+      // মাল রিসিভ করা (ভেন্ডর থেকে PO অনুযায়ী আসা মাল এন্ট্রি)
+      { title: 'Goods Receive (GRN)', 
+        icon: 'bi bi-box-arrow-in-down', 
+        route: '/inventory/grn' }, 
+      
+      // প্রোডাকশন ফ্লোর থেকে স্টোরে মাল চেয়ে পাঠানো রিকোয়েস্ট
+      { title: 'Store Requisition',
+         icon: 'bi bi-file-earmark-plus', 
+         route: '/inventory/store-requisition' }, 
+      
+      // রিকোয়েস্ট অনুযায়ী ফ্লোরে ফিজিক্যাল মাল ইস্যু বা স্টক আউট করা
+      { title: 'Material Issue',
+         icon: 'bi bi-box-arrow-up', 
+         route: '/inventory/material-issue' }, 
+      
+      { title: 'Current Stock Report', 
+        icon: 'bi bi-box', 
+        route: '/inventory/stock-report' }
     ]
 
   },
