@@ -1,0 +1,233 @@
+<div class="container-fluid mt-4">
+
+    <div class="card shadow">
+
+        <!-- Header -->
+
+        <div class="card-header bg-primary text-white">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                <h4 class="mb-0">
+
+                    Store Requisition List
+
+                </h4>
+
+                <button
+                    class="btn btn-light"
+                    routerLink="/store-requisition/add">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Create Requisition
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Body -->
+
+        <div class="card-body">
+
+            <!-- Search -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search..."
+                        [(ngModel)]="searchText"
+                        (input)="search()">
+
+                </div>
+
+            </div>
+
+            <!-- Loading -->
+
+            <div
+                *ngIf="loading"
+                class="text-center py-5">
+
+                <div class="spinner-border text-primary"></div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div
+                class="table-responsive"
+                *ngIf="!loading">
+
+                <table
+                    class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th width="70">
+
+                                SL
+
+                            </th>
+
+                            <th>
+
+                                PR No
+
+                            </th>
+
+                            <th>
+
+                                Requisition Date
+
+                            </th>
+
+                            <th>
+
+                                Requested By
+
+                            </th>
+
+                            <th>
+
+                                Department
+
+                            </th>
+
+                            <th>
+
+                                Status
+
+                            </th>
+
+                            <th width="180">
+
+                                Action
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr
+                            *ngFor="
+                            let requisition of filteredRequisitions;
+                            let i = index
+                        ">
+
+                            <td>
+
+                                {{ i + 1 }}
+
+                            </td>
+
+                            <td>
+
+                                {{ requisition.prNo }}
+
+                            </td>
+
+                            <td>
+
+                                {{ requisition.requisitionDate }}
+
+                            </td>
+
+                            <td>
+
+                                {{ requisition.requestedBy }}
+
+                            </td>
+
+                            <td>
+
+                                {{ requisition.department }}
+
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="badge"
+                                    [ngClass]="{
+                                'bg-warning text-dark':
+                                requisition.status=='PENDING',
+
+                                'bg-success':
+                                requisition.status=='APPROVED',
+
+                                'bg-danger':
+                                requisition.status=='REJECTED'
+                            }">
+
+                                    {{ requisition.status }}
+
+                                </span>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <button
+                                    class="btn btn-info btn-sm me-2"
+                                    (click)="viewRequisition(requisition.id)">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </button>
+
+                                <button
+                                    class="btn btn-warning btn-sm me-2"
+                                    (click)="editRequisition(requisition.id)">
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </button>
+
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="deleteRequisition(requisition.id)">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr
+                            *ngIf="filteredRequisitions.length==0">
+
+                            <td
+                                colspan="7"
+                                class="text-center text-muted">
+
+                                No Store Requisition Found.
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

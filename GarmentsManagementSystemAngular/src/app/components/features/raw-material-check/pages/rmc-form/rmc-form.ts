@@ -75,6 +75,8 @@ export class RmcForm  implements OnInit{
 
           this.cdr.markForCheck();
 
+          console.log(response);
+
         },
 
         error: (error) => {

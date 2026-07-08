@@ -84,8 +84,16 @@ export const routes: Routes = [
   path: 'store-requisitions',
 
   loadChildren: () =>
-    import('./components/features/procurement/store-requisition/routes/store-requisition.routes')
+    import('./components/features/inventory/store-requisition/routes/store-requisition.routes')
       .then(m => m.STORE_REQUISITION_ROUTES)
+},
+
+{
+  path: 'items',
+
+  loadChildren: () =>
+    import('./components/features/inventory/item/routes/item.routes')
+      .then(m => m.ITEM_ROUTES)
 },
 
 {

@@ -199,20 +199,30 @@ export const MENU: MenuItem[] = [
         route: '/items'
       },
 
-      // মাল রিসিভ করা (ভেন্ডর থেকে PO অনুযায়ী আসা মাল এন্ট্রি)
+       {
+      title: 'Create Store Requisition',
+      icon: 'bi bi-file-earmark-plus',
+      route: '/store-requisitions/add'
+    },
+
+    {
+      title: 'View Store Requisition',
+      icon: 'bi bi-file-earmark-text',
+      route: '/store-requisitions'
+    },
+
+      
       { title: 'Goods Receive (GRN)', 
         icon: 'bi bi-box-arrow-in-down', 
         route: '/inventory/grn' }, 
       
-      // প্রোডাকশন ফ্লোর থেকে স্টোরে মাল চেয়ে পাঠানো রিকোয়েস্ট
-      { title: 'Store Requisition',
-         icon: 'bi bi-file-earmark-plus', 
-         route: '/inventory/store-requisition' }, 
       
-      // রিকোয়েস্ট অনুযায়ী ফ্লোরে ফিজিক্যাল মাল ইস্যু বা স্টক আউট করা
+     
+      
       { title: 'Material Issue',
          icon: 'bi bi-box-arrow-up', 
          route: '/inventory/material-issue' }, 
+
       
       { title: 'Current Stock Report', 
         icon: 'bi bi-box', 
