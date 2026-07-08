@@ -1,0 +1,125 @@
+.container {
+
+    max-width: 1200px;
+
+}
+
+.card {
+
+    border: none;
+
+    border-radius: 12px;
+
+}
+
+.card-header {
+
+    padding: 15px 20px;
+
+    border-radius: 12px 12px 0 0;
+
+}
+
+.card-body {
+
+    padding: 20px;
+
+}
+
+.table {
+
+    margin-bottom: 0;
+
+    vertical-align: middle;
+
+}
+
+.table th {
+
+    white-space: nowrap;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    font-weight: 600;
+
+}
+
+.table td {
+
+    vertical-align: middle;
+
+}
+
+.table td:last-child,
+
+.table th:last-child {
+
+    text-align: center;
+
+}
+
+.badge {
+
+    font-size: 0.85rem;
+
+    padding: 8px 12px;
+
+}
+
+.btn-sm {
+
+    width: 36px;
+
+    height: 36px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+.table-hover tbody tr:hover {
+
+    background-color: #f8f9fa;
+
+}
+
+@media (max-width: 768px) {
+
+    .card-header {
+
+        display: flex !important;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        align-items: stretch !important;
+
+    }
+
+    .card-header .btn {
+
+        width: 100%;
+
+    }
+
+    .table {
+
+        font-size: 14px;
+
+    }
+
+    .btn-sm {
+
+        width: 32px;
+
+        height: 32px;
+
+    }
+
+}

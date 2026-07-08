@@ -73,6 +73,22 @@ export const routes: Routes = [
 },
 
 {
+  path: 'vendors',
+
+  loadChildren: () =>
+    import('./components/features/procurement/vendor/routes/vendor.routes')
+      .then(m => m.VENDOR_ROUTES)
+},
+
+{
+  path: 'store-requisitions',
+
+  loadChildren: () =>
+    import('./components/features/procurement/store-requisition/routes/store-requisition.routes')
+      .then(m => m.STORE_REQUISITION_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },

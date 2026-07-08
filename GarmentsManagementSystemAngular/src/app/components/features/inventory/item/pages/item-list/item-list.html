@@ -1,0 +1,202 @@
+<div class="container-fluid mt-4">
+
+  <div class="card shadow">
+
+    <!-- Header -->
+
+    <div class="card-header bg-primary text-white">
+
+      <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+        <h4 class="mb-0">
+          Item List
+        </h4>
+
+        <button
+          class="btn btn-light"
+          routerLink="/items/add">
+
+          <i class="bi bi-plus-circle"></i>
+
+          Add Item
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Body -->
+
+    <div class="card-body">
+
+      <!-- Search -->
+
+      <div class="row mb-3">
+
+        <div class="col-md-4">
+
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search Item..."
+            [(ngModel)]="searchText"
+            (input)="search()">
+
+        </div>
+
+      </div>
+
+      <!-- Loading -->
+
+      <div
+        *ngIf="loading"
+        class="text-center py-4">
+
+        <div
+          class="spinner-border text-primary">
+        </div>
+
+      </div>
+
+      <!-- Table -->
+
+      <div
+        class="table-responsive"
+        *ngIf="!loading">
+
+        <table
+          class="table table-bordered table-hover align-middle">
+
+          <thead class="table-dark">
+
+            <tr>
+
+              <th width="70">SL</th>
+
+              <th>Item Name</th>
+
+              <th>Category</th>
+
+              <th>Unit</th>
+
+              <th>Status</th>
+
+              <th width="180" class="text-center">
+
+                Action
+
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr
+              *ngFor="
+                let item of filteredItems;
+                let i = index
+              ">
+
+              <td>
+
+                {{ i + 1 }}
+
+              </td>
+
+              <td>
+
+                {{ item.itemName }}
+
+              </td>
+
+              <td>
+
+                {{ item.category }}
+
+              </td>
+
+              <td>
+
+                {{ item.unit }}
+
+              </td>
+
+              <td>
+
+                <span
+                  class="badge"
+                  [ngClass]="
+                    item.active
+                    ? 'bg-success'
+                    : 'bg-danger'
+                  ">
+
+                  {{
+                    item.active
+                    ? 'Active'
+                    : 'Inactive'
+                  }}
+
+                </span>
+
+              </td>
+
+              <td class="text-center">
+
+                <button
+                  class="btn btn-info btn-sm me-2"
+                  (click)="viewItem(item.id)">
+
+                  <i class="bi bi-eye"></i>
+
+                </button>
+
+                <button
+                  class="btn btn-warning btn-sm me-2"
+                  (click)="editItem(item.id)">
+
+                  <i class="bi bi-pencil-square"></i>
+
+                </button>
+
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteItem(item.id)">
+
+                  <i class="bi bi-trash"></i>
+
+                </button>
+
+              </td>
+
+            </tr>
+
+            <tr
+              *ngIf="
+                filteredItems.length === 0
+              ">
+
+              <td
+                colspan="6"
+                class="text-center text-muted">
+
+                No Item Found.
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

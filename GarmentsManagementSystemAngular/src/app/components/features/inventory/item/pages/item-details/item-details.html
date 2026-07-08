@@ -1,0 +1,145 @@
+<div class="container mt-4">
+
+  <div
+    *ngIf="loading"
+    class="text-center mt-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <div
+    class="card shadow"
+    *ngIf="!loading && item">
+
+    <!-- Header -->
+
+    <div class="card-header bg-primary text-white">
+
+      <div class="d-flex justify-content-between align-items-center">
+
+        <h4 class="mb-0">
+
+          Item Details
+
+        </h4>
+
+        <div>
+
+          <button
+            class="btn btn-warning me-2"
+            (click)="editItem()">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+          </button>
+
+          <button
+            class="btn btn-light"
+            routerLink="/items">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Body -->
+
+    <div class="card-body">
+
+      <div class="row">
+
+        <div class="col-md-6 mb-3">
+
+          <label class="fw-bold">
+
+            Item Name
+
+          </label>
+
+          <div class="form-control bg-light">
+
+            {{ item.itemName }}
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6 mb-3">
+
+          <label class="fw-bold">
+
+            Category
+
+          </label>
+
+          <div class="form-control bg-light">
+
+            {{ item.category }}
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6 mb-3">
+
+          <label class="fw-bold">
+
+            Unit
+
+          </label>
+
+          <div class="form-control bg-light">
+
+            {{ item.unit }}
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6 mb-3">
+
+          <label class="fw-bold">
+
+            Status
+
+          </label>
+
+          <div>
+
+            <span
+              class="badge"
+              [ngClass]="
+                item.active
+                ? 'bg-success'
+                : 'bg-danger'
+              ">
+
+              {{
+                item.active
+                ? 'Active'
+                : 'Inactive'
+              }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

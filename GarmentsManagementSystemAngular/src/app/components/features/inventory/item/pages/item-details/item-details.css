@@ -1,0 +1,74 @@
+.container {
+    max-width: 900px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    padding: 15px 20px;
+}
+
+.card-header h4 {
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-control {
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #212529;
+}
+
+.badge {
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-header .d-flex {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 12px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .btn.me-2 {
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+    }
+}

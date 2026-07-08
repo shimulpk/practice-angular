@@ -1,0 +1,91 @@
+.container {
+
+    max-width: 900px;
+
+}
+
+.card {
+
+    border: none;
+
+    border-radius: 12px;
+
+}
+
+.card-header {
+
+    border-radius: 12px 12px 0 0;
+
+    padding: 15px 20px;
+
+}
+
+.form-label {
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
+
+}
+
+.form-control {
+
+    border-radius: 8px;
+
+    min-height: 45px;
+
+}
+
+textarea.form-control {
+
+    min-height: 100px;
+
+    resize: vertical;
+
+}
+
+.btn {
+
+    min-width: 110px;
+
+    border-radius: 8px;
+
+    font-weight: 500;
+
+}
+
+.btn + .btn {
+
+    margin-left: 8px;
+
+}
+
+.card-body {
+
+    padding: 25px;
+
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+
+        padding: 15px;
+
+    }
+
+    .btn {
+
+        width: 100%;
+
+        margin-bottom: 10px;
+
+    }
+
+    .btn + .btn {
+
+        margin-left: 0;
+
+    }
+
+}

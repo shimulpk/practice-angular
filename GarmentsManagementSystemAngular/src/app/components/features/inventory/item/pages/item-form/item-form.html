@@ -1,0 +1,182 @@
+<div class="container mt-4">
+
+  <div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+
+      <h4 class="mb-0">
+
+        {{ isEdit ? 'Edit Item' : 'Add Item' }}
+
+      </h4>
+
+    </div>
+
+    <div class="card-body">
+
+      <form
+        [formGroup]="itemForm"
+        (ngSubmit)="saveItem()">
+
+        <div class="row">
+
+          <!-- Item Name -->
+
+          <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+              Item Name
+              <span class="text-danger">*</span>
+
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="itemName">
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="
+                itemForm.get('itemName')?.touched &&
+                itemForm.get('itemName')?.invalid
+              ">
+
+              Item Name is required.
+
+            </div>
+
+          </div>
+
+          <!-- Category -->
+
+          <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+              Category
+              <span class="text-danger">*</span>
+
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="category">
+
+              <option value="">
+                Select Category
+              </option>
+
+              <option
+                *ngFor="let category of categories"
+                [value]="category">
+
+                {{ category }}
+
+              </option>
+
+            </select>
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="
+                itemForm.get('category')?.touched &&
+                itemForm.get('category')?.invalid
+              ">
+
+              Category is required.
+
+            </div>
+
+          </div>
+
+          <!-- Unit -->
+
+          <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+              Unit
+              <span class="text-danger">*</span>
+
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="unit">
+
+              <option value="">
+                Select Unit
+              </option>
+
+              <option
+                *ngFor="let unit of units"
+                [value]="unit">
+
+                {{ unit }}
+
+              </option>
+
+            </select>
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="
+                itemForm.get('unit')?.touched &&
+                itemForm.get('unit')?.invalid
+              ">
+
+              Unit is required.
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <div class="d-flex gap-2">
+
+          <button
+            type="submit"
+            class="btn btn-success">
+
+            <i class="bi bi-check-circle"></i>
+
+            {{ isEdit ? 'Update' : 'Save' }}
+
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="resetForm()">
+
+            <i class="bi bi-arrow-clockwise"></i>
+
+            Reset
+
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-dark ms-auto"
+            routerLink="/items">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
