@@ -1,0 +1,257 @@
+<div class="container-fluid mt-4">
+
+    <!-- Loading -->
+
+    <div
+        *ngIf="loading"
+        class="text-center py-5">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <!-- Details -->
+
+    <div
+        *ngIf="!loading && requisition"
+        class="card shadow">
+
+        <!-- Header -->
+
+        <div class="card-header bg-primary text-white">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h4 class="mb-0">
+
+                    Pending Store Requisition
+
+                </h4>
+
+                <button
+                    class="btn btn-light"
+                    routerLink="/pending-store-requisition">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Body -->
+
+        <div class="card-body">
+
+            <!-- Header Information -->
+
+            <div class="row">
+
+                <div class="col-md-3 mb-3">
+
+                    <label class="fw-bold">PR No</label>
+
+                    <div class="form-control bg-light">
+
+                        {{ requisition.prNo }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 mb-3">
+
+                    <label class="fw-bold">Requisition Date</label>
+
+                    <div class="form-control bg-light">
+
+                        {{ requisition.requisitionDate }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 mb-3">
+
+                    <label class="fw-bold">Requested By</label>
+
+                    <div class="form-control bg-light">
+
+                        {{ requisition.requestedBy }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 mb-3">
+
+                    <label class="fw-bold">Department</label>
+
+                    <div class="form-control bg-light">
+
+                        {{ requisition.department }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">Remarks</label>
+
+                    <div class="form-control bg-light">
+
+                        {{ requisition.remarks || '-' }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="fw-bold">Status</label>
+
+                    <div>
+
+                        <span class="badge bg-warning text-dark">
+
+                            {{ requisition.status }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- Requested Items -->
+
+            <h5 class="mb-3">
+
+                Requested Items
+
+            </h5>
+
+            <div class="row">
+
+                <div
+                    class="col-lg-4 col-md-6 mb-4"
+                    *ngFor="let item of requisition.items">
+
+                    <div class="card border shadow-sm h-100">
+
+                        <div class="card-header bg-light">
+
+                            <h6 class="mb-0 fw-bold">
+
+                                {{ item.itemName }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="mb-3">
+
+                                <small class="text-muted">
+
+                                    Unit
+
+                                </small>
+
+                                <h6>
+
+                                    {{ item.unit }}
+
+                                </h6>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <small class="text-muted">
+
+                                    Quantity
+
+                                </small>
+
+                                <h5 class="text-primary">
+
+                                    {{ item.quantity }}
+
+                                </h5>
+
+                            </div>
+
+                            <div>
+
+                                <small class="text-muted">
+
+                                    Remarks
+
+                                </small>
+
+                                <p class="mb-0">
+
+                                    {{ item.remarks || '-' }}
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- Action -->
+
+            <div class="text-end">
+
+                <button
+                    class="btn btn-success me-2"
+                    (click)="approve()">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Approve
+
+                </button>
+
+                <button
+                    class="btn btn-danger me-2"
+                    (click)="reject()">
+
+                    <i class="bi bi-x-circle"></i>
+
+                    Reject
+
+                </button>
+
+                <button
+                    class="btn btn-secondary"
+                    routerLink="/pending-store-requisition">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

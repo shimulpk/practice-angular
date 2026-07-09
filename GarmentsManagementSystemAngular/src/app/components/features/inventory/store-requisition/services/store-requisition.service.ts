@@ -88,4 +88,12 @@ export class StoreRequisitionService {
 
   }
 
+  getApprovedRequisitions(): Observable<StoreRequisitionResponse[]> {
+
+  return this.http.get<StoreRequisitionResponse[]>(
+    `${this.apiUrl}/approved`
+  );
+
+}
+
 }

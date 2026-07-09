@@ -1,0 +1,362 @@
+<div class="container-fluid mt-4">
+
+  <div *ngIf="loading" class="text-center py-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <div *ngIf="!loading && purchaseOrder">
+
+    <!-- ====================================== -->
+    <!-- Header -->
+    <!-- ====================================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+      <div>
+
+        <h3 class="fw-bold mb-1">
+
+          Purchase Order Details
+
+        </h3>
+
+        <p class="text-muted mb-0">
+
+          Complete Purchase Order Information
+
+        </p>
+
+      </div>
+
+      <a
+        routerLink="/purchase-orders"
+        class="btn btn-secondary">
+
+        <i class="bi bi-arrow-left"></i>
+
+        Back
+
+      </a>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- Information Cards -->
+    <!-- ====================================== -->
+
+    <div class="row g-4">
+
+      <!-- Purchase Order -->
+
+      <div class="col-lg-4">
+
+        <div class="card shadow-sm h-100">
+
+          <div class="card-header bg-primary text-white">
+
+            <h5 class="mb-0">
+
+              Purchase Order
+
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="mb-3">
+
+              <small class="text-muted">
+
+                PO Number
+
+              </small>
+
+              <h6>{{ purchaseOrder.poNo }}</h6>
+
+            </div>
+
+            <div class="mb-3">
+
+              <small class="text-muted">
+
+                PO Date
+
+              </small>
+
+              <h6>{{ purchaseOrder.poDate }}</h6>
+
+            </div>
+
+            <div>
+
+              <small class="text-muted">
+
+                Status
+
+              </small>
+
+              <br>
+
+              <span
+                class="badge bg-warning text-dark"
+                *ngIf="purchaseOrder.status=='PENDING'">
+
+                PENDING
+
+              </span>
+
+              <span
+                class="badge bg-success"
+                *ngIf="purchaseOrder.status=='RECEIVED'">
+
+                RECEIVED
+
+              </span>
+
+              <span
+                class="badge bg-danger"
+                *ngIf="purchaseOrder.status=='CANCELLED'">
+
+                CANCELLED
+
+              </span>
+
+              <span
+                class="badge bg-primary"
+                *ngIf="purchaseOrder.status=='APPROVED'">
+
+                APPROVED
+
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Vendor -->
+
+      <div class="col-lg-4">
+
+        <div class="card shadow-sm h-100">
+
+          <div class="card-header bg-success text-white">
+
+            <h5 class="mb-0">
+
+              Vendor
+
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="mb-3">
+
+              <small class="text-muted">
+
+                Company
+
+              </small>
+
+              <h6>{{ purchaseOrder.vendorName }}</h6>
+
+            </div>
+
+            <div>
+
+              <small class="text-muted">
+
+                Vendor ID
+
+              </small>
+
+              <h6>#{{ purchaseOrder.vendorId }}</h6>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Store Requisition -->
+
+      <div class="col-lg-4">
+
+        <div class="card shadow-sm h-100">
+
+          <div class="card-header bg-info text-white">
+
+            <h5 class="mb-0">
+
+              Store Requisition
+
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="mb-3">
+
+              <small class="text-muted">
+
+                Requisition No
+
+              </small>
+
+              <h6>{{ purchaseOrder.requisitionNo }}</h6>
+
+            </div>
+
+            <div>
+
+              <small class="text-muted">
+
+                Requisition ID
+
+              </small>
+
+              <h6>#{{ purchaseOrder.storeRequisitionId }}</h6>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- Remarks -->
+    <!-- ====================================== -->
+
+    <div
+      class="card shadow-sm mt-4"
+      *ngIf="purchaseOrder.remarks">
+
+      <div class="card-header bg-secondary text-white">
+
+        <h5 class="mb-0">
+
+          Remarks
+
+        </h5>
+
+      </div>
+
+      <div class="card-body">
+
+        {{ purchaseOrder.remarks }}
+
+      </div>
+
+    </div>
+
+    <!-- ====================================== -->
+    <!-- Items -->
+    <!-- ====================================== -->
+
+    <div class="card shadow-sm mt-4">
+
+      <div class="card-header bg-dark text-white">
+
+        <h5 class="mb-0">
+
+          Purchase Order Items
+
+        </h5>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="table-responsive">
+
+          <table class="table table-bordered table-hover">
+
+            <thead class="table-light">
+
+              <tr>
+
+                <th>#</th>
+
+                <th>Item</th>
+
+                <th>Unit</th>
+
+                <th>Quantity</th>
+
+                <th>Unit Price</th>
+
+                <th>Line Total</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr
+                *ngFor="let item of purchaseOrder.items; let i = index">
+
+                <td>{{ i + 1 }}</td>
+
+                <td>{{ item.itemName }}</td>
+
+                <td>{{ item.unit }}</td>
+
+                <td>{{ item.quantity }}</td>
+
+                <td>{{ item.unitPrice | number:'1.2-2' }}</td>
+
+                <td>{{ item.lineTotal | number:'1.2-2' }}</td>
+
+              </tr>
+
+            </tbody>
+
+            <tfoot>
+
+              <tr class="table-primary">
+
+                <th
+                  colspan="5"
+                  class="text-end">
+
+                  Grand Total
+
+                </th>
+
+                <th>
+
+                  {{ getGrandTotal() | number:'1.2-2' }}
+
+                </th>
+
+              </tr>
+
+            </tfoot>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

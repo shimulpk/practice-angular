@@ -1,0 +1,96 @@
+/* ======================================
+   Card
+====================================== */
+
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+.card-header {
+  padding: 15px 20px;
+}
+
+/* ======================================
+   Table
+====================================== */
+
+.table {
+  vertical-align: middle;
+}
+
+.table thead th {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ======================================
+   Badge
+====================================== */
+
+.badge {
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 20px;
+}
+
+/* ======================================
+   Buttons
+====================================== */
+
+.btn-sm {
+  min-width: 38px;
+}
+
+.btn-info {
+  color: #fff;
+}
+
+/* ======================================
+   Loading
+====================================== */
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* ======================================
+   Empty Data
+====================================== */
+
+.text-muted {
+  font-style: italic;
+}
+
+/* ======================================
+   Responsive
+====================================== */
+
+@media (max-width: 768px) {
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch !important;
+  }
+
+  .card-header h4 {
+    text-align: center;
+  }
+
+  .card-header .btn {
+    width: 100%;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+}

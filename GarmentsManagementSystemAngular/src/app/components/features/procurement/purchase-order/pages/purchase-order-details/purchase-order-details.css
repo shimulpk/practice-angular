@@ -1,0 +1,134 @@
+/* ======================================
+   Page Header
+====================================== */
+
+h3 {
+  font-weight: 700;
+}
+
+.text-muted {
+  font-size: 14px;
+}
+
+/* ======================================
+   Cards
+====================================== */
+
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: 600;
+  padding: 14px 18px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body h6 {
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #212529;
+}
+
+.card-body small {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* ======================================
+   Status Badge
+====================================== */
+
+.badge {
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 30px;
+}
+
+/* ======================================
+   Table
+====================================== */
+
+.table {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.table thead th {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tfoot th {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ======================================
+   Grand Total
+====================================== */
+
+.table-primary th {
+  font-size: 17px;
+}
+
+/* ======================================
+   Loading
+====================================== */
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* ======================================
+   Button
+====================================== */
+
+.btn {
+  border-radius: 8px;
+}
+
+/* ======================================
+   Responsive
+====================================== */
+
+@media (max-width: 992px) {
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch !important;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+}

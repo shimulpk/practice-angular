@@ -366,9 +366,7 @@ saveStoreRequisition(): void {
           'Store Requisition Updated Successfully'
         );
 
-        this.router.navigate([
-          '/store-requisition'
-        ]);
+      this.router.navigate(['/store-requisitions/view', this.requisitionId]);
 
       });
 
@@ -384,9 +382,7 @@ saveStoreRequisition(): void {
           'Store Requisition Saved Successfully'
         );
 
-        this.router.navigate([
-          '/store-requisition'
-        ]);
+        this.router.navigate(['/store-requisitions']);
 
       });
 

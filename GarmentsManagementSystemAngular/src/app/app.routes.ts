@@ -89,6 +89,22 @@ export const routes: Routes = [
 },
 
 {
+  path: 'pending-store-requisition',
+
+  loadChildren: () =>
+    import('./components/features/procurement/pending-store-requisition/routes/pending-store-requisition.routes')
+      .then(m => m.PENDING_STORE_REQUISITION_ROUTES)
+},
+
+{
+  path: 'purchase-orders',
+
+  loadChildren: () =>
+    import('./components/features/procurement/purchase-order/routes/purchase-order.routes')
+      .then(m => m.PURCHASE_ORDER_ROUTES)
+},
+
+{
   path: 'items',
 
   loadChildren: () =>

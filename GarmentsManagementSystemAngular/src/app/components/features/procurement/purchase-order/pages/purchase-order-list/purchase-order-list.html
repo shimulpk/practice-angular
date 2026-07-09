@@ -1,0 +1,202 @@
+<div class="container-fluid mt-4">
+
+  <div class="card shadow">
+
+    <!-- ===================================== -->
+    <!-- Header -->
+    <!-- ===================================== -->
+
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+
+      <h4 class="mb-0">
+
+        Purchase Order List
+
+      </h4>
+
+      <a
+        routerLink="/purchase-orders/add"
+        class="btn btn-light">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Create Purchase Order
+
+      </a>
+
+    </div>
+
+    <div class="card-body">
+
+      <div
+        *ngIf="loading"
+        class="text-center py-4">
+
+        <div class="spinner-border text-primary"></div>
+
+      </div>
+
+      <div
+        *ngIf="!loading"
+        class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+          <thead class="table-dark">
+
+            <tr>
+
+              <th>#</th>
+
+              <th>PO No</th>
+
+              <th>PO Date</th>
+
+              <th>Vendor</th>
+
+              <th>Requisition No</th>
+
+              <th>Status</th>
+
+              <th>Grand Total</th>
+
+              <th width="180">
+
+                Action
+
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr
+              *ngFor="let po of purchaseOrders; let i = index">
+
+              <td>
+
+                {{ i + 1 }}
+
+              </td>
+
+              <td>
+
+                {{ po.poNo }}
+
+              </td>
+
+              <td>
+
+                {{ po.poDate }}
+
+              </td>
+
+              <td>
+
+                {{ po.vendorName }}
+
+              </td>
+
+              <td>
+
+                {{ po.requisitionNo }}
+
+              </td>
+
+              <td>
+
+                <span
+                  class="badge bg-warning text-dark"
+                  *ngIf="po.status=='PENDING'">
+
+                  {{ po.status }}
+
+                </span>
+
+                <span
+                  class="badge bg-success"
+                  *ngIf="po.status=='RECEIVED'">
+
+                  {{ po.status }}
+
+                </span>
+
+                <span
+                  class="badge bg-danger"
+                  *ngIf="po.status=='CANCELLED'">
+
+                  {{ po.status }}
+
+                </span>
+
+                <span
+                  class="badge bg-primary"
+                  *ngIf="po.status=='APPROVED'">
+
+                  {{ po.status }}
+
+                </span>
+
+              </td>
+
+              <td>
+
+                {{ po.grandTotal | number:'1.2-2' }}
+
+              </td>
+
+              <td>
+
+                <a
+                  class="btn btn-sm btn-info me-1"
+                  [routerLink]="['/purchase-orders/view', po.id]">
+
+                  <i class="bi bi-eye"></i>
+
+                </a>
+
+                <a
+                  class="btn btn-sm btn-warning me-1"
+                  [routerLink]="['/purchase-orders/edit', po.id]">
+
+                  <i class="bi bi-pencil-square"></i>
+
+                </a>
+
+                <button
+                  class="btn btn-sm btn-danger"
+                  (click)="deletePurchaseOrder(po.id)">
+
+                  <i class="bi bi-trash"></i>
+
+                </button>
+
+              </td>
+
+            </tr>
+
+            <tr *ngIf="purchaseOrders.length==0">
+
+              <td
+                colspan="8"
+                class="text-center text-muted">
+
+                No Purchase Orders Found.
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

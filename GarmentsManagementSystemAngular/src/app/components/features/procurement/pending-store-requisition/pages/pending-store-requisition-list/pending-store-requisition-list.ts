@@ -1,19 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { StoreRequisitionService } from '../../services/store-requisition.service';
-import { StoreRequisitionResponse } from '../../models/store-requisition-response';
-
+import { Router, RouterModule } from '@angular/router';
+import { StoreRequisitionResponse } from '../../../../inventory/store-requisition/models/store-requisition-response';
+import { PendingStoreRequisitionService } from '../../services/pending-store-requisition.service';
 
 @Component({
-  selector: 'app-store-requisition-list',
-    standalone: true,
-  imports: [CommonModule,FormsModule],
-  templateUrl: './store-requisition-list.html',
-  styleUrl: './store-requisition-list.css',
+  selector: 'app-pending-store-requisition-list',
+ standalone: true,
+  imports: [CommonModule,FormsModule,RouterModule],
+  templateUrl: './pending-store-requisition-list.html',
+  styleUrl: './pending-store-requisition-list.css',
 })
-export class StoreRequisitionList implements OnInit{
+export class PendingStoreRequisitionList implements OnInit{
 
    requisitions: StoreRequisitionResponse[] = [];
 
@@ -24,26 +23,26 @@ export class StoreRequisitionList implements OnInit{
   loading = false;
 
   constructor(
-    private storeRequisitionService: StoreRequisitionService,
+    private pendingStoreRequisitionService: PendingStoreRequisitionService,
     private router: Router,
     private cdr:ChangeDetectorRef
   ) { }
 
 
   ngOnInit(): void {
-      this.loadStoreRequisitions();
+     this.loadPendingRequisitions();
   }
 
-  // ===========================
-  // Load All
+// ===========================
+  // Load Pending Requisitions
   // ===========================
 
-  loadStoreRequisitions(): void {
+  loadPendingRequisitions(): void {
 
     this.loading = true;
 
-    this.storeRequisitionService
-      .getAll()
+    this.pendingStoreRequisitionService
+      .getPending()
       .subscribe({
 
         next: (response) => {
@@ -62,6 +61,7 @@ export class StoreRequisitionList implements OnInit{
           console.error(err);
 
           this.loading = false;
+          this.cdr.markForCheck();
 
         }
 
@@ -101,56 +101,36 @@ export class StoreRequisitionList implements OnInit{
   // View
   // ===========================
 
-  viewRequisition(id: number): void {
+  view(id: number): void {
 
     this.router.navigate([
-      '/store-requisitions/view',
+      '/pending-store-requisition/view',
       id
     ]);
 
   }
 
   // ===========================
-  // Edit
+  // Approve
   // ===========================
 
-  editRequisition(id: number): void {
+  approve(id: number): void {
 
-    this.router.navigate([
-      '/store-requisition/edit',
-      id
-    ]);
-
-  }
-
-  // ===========================
-  // Delete
-  // ===========================
-
-  deleteRequisition(id: number): void {
-
-    const ok =
-      confirm(
-        'Are you sure you want to delete this Store Requisition?'
-      );
-
-    if (!ok) {
+    if (!confirm('Approve this Store Requisition?')) {
 
       return;
 
     }
 
-    this.storeRequisitionService
-      .delete(id)
+    this.pendingStoreRequisitionService
+      .approve(id)
       .subscribe({
 
         next: () => {
 
-          alert(
-            'Store Requisition Deleted Successfully'
-          );
+          alert('Store Requisition Approved Successfully');
 
-          this.loadStoreRequisitions();
+          this.loadPendingRequisitions();
 
         },
 
@@ -163,4 +143,40 @@ export class StoreRequisitionList implements OnInit{
       });
 
   }
+
+  // ===========================
+  // Reject
+  // ===========================
+
+  reject(id: number): void {
+
+    if (!confirm('Reject this Store Requisition?')) {
+
+      return;
+
+    }
+
+    this.pendingStoreRequisitionService
+      .reject(id)
+      .subscribe({
+
+        next: () => {
+
+          alert('Store Requisition Rejected Successfully');
+
+          this.loadPendingRequisitions();
+
+        },
+
+        error: err => {
+
+          console.error(err);
+
+        }
+
+      });
+
+  }
+
+
 }

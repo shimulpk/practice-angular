@@ -150,18 +150,23 @@ export const MENU: MenuItem[] = [
         route: '/vendors'
       },
 
-      { title: 'Purchase Requisition', 
-        icon: 'bi bi-file-earmark-text',
-         route: '/purchase-requisition' }, 
-      
-      { title: 'Create PO', 
+       {
+      title: 'Pending Requisition',
+      icon: 'bi bi-hourglass-split',
+      route: '/pending-store-requisition'
+    },
+
+  
+
+     
+      { title: 'Create Purchase Orders', 
         icon: 'bi bi-file-earmark-plus',
-         route: '/purchase-order/add' },
+         route: '/purchase-orders/add' },
 
          
       { title: 'View PO List',
          icon: 'bi bi-card-list',
-          route: '/purchase-order' }
+          route: '/purchase-orders' }
 
     ]
 

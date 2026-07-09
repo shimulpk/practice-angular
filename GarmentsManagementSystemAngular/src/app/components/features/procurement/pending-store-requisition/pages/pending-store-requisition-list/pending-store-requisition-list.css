@@ -1,0 +1,106 @@
+.container-fluid {
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    padding: 15px 20px;
+}
+
+.card-header h4 {
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-control {
+    height: 42px;
+    border-radius: 6px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(2),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(6),
+.table tbody td:nth-child(7) {
+    text-align: center;
+}
+
+.badge {
+    padding: 7px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 20px;
+    min-width: 90px;
+}
+
+.btn-sm {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+}
+
+.btn-sm i {
+    font-size: 15px;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.text-muted {
+    padding: 25px 0;
+}
+
+@media (max-width: 768px) {
+
+    .card-header .d-flex {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 12px;
+    }
+
+    .col-md-4 {
+        width: 100%;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn-sm {
+        width: 32px;
+        height: 32px;
+    }
+
+    .badge {
+        min-width: auto;
+        font-size: 12px;
+    }
+}

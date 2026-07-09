@@ -1,0 +1,312 @@
+<div class="container-fluid mt-4">
+
+  <div class="card shadow">
+
+    <!-- =============================== -->
+    <!-- Header -->
+    <!-- =============================== -->
+
+    <div class="card-header bg-primary text-white">
+
+      <h4 class="mb-0">
+
+        {{ isEdit ? 'Edit Purchase Order' : 'Create Purchase Order' }}
+
+      </h4>
+
+    </div>
+
+    <div class="card-body">
+
+      <form [formGroup]="purchaseOrderForm">
+
+        <!-- =============================== -->
+        <!-- Header Information -->
+        <!-- =============================== -->
+
+        <div class="row">
+
+          <!-- Vendor -->
+
+          <div class="col-md-4 mb-3">
+
+            <label class="form-label fw-bold">
+
+              Vendor
+
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="vendorId">
+
+              <option [ngValue]="null">
+
+                Select Vendor
+
+              </option>
+
+              <option
+                *ngFor="let vendor of vendors"
+                [value]="vendor.id">
+
+                {{ vendor.companyName }}
+
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- Store Requisition -->
+
+          <div class="col-md-4 mb-3">
+
+            <label class="form-label fw-bold">
+
+              Approved Store Requisition
+
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="storeRequisitionId">
+
+              <option [ngValue]="null">
+
+                Select Requisition
+
+              </option>
+
+              <option
+                *ngFor="let req of requisitions"
+                [value]="req.id">
+
+                {{ req.prNo }}
+
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- PO Date -->
+
+          <div class="col-md-4 mb-3">
+
+            <label class="form-label fw-bold">
+
+              PO Date
+
+            </label>
+
+            <input
+              type="date"
+              class="form-control"
+              formControlName="poDate">
+
+          </div>
+
+          <!-- Remarks -->
+
+          <div class="col-md-12 mb-3">
+
+            <label class="form-label fw-bold">
+
+              Remarks
+
+            </label>
+
+            <textarea
+              rows="3"
+              class="form-control"
+              formControlName="remarks">
+
+            </textarea>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <!-- =============================== -->
+        <!-- Items -->
+        <!-- =============================== -->
+
+        <h5 class="mb-3">
+
+          Purchase Order Items
+
+        </h5>
+
+        <div class="table-responsive">
+
+          <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-dark">
+
+              <tr>
+
+                <th>#</th>
+
+                <th>Item</th>
+
+                <th>Unit</th>
+
+                <th>Quantity</th>
+
+                <th width="180">
+
+                  Unit Price
+
+                </th>
+
+                <th width="180">
+
+                  Line Total
+
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let item of items; let i = index">
+
+                <td>
+
+                  {{ i + 1 }}
+
+                </td>
+
+                <td>
+
+                  {{ item.itemName }}
+
+                </td>
+
+                <td>
+
+                  {{ item.unit }}
+
+                </td>
+
+                <td>
+
+                  <input
+                    type="number"
+                    class="form-control"
+                    [value]="item.quantity"
+                    readonly>
+
+                </td>
+
+                <td>
+
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="item.unitPrice"
+                    [ngModelOptions]="{standalone:true}"
+                    (input)="getLineTotal(item)">
+
+                </td>
+
+                <td>
+                     {{ getLineTotal(item) | number:'1.2-2' }}
+
+                </td>
+
+              </tr>
+
+              <tr *ngIf="items.length === 0">
+
+                <td
+                  colspan="6"
+                  class="text-center text-muted">
+
+                  No Items Selected
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+            <tfoot>
+
+              <tr class="table-primary">
+
+                <th
+                  colspan="5"
+                  class="text-end">
+
+                  Grand Total
+
+                </th>
+
+                <th>
+
+                  {{ getGrandTotal() | number:'1.2-2' }}
+
+                </th>
+
+              </tr>
+
+            </tfoot>
+
+          </table>
+
+        </div>
+
+        <!-- =============================== -->
+        <!-- Action Buttons -->
+        <!-- =============================== -->
+
+        <div class="d-flex justify-content-end mt-4">
+
+          <button
+            type="button"
+            class="btn btn-success me-2"
+            (click)="savePurchaseOrder()">
+
+            <i class="bi bi-check-circle"></i>
+
+            {{ isEdit ? 'Update' : 'Save' }}
+
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-warning me-2"
+            (click)="resetForm()">
+
+            <i class="bi bi-arrow-clockwise"></i>
+
+            Reset
+
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            routerLink="/purchase-orders">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Back
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
