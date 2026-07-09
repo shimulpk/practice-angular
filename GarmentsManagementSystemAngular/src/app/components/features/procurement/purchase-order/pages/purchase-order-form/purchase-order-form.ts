@@ -10,14 +10,14 @@ import { StoreRequisitionService } from '../../../../inventory/store-requisition
 
 @Component({
   selector: 'app-purchase-order-form',
-   standalone: true,
-  imports: [ CommonModule,ReactiveFormsModule,FormsModule,RouterModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   templateUrl: './purchase-order-form.html',
   styleUrl: './purchase-order-form.css',
 })
-export class PurchaseOrderForm implements OnInit{
+export class PurchaseOrderForm implements OnInit {
 
- purchaseOrderForm!: FormGroup;
+  purchaseOrderForm!: FormGroup;
 
   vendors: VendorResponse[] = [];
 
@@ -81,7 +81,7 @@ export class PurchaseOrderForm implements OnInit{
 
     this.purchaseOrderForm = this.fb.group({
 
-      poDate: [new Date().toISOString().substring(0, 10),Validators.required],
+      poDate: [new Date().toISOString().substring(0, 10), Validators.required],
 
       vendorId: [null, Validators.required],
 
@@ -147,10 +147,10 @@ export class PurchaseOrderForm implements OnInit{
 
       });
 
-}
+  }
 
 
- // =====================================
+  // =====================================
   // Requisition Change
   // =====================================
 
@@ -252,7 +252,7 @@ export class PurchaseOrderForm implements OnInit{
   }
 
 
-    // =====================================
+  // =====================================
   // Build Request
   // =====================================
 
@@ -286,7 +286,7 @@ export class PurchaseOrderForm implements OnInit{
   }
 
 
-   // =====================================
+  // =====================================
   // Save Purchase Order
   // =====================================
 
@@ -310,32 +310,52 @@ export class PurchaseOrderForm implements OnInit{
           this.purchaseOrderId,
           request
         )
-        .subscribe(() => {
 
-          alert(
-            'Purchase Order Updated Successfully'
-          );
+        .subscribe({
 
-         this.router.navigate(['/purchase-orders/view', this.purchaseOrderId]);
+          next: (res:any) => {
+            alert(
+              'Purchase Order Updated Successfully'
+            );
+
+            
+
+          const idToNavigate = res?.id || this.purchaseOrderId;
+          this.router.navigate(['/purchase-orders/view', idToNavigate]);
+
+          },
+
+          error: (err)=>{
+           console.error('Update Error:', err);
+          alert('Failed to update Purchase Order');
+          }
 
         });
+      
 
     }
 
     else {
 
-      this.purchaseOrderService
-        .create(request)
-        .subscribe(() => {
-
-          alert(
-            'Purchase Order Created Successfully'
-          );
+     this.purchaseOrderService
+      .create(request)
+      .subscribe({
+        next: (res: any) => {
+          alert('Purchase Order Created Successfully');
           
-
-         this.router.navigate(['/purchase-orders/view', this.purchaseOrderId]);
-        });
-
+        
+          if (res && res.id) {
+            this.router.navigate(['/purchase-orders/view', res.id]);
+          } else {
+            
+            this.router.navigate(['/purchase-orders']); 
+          }
+        },
+        error: (err) => {
+          console.error('Create Error:', err);
+          alert('Failed to create Purchase Order');
+        }
+      });
     }
   }
 
