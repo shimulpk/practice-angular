@@ -87,4 +87,16 @@ export class PurchaseOrderService {
 
   }
 
+  // =====================================
+// Get Pending Purchase Orders
+// =====================================
+
+getPendingPurchaseOrders(): Observable<PurchaseOrderResponse[]> {
+
+  return this.http.get<PurchaseOrderResponse[]>(
+    `${this.apiUrl}/pending`
+  );
+
+}
+
 }

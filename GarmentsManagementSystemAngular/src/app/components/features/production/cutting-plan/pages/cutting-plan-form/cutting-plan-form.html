@@ -1,0 +1,351 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                {{ isEdit ? 'Edit Cutting Plan' : 'Add Cutting Plan' }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form (ngSubmit)="save()">
+
+                <!-- Buyer & Order -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Buyer
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <select
+                                class="form-select"
+                                name="buyerId"
+                                [(ngModel)]="cuttingPlan.buyerId"
+                                (change)="onBuyerChange()"
+                                required>
+
+                            <option [ngValue]="0">
+                                Select Buyer
+                            </option>
+
+                            <option
+                                    *ngFor="let buyer of buyers"
+                                    [ngValue]="buyer.id">
+
+                                {{ buyer.buyerName }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Order
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <select
+                                class="form-select"
+                                name="orderId"
+                                [(ngModel)]="cuttingPlan.orderId"
+                                (change)="onOrderChange()"
+                                required>
+
+                            <option [ngValue]="0">
+                                Select Order
+                            </option>
+
+                            <option
+                                    *ngFor="let order of orders"
+                                    [ngValue]="order.id">
+
+                                {{ order.orderId }} - {{ order.poNumber }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Auto Information -->
+
+                <div class="card bg-light border mb-4">
+
+                    <div class="card-header">
+
+                        <strong>
+                            Order Information
+                        </strong>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-md-3 mb-3">
+
+                                <label class="fw-semibold">
+                                    Style No
+                                </label>
+
+                                <div class="form-control bg-white">
+
+                                    {{ selectedOrder?.styleCode || '-' }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+
+                                <label class="fw-semibold">
+                                    PO Number
+                                </label>
+
+                                <div class="form-control bg-white">
+
+                                    {{ selectedOrder?.poNumber || '-' }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+
+                                <label class="fw-semibold">
+                                    Planned Pieces
+                                </label>
+
+                                <div class="form-control bg-white">
+
+                                    {{ selectedOrder?.totalQuantity || 0 }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+
+                                <label class="fw-semibold">
+                                    Total Fabric Required
+                                </label>
+
+                                <div class="form-control bg-white">
+
+                                    {{ fabricInfo?.totalFabricRequired || 0 }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- User Input -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Fabric Type
+                        </label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="fabricType"
+                                [(ngModel)]="cuttingPlan.fabricType">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Color
+                        </label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="color"
+                                [(ngModel)]="cuttingPlan.color">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Marker Length
+                        </label>
+
+                        <input
+                                type="number"
+                                class="form-control"
+                                name="markerLength"
+                                [(ngModel)]="cuttingPlan.markerLength">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Marker Width
+                        </label>
+
+                        <input
+                                type="number"
+                                class="form-control"
+                                name="markerWidth"
+                                [(ngModel)]="cuttingPlan.markerWidth">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Number Of Plies
+                        </label>
+
+                        <input
+                                type="number"
+                                class="form-control"
+                                name="numberOfPlies"
+                                [(ngModel)]="cuttingPlan.numberOfPlies">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Marker Efficiency (%)
+                        </label>
+
+                        <input
+                                type="number"
+                                class="form-control"
+                                name="markerEfficiency"
+                                [(ngModel)]="cuttingPlan.markerEfficiency">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Cutting Table Number
+                        </label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="cuttingTableNumber"
+                                [(ngModel)]="cuttingPlan.cuttingTableNumber">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Cutting Master
+                        </label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                name="cuttingMaster"
+                                [(ngModel)]="cuttingPlan.cuttingMaster">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Start Date
+                        </label>
+
+                        <input
+                                type="date"
+                                class="form-control"
+                                name="startDate"
+                                [(ngModel)]="cuttingPlan.startDate">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            End Date
+                        </label>
+
+                        <input
+                                type="date"
+                                class="form-control"
+                                name="endDate"
+                                [(ngModel)]="cuttingPlan.endDate">
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="cancel()">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                            type="submit"
+                            class="btn btn-primary"
+                            [disabled]="loading">
+
+                        <span
+                                *ngIf="loading"
+                                class="spinner-border spinner-border-sm me-2">
+                        </span>
+
+                        <i
+                                *ngIf="!loading"
+                                class="bi bi-save">
+                        </i>
+
+                        {{ isEdit ? 'Update' : 'Save' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

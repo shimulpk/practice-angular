@@ -1,1 +1,209 @@
-<p>grn-details works!</p>
+<div class="container-fluid py-3">
+
+    <!-- Loading -->
+
+    <div
+        class="text-center py-5"
+        *ngIf="loading">
+
+        <div class="spinner-border text-success"></div>
+
+    </div>
+
+    <!-- Content -->
+
+    <div
+        *ngIf="grn && !loading">
+
+        <!-- Header -->
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <h3 class="mb-1">
+                    Goods Receive Note Details
+                </h3>
+
+                <small class="text-muted">
+
+                    View complete GRN information
+
+                </small>
+
+            </div>
+
+            <button
+                class="btn btn-secondary"
+                (click)="back()">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back
+
+            </button>
+
+        </div>
+
+        <!-- GRN Information -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-header bg-success text-white">
+
+                GRN Information
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <strong>GRN No</strong>
+
+                        <p>{{ grn.grnNo }}</p>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <strong>GRN Date</strong>
+
+                        <p>{{ grn.grnDate }}</p>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <strong>PO No</strong>
+
+                        <p>{{ grn.poNo }}</p>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <strong>Challan No</strong>
+
+                        <p>{{ grn.challanNo }}</p>
+
+                    </div>
+
+                    <div class="col-12">
+
+                        <strong>Remarks</strong>
+
+                        <p>
+
+                            {{ grn.remarks || 'N/A' }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Items -->
+
+        <div class="card shadow-sm">
+
+            <div class="card-header bg-primary text-white">
+
+                Received Items
+
+            </div>
+
+            <div class="card-body p-0">
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover mb-0">
+
+                        <thead class="table-light">
+
+                            <tr>
+
+                                <th>#</th>
+
+                                <th>Item</th>
+
+                                <th>Unit</th>
+
+                                <th>Quantity</th>
+
+                                <th>Unit Price</th>
+
+                                <th>Line Total</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr
+                                *ngFor="let item of grn.items; let i = index">
+
+                                <td>{{ i + 1 }}</td>
+
+                                <td>{{ item.itemName }}</td>
+
+                                <td>{{ item.unit }}</td>
+
+                                <td>{{ item.quantity }}</td>
+
+                                <td>
+
+                                    {{ item.unitPrice | number:'1.2-2' }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ item.lineTotal | number:'1.2-2' }}
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                        <tfoot class="table-success">
+
+                            <tr>
+
+                                <th
+                                    colspan="5"
+                                    class="text-end">
+
+                                    Grand Total
+
+                                </th>
+
+                                <th>
+
+                                    {{ grandTotal | number:'1.2-2' }}
+
+                                </th>
+
+                            </tr>
+
+                        </tfoot>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

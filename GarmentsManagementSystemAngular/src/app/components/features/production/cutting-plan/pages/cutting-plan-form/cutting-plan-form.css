@@ -1,0 +1,140 @@
+.container {
+    max-width: 1200px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+/* ------------------------------
+   Form
+--------------------------------*/
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    min-height: 44px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+/* ------------------------------
+   Order Information Card
+--------------------------------*/
+
+.bg-light {
+    background: #f8f9fa !important;
+}
+
+.card.bg-light {
+    border: 1px solid #dee2e6 !important;
+}
+
+.card.bg-light .card-header {
+    background: #eef4ff;
+    border-bottom: 1px solid #d6e4ff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.card.bg-light .form-control {
+    background: white;
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+/* ------------------------------
+   Buttons
+--------------------------------*/
+
+.btn {
+    min-width: 120px;
+    border-radius: 8px;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+/* ------------------------------
+   Spinner
+--------------------------------*/
+
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* ------------------------------
+   Divider
+--------------------------------*/
+
+hr {
+    margin: 1.8rem 0;
+}
+
+/* ------------------------------
+   Required Mark
+--------------------------------*/
+
+.text-danger {
+    font-size: 14px;
+}
+
+/* ------------------------------
+   Responsive
+--------------------------------*/
+
+@media (max-width: 992px) {
+
+    .container {
+        max-width: 100%;
+        padding: 0 12px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .card.bg-light .form-control {
+        margin-bottom: 10px;
+    }
+
+}

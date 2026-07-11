@@ -217,21 +217,38 @@ export const MENU: MenuItem[] = [
     },
 
       
-      { title: 'Goods Receive (GRN)', 
-        icon: 'bi bi-box-arrow-in-down', 
-        route: '/inventory/grn' }, 
-      
-      
-     
-      
-      { title: 'Material Issue',
-         icon: 'bi bi-box-arrow-up', 
-         route: '/inventory/material-issue' }, 
+      {
+        title: 'Create GRN',
+        icon: 'bi bi-box-arrow-in-down',
+        route: '/inventory/grn/create'
+  },
 
-      
-      { title: 'Current Stock Report', 
-        icon: 'bi bi-box', 
-        route: '/inventory/stock-report' }
+  {
+        title: 'View GRNs',
+        icon: 'bi bi-journal-text',
+        route: '/inventory/grn'
+},
+
+{
+  title: 'Current Stock Report',
+  icon: 'bi bi-box-seam',
+  route: '/stocks'
+},
+
+{
+  title: 'Create Material Issue',
+  icon: 'bi bi-box-arrow-up',
+  route: '/material-issue/create'
+},
+
+{
+  title: 'View Material Issues',
+  icon: 'bi bi-journal-check',
+  route: '/material-issue'
+}
+
+
+
     ]
 
   },
@@ -257,16 +274,28 @@ export const MENU: MenuItem[] = [
       },
 
       {
-        title: 'Line List',
-        icon: 'bi bi-list-ul',
-        route: '/lines'
+      title: 'Add Production Line',
+      icon: 'bi bi-plus-circle',
+      route: '/production-lines/add'
       },
 
-      {
-        title: 'Machine List',
-        icon: 'bi bi-cpu',
-        route: '/machines'
+     {
+      title: 'View Production Lines',
+       icon: 'bi bi-list-ul',
+       route: '/production-lines'
       },
+
+     {
+  title: 'Add Machine',
+  icon: 'bi bi-plus-circle',
+  route: '/machines/add'
+},
+
+{
+  title: 'View Machines',
+  icon: 'bi bi-list-ul',
+  route: '/machines'
+},
 
       // Nested Menu
       {

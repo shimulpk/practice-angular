@@ -1,0 +1,107 @@
+.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+/* Summary Cards */
+
+.border-primary,
+.border-success {
+    border-width: 2px !important;
+}
+
+.border-primary .card-body,
+.border-success .card-body {
+    padding: 20px;
+}
+
+.border-primary h2,
+.border-success h2 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Search */
+
+.form-control {
+    border-radius: 8px;
+}
+
+/* Table */
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(4),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+/* Badge */
+
+.badge {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+/* Loading */
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+}

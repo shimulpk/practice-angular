@@ -1,0 +1,283 @@
+/* ===================================
+   Page
+=================================== */
+
+.container-fluid {
+    padding: 25px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+/* ===================================
+   Search Card
+=================================== */
+
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.form-control {
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+/* ===================================
+   Production Card
+=================================== */
+
+.production-card {
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: white;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+
+    transition: .3s;
+
+}
+
+.production-card:hover{
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 28px rgba(0,0,0,.15);
+
+}
+
+/* ===================================
+   Header
+=================================== */
+
+.production-card .card-header{
+
+    background: linear-gradient(90deg,#0d6efd,#3d8bfd);
+
+    color:white;
+
+    padding:18px 22px;
+
+}
+
+.production-card h5{
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+.production-card small{
+
+    opacity:.9;
+
+}
+
+/* ===================================
+   Body
+=================================== */
+
+.production-card .card-body{
+
+    padding:22px;
+
+}
+
+/* ===================================
+   KPI Cards
+=================================== */
+
+.kpi-card{
+
+    border-radius:12px;
+
+    color:white;
+
+    padding:18px 10px;
+
+    transition:.25s;
+
+}
+
+.kpi-card:hover{
+
+    transform:scale(1.05);
+
+}
+
+.kpi-title{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.kpi-value{
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+/* Colors */
+
+.target{
+
+    background:#0d6efd;
+
+}
+
+.actual{
+
+    background:#198754;
+
+}
+
+.reject{
+
+    background:#dc3545;
+
+}
+
+.remain{
+
+    background:#fd7e14;
+
+}
+
+/* ===================================
+   Progress
+=================================== */
+
+.progress{
+
+    height:14px;
+
+    border-radius:20px;
+
+    background:#e9ecef;
+
+}
+
+.progress-bar{
+
+    border-radius:20px;
+
+    transition:width .5s ease;
+
+}
+
+/* ===================================
+   Information
+=================================== */
+
+.production-card strong{
+
+    color:#495057;
+
+}
+
+.production-card hr{
+
+    margin:22px 0;
+
+}
+
+/* ===================================
+   Footer
+=================================== */
+
+.production-card .card-footer{
+
+    background:#fafafa;
+
+    border-top:1px solid #e9ecef;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    padding:18px;
+
+}
+
+/* ===================================
+   Buttons
+=================================== */
+
+.btn{
+
+    border-radius:8px;
+
+    font-weight:500;
+
+    padding:7px 16px;
+
+}
+
+/* ===================================
+   Status Badge
+=================================== */
+
+.badge{
+
+    font-size:13px;
+
+    padding:8px 16px;
+
+    border-radius:25px;
+
+    font-weight:600;
+
+}
+
+/* ===================================
+   Responsive
+=================================== */
+
+@media(max-width:992px){
+
+    .col-xl-6{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .production-card .card-footer{
+
+        flex-direction:column;
+
+    }
+
+    .production-card .card-footer button{
+
+        width:100%;
+
+    }
+
+    .kpi-value{
+
+        font-size:20px;
+
+    }
+
+}

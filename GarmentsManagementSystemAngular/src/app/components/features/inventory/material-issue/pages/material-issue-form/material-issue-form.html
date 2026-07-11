@@ -1,0 +1,265 @@
+<div class="container-fluid py-3">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                Create Material Issue
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form
+                [formGroup]="form"
+                (ngSubmit)="save()">
+
+                <!-- ==========================
+                     Basic Information
+                =========================== -->
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Issue Date
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            formControlName="issueDate">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="department">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+                            Requested By
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="requestedBy">
+
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+                        Remarks
+                    </label>
+
+                    <textarea
+                        rows="3"
+                        class="form-control"
+                        formControlName="remarks">
+
+                    </textarea>
+
+                </div>
+
+                <hr>
+
+                <div
+                    class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h5>
+
+                        Issue Items
+
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn btn-success"
+                        (click)="addItem()">
+
+                        <i class="bi bi-plus-circle"></i>
+
+                        Add Item
+
+                    </button>
+
+                </div>
+
+                <div formArrayName="items">
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th width="40%">Item</th>
+
+                    <th width="15%">Unit</th>
+
+                    <th width="15%">Available</th>
+
+                    <th width="20%">Issue Qty</th>
+
+                    <th width="10%">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    *ngFor="let item of items.controls; let i = index; trackBy: trackByIndex"
+                    [formGroupName]="i">
+
+                    <!-- Item -->
+
+                    <td>
+
+                        <select
+                            class="form-select"
+                            formControlName="itemId">
+
+                            <option value="">
+                                Select Item
+                            </option>
+
+                            <option
+                                *ngFor="let stock of availableStocks"
+                                [value]="stock.itemId">
+
+                                {{ stock.itemName }}
+
+                            </option>
+
+                        </select>
+
+                    </td>
+
+                    <!-- Unit -->
+
+                    <td class="text-center">
+
+                        {{ getUnit(item.get('itemId')?.value) }}
+
+                    </td>
+
+                    <!-- Available -->
+
+                    <td class="text-center">
+
+                        {{ getAvailableQuantity(item.get('itemId')?.value) }}
+
+                    </td>
+
+                    <!-- Issue Quantity -->
+
+                    <td>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            formControlName="quantity"
+                            min="1"
+    [max]="getAvailableQuantity(item.get('itemId')?.value)">
+
+                        <small
+                            class="text-danger"
+                            *ngIf="
+                                item.get('quantity')?.value >
+                                getAvailableQuantity(item.get('itemId')?.value)
+                            ">
+
+                            Quantity exceeds available stock.
+
+                        </small>
+
+                    </td>
+
+                    <!-- Action -->
+
+                    <td class="text-center">
+
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-sm"
+                            (click)="removeItem(i)">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="cancel()">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="saving || form.invalid">
+
+                        <span
+                            *ngIf="saving"
+                            class="spinner-border spinner-border-sm me-2">
+                        </span>
+
+                        <i
+                            *ngIf="!saving"
+                            class="bi bi-check-circle me-1">
+                        </i>
+
+                        {{ saving ? 'Saving...' : 'Save Material Issue' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

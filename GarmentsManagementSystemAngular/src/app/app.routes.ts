@@ -113,6 +113,48 @@ export const routes: Routes = [
 },
 
 {
+  path: 'inventory/grn',
+  loadChildren: () =>
+    import('./components/features/inventory/grn/routes/grn.routes')
+      .then(m => m.GOODS_RECEIVE_NOTE_ROUTES)
+},
+
+{
+  path: 'stocks',
+  loadChildren: () =>
+    import('./components/features/inventory/stock/routes/stock.routes')
+      .then(m => m.STOCK_ROUTES)
+},
+
+{
+  path: 'material-issue',
+  loadChildren: () =>
+    import('./components/features/inventory/material-issue/routes/material-issue.routes')
+      .then(m => m.MATERIAL_ISSUE_ROUTES)
+},
+
+{
+  path: 'production-lines',
+  loadChildren: () =>
+    import('./components/features/production/production-line/routes/production-line.routes')
+      .then(m => m.PRODUCTION_LINE_ROUTES)
+},
+
+{
+  path: 'machines',
+  loadChildren: () =>
+    import('./components/features/production/machine/routes/machine.routes')
+      .then(m => m.MACHINE_ROUTES)
+},
+
+{
+  path: 'cutting-plan',
+  loadChildren: () =>
+    import('./components/features/production/cutting-plan/routes/cutting-plan.routes')
+      .then(m => m.CUTTING_PLAN_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },

@@ -1,0 +1,131 @@
+.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+/* Information Cards */
+
+.border.rounded {
+    background: #fff;
+    border: 1px solid #dee2e6 !important;
+    transition: all .2s ease;
+}
+
+.border.rounded:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+}
+
+.border.rounded small {
+    display: block;
+    color: #6c757d;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.border.rounded h6 {
+    font-weight: 600;
+    margin: 0;
+    color: #212529;
+}
+
+.border.rounded p {
+    margin: 0;
+    color: #212529;
+}
+
+/* Table */
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(4) {
+    text-align: center;
+}
+
+/* Badge */
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+/* Button */
+
+.btn {
+    border-radius: 8px;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+/* Loading */
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        display: flex !important;
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 10px;
+    }
+
+    .card-header .btn {
+        width: 100%;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .border.rounded {
+        margin-bottom: 12px;
+    }
+
+}

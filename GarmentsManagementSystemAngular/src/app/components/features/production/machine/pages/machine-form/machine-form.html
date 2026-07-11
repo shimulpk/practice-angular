@@ -1,0 +1,195 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                {{ isEdit ? 'Edit Machine' : 'Add Machine' }}
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form (ngSubmit)="save()">
+
+                <div class="row">
+
+                    <!-- Machine ID -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Machine ID
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="machineId"
+                            [(ngModel)]="machine.machineId"
+                            placeholder="Enter Machine ID"
+                            required>
+
+                    </div>
+
+                    <!-- Machine Name -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Machine Name
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="machineName"
+                            [(ngModel)]="machine.machineName"
+                            placeholder="Enter Machine Name"
+                            required>
+
+                    </div>
+
+                    <!-- Machine Type -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Machine Type
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="type"
+                            [(ngModel)]="machine.type"
+                            required>
+
+                            <option value="">
+                                Select Machine Type
+                            </option>
+
+                            <option value="Lock Stitch">
+                                Lock Stitch
+                            </option>
+
+                            <option value="Overlock">
+                                Overlock
+                            </option>
+
+                            <option value="Flatlock">
+                                Flatlock
+                            </option>
+
+                            <option value="Button Attach">
+                                Button Attach
+                            </option>
+
+                            <option value="Button Hole">
+                                Button Hole
+                            </option>
+
+                            <option value="Bartack">
+                                Bartack
+                            </option>
+
+                            <option value="Feed Off Arm">
+                                Feed Off Arm
+                            </option>
+
+                            <option value="Cutting">
+                                Cutting
+                            </option>
+
+                            <option value="Iron">
+                                Iron
+                            </option>
+
+                            <option value="Others">
+                                Others
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Production Line -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Production Line
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="productionLineId"
+                            [(ngModel)]="machine.productionLineId"
+                            required>
+
+                            <option [ngValue]="0">
+                                Select Production Line
+                            </option>
+
+                            <option
+                                *ngFor="let line of productionLines"
+                                [ngValue]="line.id">
+
+                                {{ line.lineId }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="cancel()">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="loading">
+
+                        <span
+                            *ngIf="loading"
+                            class="spinner-border spinner-border-sm me-2">
+                        </span>
+
+                        <i
+                            *ngIf="!loading"
+                            class="bi bi-save">
+                        </i>
+
+                        {{ isEdit ? 'Update' : 'Save' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

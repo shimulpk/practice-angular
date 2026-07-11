@@ -1,0 +1,624 @@
+.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+.btn-sm {
+    min-width: 38px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+
+}.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+.btn-sm {
+    min-width: 38px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+
+}.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+.btn-sm {
+    min-width: 38px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+
+}.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+.btn-sm {
+    min-width: 38px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+
+}.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+.btn-sm {
+    min-width: 38px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+
+}.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+.btn-sm {
+    min-width: 38px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+
+}.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+    padding: 16px 20px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td:nth-child(1),
+.table tbody td:nth-child(3),
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+    text-align: center;
+}
+
+.btn-sm {
+    min-width: 38px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+}
+
+.spinner-border {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (max-width: 768px) {
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .btn {
+        margin-bottom: 5px;
+    }
+
+}

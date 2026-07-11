@@ -1,0 +1,204 @@
+<div class="container-fluid py-3">
+
+    <div class="card shadow">
+
+        <div class="card-header d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+                Material Issue Details
+            </h4>
+
+            <button
+                class="btn btn-secondary"
+                (click)="back()">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back
+
+            </button>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Loading -->
+
+            <div
+                *ngIf="loading"
+                class="text-center py-5">
+
+                <div class="spinner-border text-primary"></div>
+
+            </div>
+
+            <!-- Details -->
+
+            <div *ngIf="!loading && materialIssue">
+
+                <!-- Basic Information -->
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <small class="text-muted">Issue No</small>
+
+                            <h6 class="mb-0 mt-1">
+
+                                {{ materialIssue.issueNo }}
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <small class="text-muted">Issue Date</small>
+
+                            <h6 class="mb-0 mt-1">
+
+                                {{ materialIssue.issueDate }}
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <small class="text-muted">Status</small>
+
+                            <h6 class="mb-0 mt-1">
+
+                                <span class="badge bg-success">
+
+                                    {{ materialIssue.status }}
+
+                                </span>
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <small class="text-muted">Department</small>
+
+                            <h6 class="mb-0 mt-1">
+
+                                {{ materialIssue.department }}
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded p-3 h-100">
+
+                            <small class="text-muted">Requested By</small>
+
+                            <h6 class="mb-0 mt-1">
+
+                                {{ materialIssue.requestedBy }}
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-12">
+
+                        <div class="border rounded p-3">
+
+                            <small class="text-muted">Remarks</small>
+
+                            <p class="mb-0 mt-2">
+
+                                {{ materialIssue.remarks || 'N/A' }}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Items -->
+
+                <div class="mt-4">
+
+                    <h5 class="mb-3">
+
+                        Issued Items
+
+                    </h5>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-hover align-middle">
+
+                            <thead class="table-light">
+
+                                <tr>
+
+                                    <th>#</th>
+
+                                    <th>Item</th>
+
+                                    <th>Unit</th>
+
+                                    <th>Issue Quantity</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr
+                                    *ngFor="let item of materialIssue.items; let i = index">
+
+                                    <td>{{ i + 1 }}</td>
+
+                                    <td>{{ item.itemName }}</td>
+
+                                    <td>{{ item.unit }}</td>
+
+                                    <td>{{ item.quantity }}</td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

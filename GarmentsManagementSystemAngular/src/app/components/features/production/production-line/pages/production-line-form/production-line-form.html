@@ -1,0 +1,126 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                {{ isEdit ? 'Edit Production Line' : 'Add Production Line' }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form (ngSubmit)="save()">
+
+                <div class="row">
+
+                    <!-- Line ID -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Line ID <span class="text-danger">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="lineId"
+                            [(ngModel)]="productionLine.lineId"
+                            required
+                            placeholder="e.g. L-01">
+
+                    </div>
+
+                    <!-- Capacity -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Capacity Per Day <span class="text-danger">*</span>
+
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="capacityPerDay"
+                            [(ngModel)]="productionLine.capacityPerDay"
+                            required
+                            min="1"
+                            placeholder="Enter Daily Capacity">
+
+                    </div>
+
+                    <!-- Supervisor -->
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Supervisor <span class="text-danger">*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="supervisor"
+                            [(ngModel)]="productionLine.supervisor"
+                            required
+                            placeholder="Enter Supervisor Name">
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="cancel()">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="loading">
+
+                        <span
+                            *ngIf="loading"
+                            class="spinner-border spinner-border-sm me-2">
+                        </span>
+
+                        <i
+                            *ngIf="!loading"
+                            class="bi bi-save">
+                        </i>
+
+                        {{ isEdit ? 'Update' : 'Save' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,1 +1,303 @@
-<p>grn-form works!</p>
+<div class="container-fluid py-3">
+
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <h3 class="mb-1">Goods Receive Note (GRN)</h3>
+      <small class="text-muted">
+        Receive purchased items into inventory
+      </small>
+    </div>
+
+    <a
+      routerLink="/inventory/grn"
+      class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left"></i>
+      Back
+    </a>
+
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+
+    <!-- GRN Information -->
+    <div class="card shadow-sm mb-4">
+
+      <div class="card-header bg-success text-white">
+        GRN Information
+      </div>
+
+      <div class="card-body">
+
+        <div class="row g-3">
+
+          <!-- GRN Date -->
+          <div class="col-md-4">
+
+            <label class="form-label">
+              GRN Date
+            </label>
+
+            <input
+              type="date"
+              class="form-control"
+              formControlName="grnDate">
+
+          </div>
+
+          <!-- Purchase Order -->
+          <div class="col-md-4">
+
+            <label class="form-label">
+              Purchase Order
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="purchaseOrderId"
+              (change)="onPurchaseOrderChange()">
+
+              <option value="">
+                Select Purchase Order
+              </option>
+
+              <option
+                *ngFor="let po of purchaseOrders"
+                [value]="po.id">
+
+                {{ po.poNo }}
+
+              </option>
+
+            </select>
+
+          </div>
+
+          <!-- Challan -->
+          <div class="col-md-4">
+
+            <label class="form-label">
+              Challan No
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="challanNo"
+              placeholder="Enter Challan Number">
+
+          </div>
+
+          <!-- Remarks -->
+          <div class="col-12">
+
+            <label class="form-label">
+              Remarks
+            </label>
+
+            <textarea
+              rows="3"
+              class="form-control"
+              formControlName="remarks">
+            </textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Purchase Order Summary -->
+
+    <div
+      class="card shadow-sm mb-4"
+      *ngIf="selectedPurchaseOrder">
+
+      <div class="card-header bg-primary text-white">
+
+        Purchase Order Summary
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="row">
+
+          <div class="col-md-3">
+
+            <strong>PO No</strong>
+
+            <p>{{ selectedPurchaseOrder.poNo }}</p>
+
+          </div>
+
+          <div class="col-md-3">
+
+            <strong>Vendor</strong>
+
+            <p>{{ selectedPurchaseOrder.vendorName }}</p>
+
+          </div>
+
+          <div class="col-md-3">
+
+            <strong>PO Date</strong>
+
+            <p>{{ selectedPurchaseOrder.poDate }}</p>
+
+          </div>
+
+          <div class="col-md-3">
+
+            <strong>Status</strong>
+
+            <p>
+
+              <span class="badge bg-warning">
+
+                {{ selectedPurchaseOrder.status }}
+
+              </span>
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Items -->
+
+    <div
+      class="card shadow-sm"
+      *ngIf="selectedPurchaseOrder">
+
+      <div class="card-header bg-dark text-white">
+
+        Purchase Order Items
+
+      </div>
+
+      <div class="card-body p-0">
+
+        <div class="table-responsive">
+
+          <table class="table table-bordered table-hover mb-0">
+
+            <thead class="table-light">
+
+              <tr>
+
+                <th>#</th>
+
+                <th>Item</th>
+
+                <th>Unit</th>
+
+                <th>Quantity</th>
+
+                <th>Unit Price</th>
+
+                <th>Total</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr
+                *ngFor="let item of items; let i = index">
+
+                <td>{{ i + 1 }}</td>
+
+                <td>{{ item.itemName }}</td>
+
+                <td>{{ item.unit }}</td>
+
+                <td>{{ item.quantity }}</td>
+
+                <td>{{ item.unitPrice | number:'1.2-2' }}</td>
+
+                <td>{{ item.lineTotal | number:'1.2-2' }}</td>
+
+              </tr>
+
+            </tbody>
+
+            <tfoot class="table-primary">
+
+              <tr>
+
+                <th
+                  colspan="5"
+                  class="text-end">
+
+                  Grand Total
+
+                </th>
+
+                <th>
+
+                  {{ selectedPurchaseOrder.grandTotal | number:'1.2-2' }}
+
+                </th>
+
+              </tr>
+
+            </tfoot>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="mt-4 d-flex gap-2">
+
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="saving">
+
+        <i class="bi bi-check-circle"></i>
+
+        Receive Goods
+
+      </button>
+
+      <button
+        class="btn btn-warning"
+        type="button"
+        (click)="reset()">
+
+        <i class="bi bi-arrow-clockwise"></i>
+
+        Reset
+
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        type="button"
+        (click)="cancel()">
+
+        Cancel
+
+      </button>
+
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,327 @@
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3 class="fw-bold">
+            <i class="bi bi-scissors text-primary"></i>
+            Cutting Plans
+        </h3>
+
+        <button
+                class="btn btn-primary"
+                routerLink="/cutting-plan/add">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Add Cutting Plan
+
+        </button>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search Cutting Plan..."
+                    [(ngModel)]="searchText"
+                    (input)="search()">
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div
+                class="col-xl-6 mb-4"
+                *ngFor="let plan of filteredCuttingPlans">
+
+            <div class="card production-card">
+
+                <!-- Header -->
+
+                <div class="card-header">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h5 class="mb-1">
+
+                                {{plan.cuttingPlanId}}
+
+                            </h5>
+
+                            <small>
+
+                                {{plan.buyerName}}
+
+                            </small>
+
+                        </div>
+
+                        <span
+                                class="badge fs-6"
+                                [ngClass]="{
+                           'bg-warning text-dark':plan.status=='PENDING',
+                           'bg-success':plan.status=='COMPLETED'
+                        }">
+
+                            {{plan.status}}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- Information -->
+
+                <div class="card-body">
+
+                    <div class="row mb-4">
+
+                        <div class="col-md-6">
+
+                            <strong>Order</strong>
+
+                            <div>{{plan.orderId}}</div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Style</strong>
+
+                            <div>{{plan.styleNo}}</div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- KPI -->
+
+                    <div class="row text-center g-3 mb-4">
+
+                        <div class="col-3">
+
+                            <div class="kpi-card target">
+
+                                <div class="kpi-title">
+
+                                    Target
+
+                                </div>
+
+                                <div class="kpi-value">
+
+                                    {{plan.plannedPieces}}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-3">
+
+                            <div class="kpi-card actual">
+
+                                <div class="kpi-title">
+
+                                    Actual
+
+                                </div>
+
+                                <div class="kpi-value">
+
+                                    {{plan.actualCutPieces}}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-3">
+
+                            <div class="kpi-card reject">
+
+                                <div class="kpi-title">
+
+                                    Reject
+
+                                </div>
+
+                                <div class="kpi-value">
+
+                                    {{plan.rejectedPieces}}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-3">
+
+                            <div class="kpi-card remain">
+
+                                <div class="kpi-title">
+
+                                    Remaining
+
+                                </div>
+
+                                <div class="kpi-value">
+
+                                    {{plan.remainingPieces}}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Progress -->
+
+                    <div class="mb-3">
+
+                        <div class="d-flex justify-content-between">
+
+                            <span>
+
+                                Production Progress
+
+                            </span>
+
+                            <strong>
+
+                                {{plan.progress | number:'1.0-1'}}%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="progress mt-2">
+
+                            <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    [style.width.%]="plan.progress">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-2">
+
+                            <strong>Fabric Required</strong>
+
+                            <div>
+
+                                {{plan.totalFabricRequired}}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 mb-2">
+
+                            <strong>Cutting Master</strong>
+
+                            <div>
+
+                                {{plan.cuttingMaster}}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>Start Date</strong>
+
+                            <div>
+
+                                {{plan.startDate}}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <strong>End Date</strong>
+
+                            <div>
+
+                                {{plan.endDate}}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+
+                <div class="card-footer">
+
+                    <button
+                            class="btn btn-outline-success btn-sm"
+                            (click)="details(plan.id)">
+
+                        <i class="bi bi-eye"></i>
+
+                        Details
+
+                    </button>
+
+                    <button
+                            class="btn btn-outline-primary btn-sm"
+                            (click)="edit(plan.id)">
+
+                        <i class="bi bi-pencil"></i>
+
+                        Edit
+
+                    </button>
+
+                    <button
+                            class="btn btn-outline-danger btn-sm"
+                            (click)="delete(plan.id)">
+
+                        <i class="bi bi-trash"></i>
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

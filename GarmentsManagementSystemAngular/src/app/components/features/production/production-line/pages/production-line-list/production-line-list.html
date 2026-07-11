@@ -1,0 +1,151 @@
+<div class="container-fluid mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+                Production Line List
+            </h4>
+
+            <a
+                routerLink="/production-lines/add"
+                class="btn btn-light">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Add Production Line
+
+            </a>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Search -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search by Line ID or Supervisor..."
+                        [(ngModel)]="searchText"
+                        (input)="search()">
+
+                </div>
+
+            </div>
+
+            <!-- Loading -->
+
+            <div
+                *ngIf="loading"
+                class="text-center py-5">
+
+                <div class="spinner-border text-primary"></div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div
+                class="table-responsive"
+                *ngIf="!loading">
+
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Line ID</th>
+
+                            <th>Capacity / Day</th>
+
+                            <th>Supervisor</th>
+
+                            <th>Machines</th>
+
+                            <th width="170">Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngIf="filteredProductionLines.length === 0">
+
+                            <td
+                                colspan="6"
+                                class="text-center text-muted">
+
+                                No Production Line Found.
+
+                            </td>
+
+                        </tr>
+
+                        <tr
+                            *ngFor="let line of filteredProductionLines; let i = index">
+
+                            <td>{{ i + 1 }}</td>
+
+                            <td>{{ line.lineId }}</td>
+
+                            <td class="text-center">
+
+                                {{ line.capacityPerDay }}
+
+                            </td>
+
+                            <td>{{ line.supervisor }}</td>
+
+                            <td class="text-center">
+
+                                <span class="badge bg-info">
+
+                                    {{ line.machineCount }}
+
+                                </span>
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <button
+                                    class="btn btn-warning btn-sm me-2"
+                                    (click)="edit(line.id)">
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </button>
+
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    (click)="delete(line.id)">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

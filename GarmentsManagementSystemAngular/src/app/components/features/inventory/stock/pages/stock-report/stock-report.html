@@ -1,0 +1,191 @@
+<div class="container-fluid py-3">
+
+    <div class="card shadow">
+
+        <div class="card-header d-flex justify-content-between align-items-center">
+
+            <h4 class="mb-0">
+                Current Stock Report
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Summary Cards -->
+
+            <div class="row mb-4">
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="card border-primary">
+
+                        <div class="card-body text-center">
+
+                            <h6 class="text-muted">
+                                Total Items
+                            </h6>
+
+                            <h2 class="text-primary">
+
+                                {{ getTotalItems() }}
+
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="card border-success">
+
+                        <div class="card-body text-center">
+
+                            <h6 class="text-muted">
+                                Total Available Quantity
+                            </h6>
+
+                            <h2 class="text-success">
+
+                                {{ getTotalAvailableQuantity() }}
+
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Search -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search by Item or Category..."
+                        [(ngModel)]="searchText"
+                        (input)="search()">
+
+                </div>
+
+            </div>
+
+            <!-- Loading -->
+
+            <div
+                *ngIf="loading"
+                class="text-center py-5">
+
+                <div class="spinner-border text-primary"></div>
+
+            </div>
+
+            <!-- Stock Table -->
+
+            <div
+                class="table-responsive"
+                *ngIf="!loading">
+
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Item</th>
+
+                            <th>Category</th>
+
+                            <th>Unit</th>
+
+                            <th>Available Quantity</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngIf="filteredStocks.length === 0">
+
+                            <td
+                                colspan="6"
+                                class="text-center text-muted">
+
+                                No Stock Available.
+
+                            </td>
+
+                        </tr>
+
+                        <tr
+                            *ngFor="let stock of filteredStocks; let i = index">
+
+                            <td>{{ i + 1 }}</td>
+
+                            <td>{{ stock.itemName }}</td>
+
+                            <td>{{ stock.category }}</td>
+
+                            <td>{{ stock.unit }}</td>
+
+                            <td class="text-center">
+
+                                {{ stock.availableQuantity }}
+
+                            </td>
+
+                            <td class="text-center">
+
+                                <span
+                                    *ngIf="stock.availableQuantity == 0"
+                                    class="badge bg-danger">
+
+                                    Out of Stock
+
+                                </span>
+
+                                <span
+                                    *ngIf="stock.availableQuantity > 0 && isLowStock(stock)"
+                                    class="badge bg-warning text-dark">
+
+                                    Low Stock
+
+                                </span>
+
+                                <span
+                                    *ngIf="stock.availableQuantity >= 50"
+                                    class="badge bg-success">
+
+                                    In Stock
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
