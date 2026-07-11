@@ -141,7 +141,7 @@ export class CuttingPlanService {
   ): Observable<FabricCheckResponse> {
 
     return this.http.get<FabricCheckResponse>(
-      `${environment.apiUrl}/fabrics-check/order/${orderId}`
+      `${environment.apiUrl}/fabric-check/order/${orderId}`
     );
 
   }

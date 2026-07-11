@@ -1,0 +1,301 @@
+<div class="container py-4">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                <i class="bi bi-scissors me-2"></i>
+
+                Add Day Wise Cutting Production
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Cutting Plan -->
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label class="form-label fw-bold">
+
+                        Cutting Plan
+
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="production.cuttingPlanId"
+                        name="cuttingPlanId"
+                        (change)="onCuttingPlanChange()">
+
+                        <option [ngValue]="0">
+
+                            -- Select Cutting Plan --
+
+                        </option>
+
+                        <option
+                            *ngFor="let plan of cuttingPlans"
+                            [ngValue]="plan.id">
+
+                            {{ plan.cuttingPlanId }}
+                            -
+                            {{ plan.styleNo }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Summary -->
+
+            <div
+                class="card border-primary shadow-sm mt-4"
+                *ngIf="selectedPlan && progress">
+
+                <div class="card-header bg-light">
+
+                    <strong>
+
+                        Cutting Plan Summary
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row text-center">
+
+                        <div class="col-md-3">
+
+                            <h6 class="text-muted">
+
+                                Plan ID
+
+                            </h6>
+
+                            <h5 class="fw-bold">
+
+                                {{ selectedPlan.cuttingPlanId }}
+
+                            </h5>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <h6 class="text-muted">
+
+                                Target
+
+                            </h6>
+
+                            <h4 class="text-primary fw-bold">
+
+                                {{ progress.target }}
+
+                            </h4>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <h6 class="text-muted">
+
+                                Cut So Far
+
+                            </h6>
+
+                            <h4 class="text-success fw-bold">
+
+                                {{ progress.cutSoFar }}
+
+                            </h4>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <h6 class="text-muted">
+
+                                Remaining
+
+                            </h6>
+
+                            <h4 class="text-danger fw-bold">
+
+                                {{ progress.remaining }}
+
+                            </h4>
+
+                        </div>
+
+                    </div>
+
+
+                     <!-- Progress -->
+
+                    <div class="mt-4">
+
+                        <div class="d-flex justify-content-between mb-2">
+
+                            <span class="fw-semibold">
+
+                                Cutting Progress
+
+                            </span>
+
+                            <span class="fw-bold text-primary">
+
+                                {{ progress.progress | number:'1.0-1' }}%
+
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="progress"
+                            style="height:25px;">
+
+                            <div
+                                class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                                role="progressbar"
+                                [style.width.%]="progress.progress">
+
+                                {{ progress.progress | number:'1.0-0' }}%
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ========================= -->
+            <!-- Production Entry -->
+            <!-- ========================= -->
+
+            <div
+                class="card mt-4 border-0 shadow-sm"
+                *ngIf="selectedPlan">
+
+                <div class="card-header bg-light">
+
+                    <strong>
+
+                        Production Entry
+
+                    </strong>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <!-- Date -->
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label fw-bold">
+
+                                Production Date
+
+                            </label>
+
+                            <input
+                                type="date"
+                                class="form-control"
+                                [(ngModel)]="production.date"
+                                name="date">
+
+                        </div>
+
+                        <!-- Today Cut -->
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label fw-bold">
+
+                                Today's Cut Pieces
+
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                [(ngModel)]="production.actualCutPieces"
+                                name="actualCutPieces">
+
+                        </div>
+
+                        <!-- Reject -->
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label fw-bold">
+
+                                Reject Pieces
+
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                [(ngModel)]="production.rejectPieces"
+                                name="rejectPieces">
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="text-end">
+
+                        <button
+                            class="btn btn-secondary me-2"
+                            (click)="cancel()">
+
+                            Cancel
+
+                        </button>
+
+                        <button
+                            class="btn btn-success"
+                            [disabled]="loading"
+                            (click)="save()">
+
+                            <span
+                                *ngIf="loading"
+                                class="spinner-border spinner-border-sm me-2">
+                            </span>
+
+                            Save Production
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -189,7 +189,10 @@ export class CuttingPlanForm implements OnInit{
 
         next: (response) => {
 
+           console.log('Fabric Response:', response);
+
           this.fabricInfo = response;
+          this.cdr.markForCheck();
 
         },
 

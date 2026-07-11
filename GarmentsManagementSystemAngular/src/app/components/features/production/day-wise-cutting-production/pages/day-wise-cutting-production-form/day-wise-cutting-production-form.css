@@ -1,0 +1,150 @@
+/* ===================================
+   Page
+=================================== */
+
+.container {
+    max-width: 1000px;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+/* ===================================
+   Main Card
+=================================== */
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    font-weight: 600;
+}
+
+/* ===================================
+   Summary Card
+=================================== */
+
+.border-primary {
+    border: 2px solid #0d6efd !important;
+}
+
+.card-body h4,
+.card-body h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.card-body h6 {
+    margin-bottom: 8px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* ===================================
+   Progress Bar
+=================================== */
+
+.progress {
+
+    height: 24px;
+
+    border-radius: 30px;
+
+    background: #e9ecef;
+
+}
+
+.progress-bar {
+
+    font-weight: bold;
+
+    font-size: 13px;
+
+}
+
+/* ===================================
+   Form
+=================================== */
+
+.form-label {
+
+    font-weight: 600;
+
+}
+
+.form-control,
+.form-select {
+
+    border-radius: 8px;
+
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #0d6efd;
+
+    box-shadow: 0 0 0 .15rem rgba(13,110,253,.15);
+
+}
+
+/* ===================================
+   Buttons
+=================================== */
+
+.btn {
+
+    min-width: 140px;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+/* ===================================
+   Dashboard Numbers
+=================================== */
+
+.text-primary {
+
+    color: #0d6efd !important;
+
+}
+
+.text-success {
+
+    color: #198754 !important;
+
+}
+
+.text-danger {
+
+    color: #dc3545 !important;
+
+}
+
+/* ===================================
+   Mobile
+=================================== */
+
+@media(max-width:768px){
+
+    .text-center{
+
+        margin-bottom:20px;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        margin-bottom:10px;
+
+    }
+
+}

@@ -155,6 +155,14 @@ export const routes: Routes = [
 },
 
 {
+  path: 'cutting-production',
+
+  loadChildren: () =>
+    import('./components/features/production/day-wise-cutting-production/routes/day-wise-cutting-production.routes')
+      .then(m => m.DAY_WISE_CUTTING_PRODUCTION_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },

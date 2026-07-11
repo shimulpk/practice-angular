@@ -1,0 +1,187 @@
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3 class="fw-bold">
+
+            <i class="bi bi-scissors me-2 text-primary"></i>
+
+            Day Wise Cutting Production
+
+        </h3>
+
+        <a
+            routerLink="/cutting-production/add"
+            class="btn btn-primary">
+
+            <i class="bi bi-plus-circle me-2"></i>
+
+            Add Production
+
+        </a>
+
+    </div>
+
+    <!-- Loading -->
+
+    <div
+        class="text-center py-5"
+        *ngIf="loading">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <!-- Empty -->
+
+    <div
+        class="alert alert-info"
+        *ngIf="!loading && productions.length===0">
+
+        No Production Entry Found.
+
+    </div>
+
+    <!-- Cards -->
+
+    <div class="row">
+
+        <div
+            class="col-lg-6 mb-4"
+            *ngFor="let production of productions">
+
+            <div class="card shadow-sm border-0 production-card">
+
+                <!-- Header -->
+
+                <div
+                    class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <strong>
+
+                            {{ production.cuttingPlanCode }}
+
+                        </strong>
+
+                    </div>
+
+                    <span class="badge bg-light text-dark">
+
+                        {{ production.date }}
+
+                    </span>
+
+                </div>
+
+                <!-- Body -->
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-6 mb-3">
+
+                            <small class="text-muted">
+
+                                Style No
+
+                            </small>
+
+                            <h6>
+
+                                {{ production.styleNo }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6 mb-3">
+
+                            <small class="text-muted">
+
+                                Cutting Master
+
+                            </small>
+
+                            <h6>
+
+                                {{ production.cuttingMaster }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Today's Cut
+
+                            </small>
+
+                            <h4 class="text-success fw-bold">
+
+                                {{ production.actualCutPieces }}
+
+                            </h4>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Reject
+
+                            </small>
+
+                            <h4 class="text-danger fw-bold">
+
+                                {{ production.rejectPieces }}
+
+                            </h4>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+
+                <div
+                    class="card-footer bg-white d-flex justify-content-end gap-2">
+
+                    <button
+                        class="btn btn-outline-primary btn-sm"
+                        (click)="details(production.id)">
+
+                        <i class="bi bi-eye"></i>
+
+                        Details
+
+                    </button>
+
+                    <button
+                        class="btn btn-outline-danger btn-sm"
+                        (click)="delete(production.id)">
+
+                        <i class="bi bi-trash"></i>
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
