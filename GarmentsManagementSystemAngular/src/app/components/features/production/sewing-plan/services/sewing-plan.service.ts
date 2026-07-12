@@ -6,6 +6,7 @@ import { environment } from '../../../../../environments/environment';
 import { CuttingPlanResponse } from '../../cutting-plan/models/cutting-plan-response';
 import { ProductionLineResponse } from '../../production-line/models/production-line-response';
 import { HttpClient } from '@angular/common/http';
+import { LineWiseSewingProgressResponse } from '../models/line-wise-sewing-progress-response';
 
 @Injectable({
   providedIn: 'root',
@@ -109,5 +110,17 @@ export class SewingPlanService {
     );
 
   }
+
+  getLineWiseProgress(
+  sewingPlanId: number
+) {
+
+  return this.http.get<LineWiseSewingProgressResponse[]>(
+
+    `${environment.apiUrl}/day-wise-sewing-productions/line-progress/${sewingPlanId}`
+
+  );
+
+}
 
 }

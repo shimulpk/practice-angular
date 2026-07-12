@@ -1,18 +1,19 @@
 import { Routes } from "@angular/router";
 
 import { SewingPlanForm } from "../pages/sewing-plan-form/sewing-plan-form";
-import { SewingPlanDetails } from "../pages/sewing-plan-details/sewing-plan-details";
+
+import { SewingPlanList } from "../pages/sewing-plan-list/sewing-plan-list";
 
 export const SEWING_PLAN_ROUTES: Routes = [
 
   {
-    path: 'add',
-    component: SewingPlanForm
+    path: '',
+    component: SewingPlanList
   },
 
   {
-    path: ':id',
-    component: SewingPlanDetails
+    path: 'add',
+    component: SewingPlanForm
   }
 
 ];

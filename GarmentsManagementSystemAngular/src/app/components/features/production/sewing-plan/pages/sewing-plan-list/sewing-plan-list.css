@@ -1,0 +1,273 @@
+.sewing-dashboard{
+    padding:25px;
+    background:#f5f7fb;
+    min-height:100vh;
+}
+
+/*================ HEADER =================*/
+
+.dashboard-header{
+    background:linear-gradient(135deg,#1f4fb2,#3b82f6);
+    color:#fff;
+    padding:20px 25px;
+    border-radius:15px;
+    margin-bottom:25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.dashboard-header h3{
+    margin:0;
+    font-weight:700;
+}
+
+.dashboard-header p{
+    margin:5px 0 0;
+    opacity:.9;
+}
+
+.dashboard-header .btn{
+    border-radius:8px;
+    font-weight:600;
+}
+
+/*================ CARD =================*/
+
+.plan-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transition:.25s;
+}
+
+.plan-card:hover{
+    transform:translateY(-4px);
+}
+
+/*================ CARD HEADER =================*/
+
+.plan-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 22px;
+    color:#fff;
+}
+
+.completed-header{
+    background:linear-gradient(135deg,#198754,#0f6d45);
+}
+
+.running-header{
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+}
+
+.pending-header{
+    background:linear-gradient(135deg,#6c757d,#495057);
+}
+
+.plan-header h5{
+    margin:0;
+    font-weight:700;
+}
+
+.plan-header small{
+    opacity:.9;
+}
+
+.status-badge{
+    background:#fff;
+    color:#198754;
+    padding:6px 15px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.running{
+    color:#0d6efd;
+}
+
+.pending{
+    color:#6c757d;
+}
+
+.plan-body{
+    padding:22px;
+}
+
+/*================ INFO =================*/
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.info-item label{
+    display:block;
+    font-size:11px;
+    text-transform:uppercase;
+    color:#888;
+    margin-bottom:4px;
+    font-weight:600;
+}
+
+.info-item div{
+    font-size:15px;
+    font-weight:600;
+}
+
+.section-title{
+    margin-bottom:15px;
+    font-size:16px;
+    font-weight:700;
+}
+
+/*================ TABLE =================*/
+
+.line-table{
+    border:1px solid #e9ecef;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.line-table table{
+    margin:0;
+}
+
+.line-table thead{
+    background:#f8f9fa;
+}
+
+.line-table th{
+    font-size:13px;
+    text-align:center;
+}
+
+.line-table td{
+    text-align:center;
+    vertical-align:middle;
+}
+
+.line-table td:first-child,
+.line-table th:first-child{
+    text-align:left;
+}
+
+/*================ SUMMARY =================*/
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.summary-card{
+    border-radius:12px;
+    padding:18px;
+    color:#fff;
+    text-align:center;
+}
+
+.summary-card small{
+    color:#fff;
+    opacity:.9;
+}
+
+.summary-card h3{
+    margin-top:8px;
+    margin-bottom:0;
+    font-weight:700;
+}
+
+.target-card{
+    background:#2563eb;
+}
+
+.output-card{
+    background:#198754;
+}
+
+.reject-card{
+    background:#dc3545;
+}
+
+.remaining-card{
+    background:#fd7e14;
+}
+
+/*================ PROGRESS =================*/
+
+.progress-lg{
+    height:24px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+/*================ FOOTER =================*/
+
+.card-footer-custom{
+    margin-top:20px;
+    border-top:1px solid #e9ecef;
+    padding-top:18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.progress-text{
+    font-size:15px;
+}
+
+.progress-text strong{
+    font-size:20px;
+    color:#198754;
+}
+
+.action-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.action-buttons .btn{
+    border-radius:8px;
+    min-width:90px;
+}
+
+/*================ RESPONSIVE =================*/
+
+@media(max-width:992px){
+
+    .summary-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-header{
+        flex-direction:column;
+        gap:15px;
+        align-items:flex-start;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .card-footer-custom{
+        flex-direction:column;
+        gap:15px;
+    }
+
+}

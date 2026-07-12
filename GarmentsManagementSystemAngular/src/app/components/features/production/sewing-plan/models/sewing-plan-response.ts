@@ -1,3 +1,4 @@
+import { LineWiseSewingProgressResponse } from "./line-wise-sewing-progress-response";
 import { SewingTargetResponse } from "./sewing-target-response";
 
 export interface SewingPlanResponse {
@@ -31,5 +32,9 @@ export interface SewingPlanResponse {
   status: string;
 
   targets: SewingTargetResponse[];
+
+  lineProgress: LineWiseSewingProgressResponse[];
+
+ 
 
 }
