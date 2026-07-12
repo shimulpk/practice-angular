@@ -1,0 +1,315 @@
+/* ==========================================
+   Page
+========================================== */
+
+.container-fluid {
+
+    padding: 25px;
+
+    background: #f4f6f9;
+
+    min-height: 100vh;
+
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+h3 {
+
+    font-weight: 700;
+
+    color: #2c3e50;
+
+}
+
+small {
+
+    font-size: 13px;
+
+    color: #6c757d;
+
+}
+
+/* ==========================================
+   Card
+========================================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+
+}
+
+.card-header {
+
+    font-weight: 600;
+
+    font-size: 16px;
+
+    padding: 14px 20px;
+
+}
+
+/* ==========================================
+   Cutting Plan Information
+========================================== */
+
+.card-body label {
+
+    display: block;
+
+    font-size: 13px;
+
+    color: #6c757d;
+
+    margin-bottom: 6px;
+
+}
+
+.card-body h5 {
+
+    font-weight: 700;
+
+    margin-bottom: 0;
+
+    color: #2c3e50;
+
+}
+
+/* ==========================================
+   Dashboard Numbers
+========================================== */
+
+.card-body h3 {
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    margin-top: 10px;
+
+}
+
+.text-primary {
+
+    color: #0d6efd !important;
+
+}
+
+.text-success {
+
+    color: #198754 !important;
+
+}
+
+.text-danger {
+
+    color: #dc3545 !important;
+
+}
+
+.text-warning {
+
+    color: #fd7e14 !important;
+
+}
+
+/* ==========================================
+   Progress Bar
+========================================== */
+
+.progress {
+
+    height: 28px;
+
+    border-radius: 30px;
+
+    background: #e9ecef;
+
+    overflow: hidden;
+
+}
+
+.progress-bar {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Table
+========================================== */
+
+.table {
+
+    margin-bottom: 0;
+
+}
+
+.table thead {
+
+    background: #0d6efd;
+
+    color: white;
+
+}
+
+.table thead th {
+
+    padding: 15px;
+
+    border: none;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    font-weight: 600;
+
+}
+
+.table tbody td {
+
+    padding: 15px;
+
+    vertical-align: middle;
+
+    border-color: #edf2f7;
+
+}
+
+.table tbody tr:hover {
+
+    background: #f8fbff;
+
+}
+
+.table tbody td:first-child {
+
+    text-align: center;
+
+    font-weight: 600;
+
+}
+
+.table tbody td:nth-child(3) {
+
+    text-align: center;
+
+    color: #198754;
+
+    font-weight: 700;
+
+}
+
+.table tbody td:nth-child(4) {
+
+    text-align: center;
+
+    color: #dc3545;
+
+    font-weight: 700;
+
+}
+
+/* ==========================================
+   Button
+========================================== */
+
+.btn {
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    min-width: 110px;
+
+}
+
+/* ==========================================
+   Loading
+========================================== */
+
+.spinner-border {
+
+    width: 3rem;
+
+    height: 3rem;
+
+}
+
+/* ==========================================
+   Empty History
+========================================== */
+
+.table td[colspan] {
+
+    padding: 35px;
+
+    color: #6c757d;
+
+    font-size: 15px;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:992px) {
+
+    .card-body h3 {
+
+        font-size: 22px;
+
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .container-fluid {
+
+        padding: 15px;
+
+    }
+
+    .btn {
+
+        width: 100%;
+
+        margin-top: 10px;
+
+    }
+
+    .d-flex {
+
+        flex-direction: column;
+
+        align-items: flex-start !important;
+
+    }
+
+    .table {
+
+        font-size: 13px;
+
+    }
+
+    .card-body .row>div {
+
+        margin-bottom: 20px;
+
+    }
+
+}

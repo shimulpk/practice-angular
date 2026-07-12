@@ -103,4 +103,24 @@ export class DayWiseCuttingProductionService {
 
   }
 
+  getByCuttingPlan(
+  cuttingPlanId: number
+): Observable<DayWiseCuttingProductionResponse[]> {
+
+  return this.http.get<DayWiseCuttingProductionResponse[]>(
+    `${environment.apiUrl}/day-wise-cutting-production/cutting-plan/${cuttingPlanId}`
+  );
+
+}
+
+getCuttingPlanById(
+  id: number
+): Observable<CuttingPlanResponse> {
+
+  return this.http.get<CuttingPlanResponse>(
+    `${environment.apiUrl}/cutting-plans/${id}`
+  );
+
+}
+
 }

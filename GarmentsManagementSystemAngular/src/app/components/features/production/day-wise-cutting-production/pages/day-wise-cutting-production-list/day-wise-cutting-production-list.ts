@@ -6,6 +6,7 @@ import { DayWiseCuttingProductionService } from '../../services/day-wise-cutting
 import { CuttingPlanResponse } from '../../../cutting-plan/models/cutting-plan-response';
 import { CuttingPlanProgressResponse } from '../../models/cutting-plan-progress-response';
 
+
 @Component({
   selector: 'app-day-wise-cutting-production-list',
    standalone: true,
@@ -17,24 +18,66 @@ export class DayWiseCuttingProductionList implements OnInit{
 
   cuttingPlans: CuttingPlanResponse[] = [];
 
-  productions: DayWiseCuttingProductionResponse[] = [];
-
-  progress?: CuttingPlanProgressResponse;
-
-  selectedPlan?: CuttingPlanResponse;
-
   loading = false;
 
   constructor(
-    private service: DayWiseCuttingProductionService
-  ) {}
-
+    private service: DayWiseCuttingProductionService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
-   this.loadCuttingPlans();
+
+    this.loadCuttingPlans();
+
   }
 
+  // =====================================
+  // Load Cutting Plans
+  // =====================================
 
+  loadCuttingPlans(): void {
+
+    this.loading = true;
+
+    this.service
+      .getCuttingPlans()
+      .subscribe({
+
+        next: (response) => {
+
+          this.cuttingPlans = response;
+
+          this.loading = false;
+          this.cdr.markForCheck();
+
+        },
+
+        error: (error) => {
+
+          console.error(error);
+
+          this.loading = false;
+           this.cdr.markForCheck();
+
+        }
+
+      });
+
+  }
+
+  // =====================================
+  // View Details
+  // =====================================
+
+  view(planId: number): void {
+
+    this.router.navigate([
+      '/cutting-production/details',
+      planId
+    ]);
+
+  }
 
   
 

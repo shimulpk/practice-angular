@@ -21,7 +21,7 @@ export const DAY_WISE_CUTTING_PRODUCTION_ROUTES: Routes = [
   },
 
   {
-    path: ':id',
+    path: 'details/:id',
     component: DayWiseCuttingProductionDetails
   }
 

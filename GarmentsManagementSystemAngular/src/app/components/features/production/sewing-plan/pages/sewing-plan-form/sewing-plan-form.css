@@ -1,0 +1,247 @@
+/* ==========================================
+   Page
+========================================== */
+
+.container-fluid {
+
+    background: #f5f7fb;
+
+    min-height: 100vh;
+
+    padding: 25px;
+
+}
+
+/* ==========================================
+   Card
+========================================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+
+}
+
+.card-header {
+
+    font-weight: 600;
+
+    font-size: 17px;
+
+}
+
+/* ==========================================
+   Labels
+========================================== */
+
+.form-label {
+
+    font-weight: 600;
+
+    color: #495057;
+
+    margin-bottom: 6px;
+
+}
+
+/* ==========================================
+   Inputs
+========================================== */
+
+.form-control,
+.form-select {
+
+    height: 46px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ced4da;
+
+    transition: .3s;
+
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #0d6efd;
+
+    box-shadow: 0 0 0 .15rem rgba(13,110,253,.15);
+
+}
+
+/* ==========================================
+   Auto Fill Card
+========================================== */
+
+.bg-light.form-control {
+
+    background: #f8f9fa !important;
+
+    font-weight: 600;
+
+}
+
+.text-muted {
+
+    font-size: 13px;
+
+}
+
+.text-success {
+
+    font-size: 18px;
+
+}
+
+/* ==========================================
+   Table
+========================================== */
+
+.table {
+
+    margin-bottom: 0;
+
+}
+
+.table thead th {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    background: #eef4ff;
+
+    font-weight: 600;
+
+}
+
+.table tbody td {
+
+    vertical-align: middle;
+
+}
+
+.table tbody tr:hover {
+
+    background: #f9fbff;
+
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.btn {
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+}
+
+.btn-primary {
+
+    min-width: 180px;
+
+}
+
+.btn-secondary {
+
+    min-width: 120px;
+
+}
+
+/* ==========================================
+   Add Row Button
+========================================== */
+
+.card-header .btn {
+
+    font-size: 13px;
+
+}
+
+/* ==========================================
+   Spinner
+========================================== */
+
+.spinner-border-sm {
+
+    width: 1rem;
+
+    height: 1rem;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width:768px){
+
+    .container-fluid{
+
+        padding:15px;
+
+    }
+
+    .btn-primary,
+    .btn-secondary{
+
+        width:100%;
+
+        margin-top:10px;
+
+    }
+
+    .table{
+
+        font-size:13px;
+
+    }
+
+
+    /* ==========================================
+   Allocation Dashboard
+========================================== */
+
+.border.rounded {
+
+    background: #fafafa;
+
+    transition: .3s;
+
+}
+
+.border.rounded:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 4px 10px rgba(0,0,0,.08);
+
+}
+
+.progress {
+
+    border-radius: 25px;
+
+    background: #e9ecef;
+
+}
+
+.progress-bar {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+}

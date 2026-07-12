@@ -163,6 +163,14 @@ export const routes: Routes = [
 },
 
 {
+  path: 'sewing-plan',
+
+  loadChildren: () =>
+    import('./components/features/production/sewing-plan/routes/sewing-plan.routes')
+      .then(m => m.SEWING_PLAN_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },

@@ -1,0 +1,513 @@
+<div class="container-fluid py-4">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                <i class="bi bi-grid-3x3-gap-fill me-2"></i>
+
+                {{ isEdit ? 'Edit Sewing Plan' : 'Add Sewing Plan' }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form (ngSubmit)="save()">
+
+                <!-- ========================= -->
+                <!-- Cutting Plan -->
+                <!-- ========================= -->
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Cutting Plan
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            [(ngModel)]="sewingPlan.cuttingPlanId"
+                            name="cuttingPlanId"
+                            (change)="onCuttingPlanChange()"
+                            required>
+
+                            <option [ngValue]="0">
+
+                                Select Cutting Plan
+
+                            </option>
+
+                            <option
+                                *ngFor="let plan of cuttingPlans"
+                                [ngValue]="plan.id">
+
+                                {{ plan.cuttingPlanId }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            Start Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            [(ngModel)]="sewingPlan.startDate"
+                            name="startDate"
+                            required>
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label fw-semibold">
+
+                            End Date
+
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            [(ngModel)]="sewingPlan.endDate"
+                            name="endDate"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <!-- ========================= -->
+                <!-- Auto Fill Dashboard -->
+                <!-- ========================= -->
+
+                <div
+                    class="card border-primary mt-4"
+                    *ngIf="selectedPlan">
+
+                    <div class="card-header bg-light">
+
+                        <strong>
+
+                            Cutting Plan Information
+
+                        </strong>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="text-muted">
+
+                                    Buyer
+
+                                </label>
+
+                                <div class="form-control bg-light">
+
+                                    {{ selectedPlan.buyerName }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="text-muted">
+
+                                    Order No
+
+                                </label>
+
+                                <div class="form-control bg-light">
+
+                                    {{ selectedPlan.orderId }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="text-muted">
+
+                                    Style
+
+                                </label>
+
+                                <div class="form-control bg-light">
+
+                                    {{ selectedPlan.styleNo }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="text-muted">
+
+                                    Color
+
+                                </label>
+
+                                <div class="form-control bg-light">
+
+                                    {{ selectedPlan.color }}
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+
+                                <label class="text-muted">
+
+                                    Received Qty
+
+                                </label>
+
+                                <div class="form-control bg-light fw-bold text-success">
+
+                                    {{ selectedPlan.actualCutPieces }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ========================= -->
+<!-- Allocation Dashboard -->
+<!-- ========================= -->
+
+<div
+    class="card shadow-sm border-0 mt-4"
+    *ngIf="selectedPlan">
+
+    <div class="card-header bg-info text-white">
+
+        <h5 class="mb-0">
+
+            <i class="bi bi-bar-chart-fill me-2"></i>
+
+            Line Allocation Summary
+
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row text-center">
+
+            <div class="col-md-4 mb-3">
+
+                <div class="border rounded p-3">
+
+                    <small class="text-muted">
+
+                        Received Qty
+
+                    </small>
+
+                    <h3 class="text-primary">
+
+                        {{ selectedPlan.actualCutPieces }}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <div class="border rounded p-3">
+
+                    <small class="text-muted">
+
+                        Allocated Qty
+
+                    </small>
+
+                    <h3 class="text-success">
+
+                        {{ getTotalAllocated() }}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-3">
+
+                <div class="border rounded p-3">
+
+                    <small class="text-muted">
+
+                        Remaining Qty
+
+                    </small>
+
+                    <h3 class="text-danger">
+
+                        {{ getRemainingQty() }}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Progress -->
+
+        <div class="mt-3">
+
+            <div class="progress" style="height:28px;">
+
+                <div
+                    class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                    role="progressbar"
+                    [style.width.%]="getAllocationPercentage()">
+
+                    {{ getAllocationPercentage() | number:'1.0-0' }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+                <!-- ========================= -->
+<!-- Line Allocation -->
+<!-- ========================= -->
+
+<div class="card shadow-sm border-0 mt-4">
+
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+
+        <h5 class="mb-0">
+
+            <i class="bi bi-diagram-3 me-2"></i>
+
+            Line Allocation
+
+        </h5>
+
+        <button
+            type="button"
+            class="btn btn-light btn-sm"
+            (click)="addRow()">
+
+            <i class="bi bi-plus-circle me-1"></i>
+
+            Add Row
+
+        </button>
+
+    </div>
+
+    <div class="card-body p-0">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th width="70">
+
+                            SL
+
+                        </th>
+
+                        <th>
+
+                            Production Line
+
+                        </th>
+
+                        <th width="220">
+
+                            Target Qty
+
+                        </th>
+
+                        <th width="90">
+
+                            Action
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr
+                        *ngFor="let target of sewingPlan.targets; let i=index">
+
+                        <td class="text-center">
+
+                            {{ i + 1 }}
+
+                        </td>
+
+                        <td>
+
+                            <select
+                                class="form-select"
+                                [(ngModel)]="target.productionLineId"
+                                [name]="'line'+i"
+                                required>
+
+                                <option [ngValue]="0">
+
+                                    Select Line
+
+                                </option>
+
+                                <option
+                                    *ngFor="let line of productionLines"
+                                    [ngValue]="line.id">
+
+                                    {{ line.lineId }}
+
+                                </option>
+
+                            </select>
+
+                        </td>
+
+                        <td>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                [(ngModel)]="target.targetQuantity"
+                                [name]="'target'+i"
+                                placeholder="Target Qty"
+                                min="1"
+                                required>
+
+                        </td>
+
+                        <td class="text-center">
+
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm"
+                                (click)="removeRow(i)">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr *ngIf="sewingPlan.targets.length==0">
+
+                        <td
+                            colspan="4"
+                            class="text-center py-4 text-muted">
+
+                            No Production Line Added
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Button -->
+<!-- ========================= -->
+
+<div class="mt-4 text-end">
+
+    <button
+        type="button"
+        class="btn btn-secondary me-2"
+        (click)="cancel()">
+
+        <i class="bi bi-arrow-left me-1"></i>
+
+        Cancel
+
+    </button>
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loading">
+
+        <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm me-2">
+        </span>
+
+        <i
+            *ngIf="!loading"
+            class="bi bi-check-circle me-1">
+        </i>
+
+        {{ isEdit ? 'Update Sewing Plan' : 'Save Sewing Plan' }}
+
+    </button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>

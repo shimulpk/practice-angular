@@ -1,1 +1,352 @@
-<p>day-wise-cutting-production-details works!</p>
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h3 class="fw-bold mb-0">
+
+                <i class="bi bi-scissors me-2"></i>
+
+                Day Wise Cutting Production Details
+
+            </h3>
+
+            <small class="text-muted">
+
+                Cutting Plan Production Progress
+
+            </small>
+
+        </div>
+
+        <button
+            class="btn btn-secondary"
+            (click)="back()">
+
+            <i class="bi bi-arrow-left me-2"></i>
+
+            Back
+
+        </button>
+
+    </div>
+
+    <!-- Loading -->
+
+    <div
+        class="text-center py-5"
+        *ngIf="loading">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <div *ngIf="!loading && plan">
+
+        <!-- Cutting Plan Info -->
+
+        <div class="card shadow-sm border-0 mb-4">
+
+            <div class="card-header bg-primary text-white">
+
+                Cutting Plan Information
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="text-muted">
+
+                            Cutting Plan
+
+                        </label>
+
+                        <h5>
+
+                            {{ plan.cuttingPlanId }}
+
+                        </h5>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="text-muted">
+
+                            Buyer
+
+                        </label>
+
+                        <h5>
+
+                            {{ plan.buyerName }}
+
+                        </h5>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="text-muted">
+
+                            Style
+
+                        </label>
+
+                        <h5>
+
+                            {{ plan.styleNo }}
+
+                        </h5>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="text-muted">
+
+                            Target
+
+                        </label>
+
+                        <h5 class="text-primary">
+
+                            {{ progress?.target }}
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Progress -->
+
+        <div
+            class="card shadow-sm border-0 mb-4"
+            *ngIf="progress">
+
+            <div class="card-header bg-success text-white">
+
+                Production Progress
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row text-center">
+
+                    <div class="col-md-3">
+
+                        <h6 class="text-muted">
+
+                            Target
+
+                        </h6>
+
+                        <h3 class="text-primary">
+
+                            {{ progress.target }}
+
+                        </h3>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h6 class="text-muted">
+
+                            Cut So Far
+
+                        </h6>
+
+                        <h3 class="text-success">
+
+                            {{ progress.cutSoFar }}
+
+                        </h3>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h6 class="text-muted">
+
+                            Rejected
+
+                        </h6>
+
+                        <h3 class="text-warning">
+
+                            {{ progress.rejected }}
+
+                        </h3>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <h6 class="text-muted">
+
+                            Remaining
+
+                        </h6>
+
+                        <h3 class="text-danger">
+
+                            {{ progress.remaining }}
+
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="mb-2">
+
+                    <strong>
+
+                        Progress
+
+                    </strong>
+
+                    <span class="float-end">
+
+                        {{ progress.progress | number:'1.0-1' }} %
+
+                    </span>
+
+                </div>
+
+                <div class="progress" style="height:28px;">
+
+                    <div
+                        class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                        [style.width.%]="progress.progress">
+
+                        {{ progress.progress | number:'1.0-0' }}%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- History -->
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-header bg-light">
+
+                Daily Production History
+
+            </div>
+
+            <div class="card-body p-0">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover mb-0">
+
+                        <thead class="table-primary">
+
+                            <tr>
+
+                                <th width="80">
+
+                                    SL
+
+                                </th>
+
+                                <th>
+
+                                    Production Date
+
+                                </th>
+
+                                <th class="text-center">
+
+                                    Today's Cut
+
+                                </th>
+
+                                <th class="text-center">
+
+                                    Reject
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr
+                                *ngFor="let row of productions; let i=index">
+
+                                <td>
+
+                                    {{ i+1 }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ row.date }}
+
+                                </td>
+
+                                <td class="text-center fw-bold text-success">
+
+                                    {{ row.actualCutPieces }}
+
+                                </td>
+
+                                <td class="text-center fw-bold text-danger">
+
+                                    {{ row.rejectPieces }}
+
+                                </td>
+
+                            </tr>
+
+                            <tr *ngIf="productions.length==0">
+
+                                <td
+                                    colspan="4"
+                                    class="text-center py-5">
+
+                                    No Production History Found
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

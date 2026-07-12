@@ -7,4 +7,6 @@ export interface CuttingPlanProgressResponse {
   remaining: number;
 
   progress: number;
+
+   rejected: number;   
 }
