@@ -1,0 +1,302 @@
+<div class="container-fluid py-4">
+
+    <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary"></div>
+    </div>
+
+    <div *ngIf="!loading && plan">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    Day Wise Sewing Production Details
+                </h4>
+            </div>
+
+            <div class="card-body">
+
+                <!-- Basic Information -->
+
+                <div class="row mb-4">
+
+                    <div class="col-md-3">
+                        <small class="text-muted">Sewing Plan</small>
+                        <h6>{{ plan.sewingPlanId }}</h6>
+                    </div>
+
+                    <div class="col-md-3">
+                        <small class="text-muted">Buyer</small>
+                        <h6>{{ plan.buyerName }}</h6>
+                    </div>
+
+                    <div class="col-md-3">
+                        <small class="text-muted">Order</small>
+                        <h6>{{ plan.orderNo }}</h6>
+                    </div>
+
+                    <div class="col-md-3">
+                        <small class="text-muted">Style</small>
+                        <h6>{{ plan.styleNo }}</h6>
+                    </div>
+
+                </div>
+
+                <!-- Summary -->
+
+                <div class="row mb-4">
+
+                    <div class="col-md-3">
+
+                        <div class="card border-primary">
+
+                            <div class="card-body text-center">
+
+                                <h6>Input Qty</h6>
+
+                                <h3 class="text-primary">
+                                    {{ plan.inputReceivedQty }}
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-success">
+
+                            <div class="card-body text-center">
+
+                                <h6>Output Qty</h6>
+
+                                <h3 class="text-success">
+                                    {{ plan.outputQty }}
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-danger">
+
+                            <div class="card-body text-center">
+
+                                <h6>Reject Qty</h6>
+
+                                <h3 class="text-danger">
+                                    {{ plan.rejectionQty }}
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-warning">
+
+                            <div class="card-body text-center">
+
+                                <h6>Status</h6>
+
+                                <span class="badge"
+                                      [ngClass]="{
+                                        'bg-success': plan.status=='COMPLETED',
+                                        'bg-warning text-dark': plan.status=='IN_SEWING',
+                                        'bg-secondary': plan.status=='PENDING'
+                                      }">
+
+                                    {{ plan.status }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <!-- History -->
+
+                <h5 class="mb-3">
+                    Day Wise Sewing History
+                </h5>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover">
+
+                        <thead class="table-light">
+
+                        <tr>
+
+                            <th>SL</th>
+
+                            <th>Date</th>
+
+                            <th>Production Line</th>
+
+                            <th class="text-center">Achieved Qty</th>
+
+                            <th class="text-center">Reject Qty</th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr *ngFor="let production of productions; let i=index">
+
+                            <td>{{ i+1 }}</td>
+
+                            <td>{{ production.date }}</td>
+
+                            <td>{{ production.lineId }}</td>
+
+                            <td class="text-center text-success fw-bold">
+                                {{ production.achievedQuantity }}
+                            </td>
+
+                            <td class="text-center text-danger fw-bold">
+                                {{ production.rejectionQty }}
+                            </td>
+
+                        </tr>
+
+                        <tr *ngIf="productions.length==0">
+
+                            <td colspan="5" class="text-center">
+
+                                No Production Found
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <hr>
+
+                <!-- Production Summary -->
+
+                <h5 class="mb-3">
+
+                    Production Summary
+
+                </h5>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                        <div class="card border-primary">
+
+                            <div class="card-body text-center">
+
+                                <h6>Total Working Days</h6>
+
+                                <h2>{{ productions.length }}</h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-success">
+
+                            <div class="card-body text-center">
+
+                                <h6>Total Achieved</h6>
+
+                                <h2>{{ getTotalAchieved() }}</h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-danger">
+
+                            <div class="card-body text-center">
+
+                                <h6>Total Reject</h6>
+
+                                <h2>{{ getTotalReject() }}</h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-warning">
+
+                            <div class="card-body text-center">
+
+                                <h6>Achievement</h6>
+
+                                <h2>
+
+                                    {{ getAchievementPercentage() | number:'1.0-0' }}%
+
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <h6>Overall Progress</h6>
+
+                    <div class="progress" style="height:30px;">
+
+                        <div class="progress-bar bg-success"
+
+                             [style.width.%]="getAchievementPercentage()">
+
+                            {{ getAchievementPercentage() | number:'1.0-0' }}%
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -376,17 +376,17 @@ export const MENU: MenuItem[] = [
       route: '/finishing-plan'
     },
 
-    {
-      title: 'Add Day Wise Finishing Production',
-      icon: 'bi bi-calendar-plus',
-      route: '/finishing-production/add'
-    },
+   {
+  title: 'Add Day Wise Finishing Production',
+  icon: 'bi bi-calendar-plus',
+  route: '/day-wise-finishing-production/add'
+},
 
-    {
-      title: 'View Day Wise Finishing Production',
-      icon: 'bi bi-calendar-check',
-      route: '/finishing-production'
-    }
+{
+  title: 'View Day Wise Finishing Production',
+  icon: 'bi bi-calendar-check',
+  route: '/day-wise-finishing-production'
+},
         ]
       },
 

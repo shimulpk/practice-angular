@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SewingPlanResponse } from '../../models/sewing-plan-response';
 import { SewingPlanService } from '../../services/sewing-plan.service';
 import { Router, RouterModule } from '@angular/router';
@@ -22,7 +22,8 @@ constructor(
 
   private sewingPlanService: SewingPlanService,
 
-  private router: Router
+  private router: Router,
+  private cdr:ChangeDetectorRef
 
 ) {}
 
@@ -46,6 +47,7 @@ constructor(
           this.sewingPlans = response;
 
           this.loading = false;
+          this.cdr.markForCheck();
 
         },
 
@@ -54,6 +56,7 @@ constructor(
           console.error(error);
 
           this.loading = false;
+          this.cdr.markForCheck();
 
         }
 

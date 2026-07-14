@@ -1,0 +1,369 @@
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h3 class="mb-0">
+
+            View Finishing Plan
+
+        </h3>
+
+        <a
+                routerLink="/finishing-plan/add"
+                class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Add Finishing Plan
+
+        </a>
+
+    </div>
+
+    <div
+            *ngIf="loading"
+            class="text-center py-5">
+
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+
+    <div
+            *ngIf="!loading && finishingPlans.length==0"
+            class="alert alert-info">
+
+        No Finishing Plan Found.
+
+    </div>
+
+    <div class="row">
+
+        <div
+                class="col-lg-6 mb-4"
+                *ngFor="let plan of finishingPlans">
+
+            <div class="card shadow h-100">
+
+                <!-- Header -->
+
+                <div
+                        class="card-header d-flex justify-content-between align-items-center">
+
+                    <h5 class="mb-0">
+
+                        {{ plan.finishingPlanId }}
+
+                    </h5>
+
+                    <span
+                            class="badge"
+                            [ngClass]="{
+
+                        'bg-success': plan.status=='COMPLETED',
+
+                        'bg-warning text-dark': plan.status=='IN_FINISHING',
+
+                        'bg-secondary': plan.status=='PENDING'
+
+                    }">
+
+                        {{ plan.status }}
+
+                    </span>
+
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Buyer Information -->
+
+                    <div class="row mb-3">
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Buyer
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.buyerName }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Order
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.orderNo }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6 mt-3">
+
+                            <small class="text-muted">
+
+                                Style
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.styleNo }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6 mt-3">
+
+                            <small class="text-muted">
+
+                                Color
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.color }}
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- Finishing Information -->
+
+                    <div class="row mb-3">
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Supervisor
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.supervisorName }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Table No
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.finishingTableNo }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6 mt-3">
+
+                            <small class="text-muted">
+
+                                Start Date
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.startDate }}
+
+                            </h6>
+
+                        </div>
+
+                        <div class="col-6 mt-3">
+
+                            <small class="text-muted">
+
+                                End Date
+
+                            </small>
+
+                            <h6>
+
+                                {{ plan.endDate }}
+
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- Finishing Process -->
+
+                    <h6 class="fw-bold mb-3">
+
+                        Finishing Process
+
+                    </h6>
+
+                    <div class="row">
+
+                        <div class="col-6">
+
+                           <div class="process-item"
+     [ngClass]="plan.procTrimming ? 'enabled' : 'disabled'">
+  {{ plan.procTrimming ? '✔' : '✖' }} Trimming
+</div>
+
+<div class="process-item"
+     [ngClass]="plan.procIroning ? 'enabled' : 'disabled'">
+  {{ plan.procIroning ? '✔' : '✖' }} Ironing
+</div>
+
+<div class="process-item"
+     [ngClass]="plan.procWashing ? 'enabled' : 'disabled'">
+  {{ plan.procWashing ? '✔' : '✖' }} Washing
+</div>
+
+<div class="process-item"
+     [ngClass]="plan.procButtonAttach ? 'enabled' : 'disabled'">
+  {{ plan.procButtonAttach ? '✔' : '✖' }} Button Attach
+</div>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- Production Summary -->
+
+                    <div class="row text-center">
+
+                        <div class="col-4">
+
+                            <small class="text-muted">
+
+                                Target Qty
+
+                            </small>
+
+                            <h5 class="text-primary">
+
+                                {{ plan.targetQty }}
+
+                            </h5>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <small class="text-muted">
+
+                                Pass Qty
+
+                            </small>
+
+                            <h5 class="text-success">
+
+                                {{ plan.passQty }}
+
+                            </h5>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <small class="text-muted">
+
+                                Reject Qty
+
+                            </small>
+
+                            <h5 class="text-danger">
+
+                                {{ plan.rejectionQty }}
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <small class="fw-bold">
+
+                            Overall Progress
+
+                        </small>
+
+                        <div
+                                class="progress mt-2"
+                                style="height:25px;">
+
+                            <div
+                                    class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                                    [style.width.%]="getProgress(plan)">
+
+                                {{ getProgress(plan) | number:'1.0-0' }}%
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-footer text-end">
+
+                    <a
+                            class="btn btn-warning btn-sm me-2"
+                            [routerLink]="['/finishing-plan/edit',plan.id]">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                        Edit
+
+                    </a>
+
+                    <button
+                            class="btn btn-danger btn-sm"
+                            (click)="delete(plan.id)">
+
+                        <i class="bi bi-trash"></i>
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

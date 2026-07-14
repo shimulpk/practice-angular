@@ -1,0 +1,335 @@
+<div class="container-fluid py-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                {{ editMode ? 'Update Finishing Plan' : 'Add Finishing Plan' }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form [formGroup]="form" (ngSubmit)="submit()">
+
+                <div class="row">
+
+                    <!-- Sewing Plan -->
+
+                   <div class="col-md-6 mb-3">
+
+    <label class="form-label">
+
+        Sewing Plan
+
+    </label>
+
+    <select
+            class="form-select"
+            formControlName="sewingPlanId"
+            (change)="onSewingPlanChange()">
+
+        <option [ngValue]="null">
+
+            Select Completed Sewing Plan
+
+        </option>
+
+        <option
+                *ngFor="let plan of sewingPlans"
+                [ngValue]="plan.id">
+
+            {{ plan.sewingPlanId }}
+            -
+            {{ plan.buyerName }}
+            -
+            {{ plan.styleNo }}
+
+        </option>
+
+    </select>
+
+</div>
+
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">
+
+        Buyer Name
+
+    </label>
+
+    <input
+            class="form-control"
+            formControlName="buyerName"
+            readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">
+
+        Order No
+
+    </label>
+
+    <input
+            class="form-control"
+            formControlName="orderNo"
+            readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">
+
+        Style No
+
+    </label>
+
+    <input
+            class="form-control"
+            formControlName="styleNo"
+            readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">
+
+        Color
+
+    </label>
+
+    <input
+            class="form-control"
+            formControlName="color"
+            readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">
+
+        Input Quantity
+
+    </label>
+
+    <input
+            class="form-control"
+            formControlName="inputQty"
+            readonly>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+    <label class="form-label">
+
+        Target Quantity
+
+    </label>
+
+    <input
+            class="form-control"
+            formControlName="targetQty"
+            readonly>
+
+</div>
+
+                    <!-- Finishing Table -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Finishing Table No
+
+                        </label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                formControlName="finishingTableNo">
+
+                    </div>
+
+                    <!-- Supervisor -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Supervisor Name
+
+                        </label>
+
+                        <input
+                                type="text"
+                                class="form-control"
+                                formControlName="supervisorName">
+
+                    </div>
+
+                    <!-- Start Date -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            Start Date
+
+                        </label>
+
+                        <input
+                                type="date"
+                                class="form-control"
+                                formControlName="startDate">
+
+                    </div>
+
+                    <!-- End Date -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+
+                            End Date
+
+                        </label>
+
+                        <input
+                                type="date"
+                                class="form-control"
+                                formControlName="endDate">
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <h5 class="mb-3">
+
+                    Finishing Process
+
+                </h5>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <div class="form-check">
+
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    formControlName="procTrimming">
+
+                            <label class="form-check-label">
+
+                                Trimming
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <div class="form-check">
+
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    formControlName="procIroning">
+
+                            <label class="form-check-label">
+
+                                Ironing
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <div class="form-check">
+
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    formControlName="procWashing">
+
+                            <label class="form-check-label">
+
+                                Washing
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+
+                        <div class="form-check">
+
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    formControlName="procButtonAttach">
+
+                            <label class="form-check-label">
+
+                                Button Attach
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mt-4 text-end">
+
+                    <button
+                            type="submit"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        {{ editMode ? 'Update' : 'Save' }}
+
+                    </button>
+
+                    <a
+                            routerLink="/finishing-plan"
+                            class="btn btn-secondary ms-2">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

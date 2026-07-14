@@ -1,0 +1,386 @@
+
+<div class="container-fluid py-4">
+
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <div *ngIf="!loading && plan">
+
+    <div class="card shadow mb-4">
+
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+          Day Wise Finishing Production Details
+        </h4>
+      </div>
+
+      <div class="card-body">
+
+        <!-- Plan Information -->
+
+        <div class="row">
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Finishing Plan</small>
+            <h6>{{ plan.finishingPlanId }}</h6>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Buyer</small>
+            <h6>{{ plan.buyerName }}</h6>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Order</small>
+            <h6>{{ plan.orderNo }}</h6>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Style</small>
+            <h6>{{ plan.styleNo }}</h6>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Color</small>
+            <h6>{{ plan.color }}</h6>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Supervisor</small>
+            <h6>{{ plan.supervisorName }}</h6>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Table No</small>
+            <h6>{{ plan.finishingTableNo }}</h6>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <small class="text-muted">Status</small>
+
+            <h6>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-success': plan.status === 'COMPLETED',
+                  'bg-warning text-dark': plan.status === 'IN_PROGRESS'
+                }">
+
+                {{ plan.status }}
+
+              </span>
+            </h6>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <!-- Process -->
+
+        <h5 class="mb-3">
+          Finishing Process
+        </h5>
+
+        <div class="row">
+
+          <div class="col-md-3 mb-3">
+
+            <div
+              class="card text-center"
+              [ngClass]="plan.procTrimming ? 'border-success' : 'border-secondary'">
+
+              <div class="card-body">
+
+                <h6>Trimming</h6>
+
+                <span
+                  class="badge"
+                  [ngClass]="plan.procTrimming ? 'bg-success' : 'bg-secondary'">
+
+                  {{ plan.procTrimming ? 'YES' : 'NO' }}
+
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3 mb-3">
+
+            <div
+              class="card text-center"
+              [ngClass]="plan.procIroning ? 'border-success' : 'border-secondary'">
+
+              <div class="card-body">
+
+                <h6>Ironing</h6>
+
+                <span
+                  class="badge"
+                  [ngClass]="plan.procIroning ? 'bg-success' : 'bg-secondary'">
+
+                  {{ plan.procIroning ? 'YES' : 'NO' }}
+
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3 mb-3">
+
+            <div
+              class="card text-center"
+              [ngClass]="plan.procWashing ? 'border-success' : 'border-secondary'">
+
+              <div class="card-body">
+
+                <h6>Washing</h6>
+
+                <span
+                  class="badge"
+                  [ngClass]="plan.procWashing ? 'bg-success' : 'bg-secondary'">
+
+                  {{ plan.procWashing ? 'YES' : 'NO' }}
+
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3 mb-3">
+
+            <div
+              class="card text-center"
+              [ngClass]="plan.procButtonAttach ? 'border-success' : 'border-secondary'">
+
+              <div class="card-body">
+
+                <h6>Button Attach</h6>
+
+                <span
+                  class="badge"
+                  [ngClass]="plan.procButtonAttach ? 'bg-success' : 'bg-secondary'">
+
+                  {{ plan.procButtonAttach ? 'YES' : 'NO' }}
+
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr>
+
+        <!-- Day Wise History -->
+
+        <h5 class="mb-3">
+
+          Day Wise Finishing History
+
+        </h5>
+
+        <div class="table-responsive">
+
+          <table class="table table-bordered table-hover">
+
+            <thead class="table-light">
+
+            <tr>
+
+              <th>SL</th>
+
+              <th>Date</th>
+
+              <th class="text-center">Pass Qty</th>
+
+              <th class="text-center">Reject Qty</th>
+
+              <th>Remarks</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let production of productions; let i=index">
+
+              <td>{{ i + 1 }}</td>
+
+              <td>{{ production.date }}</td>
+
+              <td class="text-center text-success fw-bold">
+
+                {{ production.passQty }}
+
+              </td>
+
+              <td class="text-center text-danger fw-bold">
+
+                {{ production.rejectQty }}
+
+              </td>
+
+              <td>
+
+                {{ production.remarks || '-' }}
+
+              </td>
+
+            </tr>
+
+            <tr *ngIf="productions.length===0">
+
+              <td colspan="5" class="text-center">
+
+                No Production Found
+
+              </td>
+
+            </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <hr>
+
+        <!-- Summary -->
+
+        <h5 class="mb-3">
+
+          Production Summary
+
+        </h5>
+
+        <div class="row">
+
+          <div class="col-md-3 mb-3">
+
+            <div class="card border-primary">
+
+              <div class="card-body text-center">
+
+                <h6>Target Qty</h6>
+
+                <h3 class="text-primary">
+
+                  {{ plan.targetQty }}
+
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3 mb-3">
+
+            <div class="card border-success">
+
+              <div class="card-body text-center">
+
+                <h6>Total Pass</h6>
+
+                <h3 class="text-success">
+
+                  {{ getTotalPass() }}
+
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3 mb-3">
+
+            <div class="card border-danger">
+
+              <div class="card-body text-center">
+
+                <h6>Total Reject</h6>
+
+                <h3 class="text-danger">
+
+                  {{ getTotalReject() }}
+
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3 mb-3">
+
+            <div class="card border-warning">
+
+              <div class="card-body text-center">
+
+                <h6>Achievement</h6>
+
+                <h3 class="text-warning">
+
+                  {{ getAchievementPercentage() | number:'1.0-0' }}%
+
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="mt-4">
+
+          <h6>Overall Progress</h6>
+
+          <div class="progress" style="height:30px">
+
+            <div
+              class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+              [style.width.%]="getAchievementPercentage()">
+
+              {{ getAchievementPercentage() | number:'1.0-0' }}%
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

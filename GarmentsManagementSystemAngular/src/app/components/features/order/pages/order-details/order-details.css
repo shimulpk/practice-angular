@@ -7,6 +7,54 @@
     background: #f8f9fa;
 }
 
+
+
+
+/* ========================================================== */
+/* Garments Header Styling for Print and PDF Download */
+/* ========================================================== */
+
+.bg-light {
+    background-color: #f8f9fa !important;
+    border-bottom: 2px solid #dee2e6 !important;
+}
+
+
+.text-primary {
+    color: #0d6efd !important; 
+}
+
+
+.text-secondary {
+    color: #495057 !important;
+    font-size: 15px;
+}
+
+
+.small {
+    font-size: 13px;
+    color: #6c757d !important;
+}
+
+
+@media print {
+    .bg-light {
+        background-color: #f8f9fa !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .text-primary {
+        color: #0d6efd !important;
+    }
+    .text-secondary {
+        color: #495057 !important;
+    }
+    .small {
+        color: #6c757d !important;
+    }
+}
+
+
 /* ==========================================
    Card
 ========================================== */
@@ -161,4 +209,81 @@ p {
 
     }
 
+}
+
+
+
+/* ========================================================== */
+/* PDF and Print Table Design Optimization */
+/* ========================================================== */
+
+
+#print-section table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 20px !important;
+    font-size: 14px !important;
+}
+
+
+#print-section table th, 
+#print-section table td {
+    padding: 10px 12px !important;
+    text-align: left !important;
+    vertical-align: middle !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+
+#print-section table thead th {
+    background-color: #f4f6f9 !important;
+    color: #333 !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    letter-spacing: 0.5px;
+}
+
+
+#print-section table th:nth-child(3), #print-section table td:nth-child(3),
+#print-section table th:nth-child(4), #print-section table td:nth-child(4),
+#print-section table th:nth-child(5), #print-section table td:nth-child(5) {
+    text-align: right !important;
+}
+
+
+.row.justify-content-end table {
+    width: 100% !important;
+    margin-top: 15px !important;
+}
+
+.row.justify-content-end table th {
+    text-align: left !important;
+    font-weight: 600 !important;
+    background-color: #ffffff !important;
+}
+
+.row.justify-content-end table td,
+.row.justify-content-end table tr.table-success th {
+    text-align: right !important;
+}
+
+
+#print-section table tr.table-success {
+    background-color: #e2f0d9 !important;
+    color: #385723 !important;
+}
+
+
+@media print {
+    #print-section table thead th {
+        background-color: #f4f6f9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    #print-section table tr.table-success {
+        background-color: #e2f0d9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 }

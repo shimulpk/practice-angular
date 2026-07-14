@@ -109,37 +109,19 @@
 
                     <!-- Style -->
 
-                    <div class="col-md-4 mb-3">
+                  <div class="col-md-4 mb-3">
+    <label class="form-label">Style Code</label>
+    <select class="form-select" formControlName="styleId">
+        <option [ngValue]="null">Select Style Code</option>
+        <option *ngFor="let style of styles" [value]="style.id">
+            {{ style.styleCode }} </option>
+    </select>
+</div>
 
-                        <label class="form-label">
-
-                            Style
-
-                        </label>
-
-                        <select
-                            class="form-select"
-                            formControlName="styleId">
-
-                            <option
-                                [ngValue]="null">
-
-                                Select Style
-
-                            </option>
-
-                            <option
-                                *ngFor="let style of styles"
-                                [value]="style.id">
-
-                                {{ style.styleName }}
-
-                            </option>
-
-                        </select>
-
-                    </div>
-
+<div class="col-md-4 mb-3">
+    <label class="form-label">Style Name</label>
+    <input type="text" class="form-control" formControlName="styleName" readonly>
+</div>
                     <!-- Order Date -->
 
                     <div class="col-md-4 mb-3">

@@ -1,0 +1,185 @@
+
+<div class="container-fluid py-4">
+
+  <div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+
+      <h4 class="mb-0">
+
+        View Day Wise Finishing Production
+
+      </h4>
+
+    </div>
+
+    <div class="card-body">
+
+      <div
+        *ngIf="loading"
+        class="text-center py-5">
+
+        <div class="spinner-border text-primary"></div>
+
+      </div>
+
+      <div
+        *ngIf="!loading"
+        class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+          <thead class="table-light">
+
+          <tr>
+
+            <th style="width:70px">
+
+              SL
+
+            </th>
+
+            <th>
+
+              Finishing Plan
+
+            </th>
+
+            <th>
+
+              Buyer
+
+            </th>
+
+            <th>
+
+              Style
+
+            </th>
+
+            <th class="text-center">
+
+              Target Qty
+
+            </th>
+
+            <th class="text-center">
+
+              Status
+
+            </th>
+
+            <th
+              class="text-center"
+              style="width:130px">
+
+              Action
+
+            </th>
+
+          </tr>
+
+          </thead>
+
+          <tbody>
+
+          <tr
+            *ngFor="
+              let plan of plans;
+              let i = index
+            ">
+
+            <td>
+
+              {{ i + 1 }}
+
+            </td>
+
+            <td>
+
+              <strong>
+
+                {{ plan.finishingPlanId }}
+
+              </strong>
+
+            </td>
+
+            <td>
+
+              {{ plan.buyerName }}
+
+            </td>
+
+            <td>
+
+              {{ plan.styleNo }}
+
+            </td>
+
+            <td class="text-center fw-bold text-primary">
+
+              {{ plan.targetQty }}
+
+            </td>
+
+            <td class="text-center">
+
+              <span
+                class="badge"
+                [ngClass]="{
+
+                'bg-success':
+                plan.status === 'COMPLETED',
+
+                'bg-warning text-dark':
+                plan.status === 'IN_PROGRESS'
+
+              }">
+
+                {{ plan.status }}
+
+              </span>
+
+            </td>
+
+            <td class="text-center">
+
+              <button
+                class="btn btn-sm btn-primary"
+                (click)="view(plan.id)">
+
+                <i class="bi bi-eye"></i>
+
+                View
+
+              </button>
+
+            </td>
+
+          </tr>
+
+          <tr *ngIf="plans.length === 0">
+
+            <td
+              colspan="7"
+              class="text-center text-muted py-4">
+
+              No Finishing Plan Found
+
+            </td>
+
+          </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

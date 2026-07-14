@@ -1,0 +1,269 @@
+<div class="container-fluid py-4 px-4">
+
+    <div class="card shadow w-100">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                {{ isEdit ? 'Edit Day Wise Sewing Production' : 'Add Day Wise Sewing Production' }}
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form [formGroup]="form">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Sewing Plan
+
+                        </label>
+
+                        <select
+                                class="form-select"
+                                formControlName="sewingPlanId">
+
+                            <option value="">
+
+                                Select Sewing Plan
+
+                            </option>
+
+                            <option
+                                    *ngFor="let plan of sewingPlans"
+                                    [value]="plan.id">
+
+                                {{ plan.sewingPlanId }}
+                                -
+                                {{ plan.buyerName }}
+                                -
+                                {{ plan.styleNo }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+
+                            Production Line
+
+                        </label>
+
+                        <select
+                                class="form-select"
+                                formControlName="productionLineId">
+
+                            <option value="">
+
+                                Select Line
+
+                            </option>
+
+                            <option
+                                    *ngFor="let line of productionLines"
+                                    [value]="line.id">
+
+                                {{ line.lineId }}
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                  <div
+                        class="row mb-4"
+                        *ngIf="progress">
+
+                    <div class="col-md-3">
+
+                        <div class="card border-primary">
+
+                            <div class="card-body text-center">
+
+                                <h6 class="text-muted">
+
+                                    Plan Input
+
+                                </h6>
+
+                                <h3 class="text-primary">
+
+                                    {{ progress.planInput }}
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-info">
+
+                            <div class="card-body text-center">
+
+                                <h6 class="text-muted">
+
+                                    Line Target
+
+                                </h6>
+
+                                <h3 class="text-info">
+
+                                    {{ progress.lineTarget }}
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-success">
+
+                            <div class="card-body text-center">
+
+                                <h6 class="text-muted">
+
+                                    Achieved So Far
+
+                                </h6>
+
+                                <h3 class="text-success">
+
+                                    {{ progress.achievedSoFar }}
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card border-danger">
+
+                            <div class="card-body text-center">
+
+                                <h6 class="text-muted">
+
+                                    Remaining
+
+                                </h6>
+
+                                <h3 class="text-danger">
+
+                                    {{ progress.remaining }}
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                 <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Production Date
+
+                        </label>
+
+                        <input
+                                type="date"
+                                class="form-control"
+                                formControlName="date">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Achieved Quantity
+
+                        </label>
+
+                        <input
+                                type="number"
+                                class="form-control"
+                                formControlName="achievedQuantity">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label class="form-label">
+
+                            Reject Quantity
+
+                        </label>
+
+                        <input
+                                type="number"
+                                class="form-control"
+                                formControlName="rejectionQty">
+
+                    </div>
+
+                </div>
+
+                <div class="text-end mt-4">
+
+                    <button
+                            type="button"
+                            class="btn btn-secondary me-2"
+                            routerLink="/sewing-production">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                            type="submit"
+                            class="btn btn-primary"
+                            (click)="save()"
+                            [disabled]="form.invalid || saving">
+
+                        <i class="bi bi-save"></i>
+
+                        {{ isEdit ? 'Update' : 'Save' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

@@ -114,6 +114,8 @@ export class OrderForm implements OnInit{
 
     styleId: [null, Validators.required],
 
+    styleName: [{value: '', disabled: true}],
+
     orderDate: ['', Validators.required],
 
     shipDate: ['', Validators.required],
@@ -214,6 +216,8 @@ onStyleChange(id: number): void {
     return;
 
   }
+
+this.orderForm.patchValue({ styleName: style.styleName });
 
   this.showShortSleeve = false;
 

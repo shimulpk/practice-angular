@@ -180,39 +180,27 @@
 
                             <tbody>
 
-                            <tr *ngFor="let line of plan.targets">
+<tr *ngFor="let line of plan.lineProgress">
 
-                                <td>
+    <td>
+        <strong>{{ line.lineId }}</strong>
+    </td>
 
-                                    <strong>
+    <td class="text-center">
+        {{ line.targetQty }}
+    </td>
 
-                                        {{ line.lineId }}
+    <td class="text-center text-success fw-bold">
+        {{ line.achievedQty }}
+    </td>
 
-                                    </strong>
+    <td class="text-center text-danger fw-bold">
+        {{ line.rejectQty }}
+    </td>
 
-                                </td>
+</tr>
 
-                                <td class="text-center">
-
-                                    {{ line.targetQuantity }}
-
-                                </td>
-
-                                <td class="text-center text-success fw-bold">
-
-                                    0
-
-                                </td>
-
-                                <td class="text-center text-danger fw-bold">
-
-                                    0
-
-                                </td>
-
-                            </tr>
-
-                            </tbody>
+</tbody>
 
                         </table>
 

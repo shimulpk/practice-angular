@@ -171,6 +171,30 @@ export const routes: Routes = [
 },
 
 {
+  path: 'sewing-production',
+
+  loadChildren: () =>
+    import('./components/features/production/day-wise-sewing-production/routes/day-wise-sewing-production.routes')
+      .then(m => m.DAY_WISE_SEWING_PRODUCTION_ROUTES)
+},
+
+{
+  path: 'finishing-plan',
+
+  loadChildren: () =>
+    import('./components/features/production/finishing-plan/routes/finishing-plan.routes')
+      .then(m => m.FINISHING_PLAN_ROUTES)
+},
+
+{
+  path: 'day-wise-finishing-production',
+
+  loadChildren: () =>
+    import('./components/features/production/day-wise-finishing-production/routes/day-wise-finishing-production.routes')
+      .then(m => m.DAY_WISE_FINISHING_PRODUCTION_ROUTES)
+},
+
+{
     path: '**',
     redirectTo: 'buyers'
   },

@@ -1,0 +1,209 @@
+
+<div class="container-fluid py-4">
+
+  <div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">
+        {{ editMode ? 'Update' : 'Add' }} Day Wise Finishing Production
+      </h4>
+    </div>
+
+    <div class="card-body">
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="row">
+
+          <!-- Finishing Plan -->
+
+          <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+              Finishing Plan
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="finishingPlanId"
+              (change)="onFinishingPlanChange()">
+
+              <option [ngValue]="null">
+                Select Finishing Plan
+              </option>
+
+              <option
+                *ngFor="let plan of finishingPlans"
+                [value]="plan.id">
+
+                {{ plan.finishingPlanId }}
+                -
+                {{ plan.buyerName }}
+                -
+                {{ plan.styleNo }}
+
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+        <!-- Progress Dashboard -->
+
+        <div
+          class="row mb-4"
+          *ngIf="progress">
+
+          <div class="col-md-4">
+
+            <div class="card border-primary">
+
+              <div class="card-body text-center">
+
+                <small class="text-muted">
+
+                  Target Qty
+
+                </small>
+
+                <h3 class="text-primary">
+
+                  {{ progress.targetQuantity }}
+
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <div class="card border-success">
+
+              <div class="card-body text-center">
+
+                <small class="text-muted">
+
+                  Pass So Far
+
+                </small>
+
+                <h3 class="text-success">
+
+                  {{ progress.totalPassSoFar }}
+
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <div class="card border-danger">
+
+              <div class="card-body text-center">
+
+                <small class="text-muted">
+
+                  Remaining
+
+                </small>
+
+                <h3 class="text-danger">
+
+                  {{ progress.remaining }}
+
+                </h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <!-- Date -->
+
+          <div class="col-md-4 mb-3">
+
+            <label class="form-label">
+
+              Production Date
+
+            </label>
+
+            <input
+              type="date"
+              class="form-control"
+              formControlName="date">
+
+          </div>
+
+          <!-- Pass Qty -->
+
+          <div class="col-md-4 mb-3">
+
+            <label class="form-label">
+
+              Pass Qty
+
+            </label>
+
+            <input
+              type="number"
+              class="form-control"
+              formControlName="passQty">
+
+          </div>
+
+          <!-- Reject Qty -->
+
+          <div class="col-md-4 mb-3">
+
+            <label class="form-label">
+
+              Reject Qty
+
+            </label>
+
+            <input
+              type="number"
+              class="form-control"
+              formControlName="rejectQty">
+
+          </div>
+
+        </div>
+
+        <div class="mt-4 text-end">
+
+          <button
+            type="submit"
+            class="btn btn-success px-4">
+
+            <i class="bi bi-check-circle"></i>
+
+            {{ editMode ? 'Update' : 'Save' }}
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+

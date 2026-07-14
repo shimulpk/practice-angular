@@ -1,0 +1,11 @@
+.container-fluid{
+    max-width: 100%;
+}
+
+.card{
+    border-radius: 12px;
+}
+
+.card-body{
+    padding: 30px;
+}
