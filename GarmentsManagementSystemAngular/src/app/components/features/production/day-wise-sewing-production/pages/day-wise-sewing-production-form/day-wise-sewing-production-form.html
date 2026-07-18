@@ -26,29 +26,12 @@
 
                         </label>
 
-                        <select
-                                class="form-select"
-                                formControlName="sewingPlanId">
-
-                            <option value="">
-
-                                Select Sewing Plan
-
-                            </option>
-
-                            <option
-                                    *ngFor="let plan of sewingPlans"
-                                    [value]="plan.id">
-
-                                {{ plan.sewingPlanId }}
-                                -
-                                {{ plan.buyerName }}
-                                -
-                                {{ plan.styleNo }}
-
-                            </option>
-
-                        </select>
+                        <select class="form-select" formControlName="sewingPlanId">
+  <option value="">Select Sewing Plan</option>
+  <option *ngFor="let plan of sewingPlans" [ngValue]="plan.id">
+    {{ plan.sewingPlanId }} - {{ plan.buyerName }} - {{ plan.styleNo }}
+  </option>
+</select>
 
                     </div>
 
@@ -60,25 +43,12 @@
 
                         </label>
 
-                        <select
-                                class="form-select"
-                                formControlName="productionLineId">
-
-                            <option value="">
-
-                                Select Line
-
-                            </option>
-
-                            <option
-                                    *ngFor="let line of productionLines"
-                                    [value]="line.id">
-
-                                {{ line.lineId }}
-
-                            </option>
-
-                        </select>
+                       <select class="form-select" formControlName="productionLineId">
+  <option value="">Select Line</option>
+  <option *ngFor="let line of productionLines" [ngValue]="line.id">
+    {{ line.lineId }}
+  </option>
+</select>
 
                     </div>
 

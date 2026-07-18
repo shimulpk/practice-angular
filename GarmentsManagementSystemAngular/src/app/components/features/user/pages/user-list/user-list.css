@@ -1,0 +1,199 @@
+/* ==========================================================
+   Page
+========================================================== */
+
+.container-fluid {
+
+    padding: 20px;
+
+}
+
+/* ==========================================================
+   Card
+========================================================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================================
+   Header
+========================================================== */
+
+.card-header {
+
+    padding: 18px 22px;
+
+    background: linear-gradient(135deg,#0d6efd,#0b5ed7);
+
+}
+
+.card-header h4{
+
+    margin:0;
+
+    font-weight:600;
+
+}
+
+.card-header .btn{
+
+    font-weight:500;
+
+    border-radius:8px;
+
+}
+
+/* ==========================================================
+   Body
+========================================================== */
+
+.card-body{
+
+    padding:20px;
+
+}
+
+/* ==========================================================
+   Table
+========================================================== */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead th{
+
+    vertical-align:middle;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+.table tbody td{
+
+    vertical-align:middle;
+
+    font-size:14px;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#f8fbff;
+
+}
+
+/* ==========================================================
+   Badge
+========================================================== */
+
+.badge{
+
+    font-size:12px;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================================
+   Action Buttons
+========================================================== */
+
+.btn-sm{
+
+    width:36px;
+
+    height:36px;
+
+    padding:0;
+
+    border-radius:8px;
+
+}
+
+.btn-sm i{
+
+    font-size:15px;
+
+}
+
+.btn-info:hover,
+.btn-warning:hover,
+.btn-danger:hover{
+
+    transform:translateY(-2px);
+
+    transition:.2s;
+
+}
+
+/* ==========================================================
+   Loading
+========================================================== */
+
+.spinner-border{
+
+    width:3rem;
+
+    height:3rem;
+
+}
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media(max-width:768px){
+
+    .card-header{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:10px;
+
+        align-items:flex-start !important;
+
+    }
+
+    .card-header .btn{
+
+        width:100%;
+
+    }
+
+    .table{
+
+        font-size:13px;
+
+    }
+
+    .btn-sm{
+
+        width:32px;
+
+        height:32px;
+
+    }
+
+}

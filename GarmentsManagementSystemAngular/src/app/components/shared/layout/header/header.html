@@ -1,117 +1,102 @@
 <header class="header">
+  <!-- Left -->
+  <div class="header-left">
+    <button class="btn menu-btn" (click)="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
 
-    <!-- Left -->
-    <div class="header-left">
+    <h4 class="title mb-0">PK Fashions</h4>
+  </div>
 
+  <!-- Center -->
+  <div class="header-search">
+    <div class="input-group">
+      <span class="input-group-text bg-white">
+        <i class="bi bi-search"></i>
+      </span>
+
+      <input type="text" class="form-control" placeholder="Search..." />
+    </div>
+  </div>
+
+  <!-- Right -->
+  <div class="header-right">
+    <!-- Notification -->
+    <button class="icon-btn">
+      <i class="bi bi-bell"></i>
+    </button>
+
+    <!-- Message -->
+    <button class="icon-btn">
+      <i class="bi bi-envelope"></i>
+    </button>
+
+    <!-- Dark Mode -->
+    <button class="icon-btn">
+      <i class="bi bi-moon"></i>
+    </button>
+
+    <!-- Full Screen -->
+    <button class="icon-btn">
+      <i class="bi bi-arrows-fullscreen"></i>
+    </button>
+
+    <!-- User Dropdown -->
+    <div class="dropdown">
       <button
-    class="btn menu-btn"
-    (click)="toggleSidebar()">
+        class="btn profile-btn dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img src="https://i.pravatar.cc/40?img=12" class="profile-image" alt="Profile" />
 
-    <i class="bi bi-list"></i>
+        <span>{{ user?.name }}</span>
+      </button>
 
-</button>
+      <ul class="dropdown-menu dropdown-menu-end shadow">
+        <li class="px-3 pt-2">
+          <strong>{{ user?.name }}</strong>
 
-        <h4 class="title mb-0">
-           PK Fashions
-        </h4>
+          <br />
 
+          <small class="text-muted">
+            {{ user?.role }}
+          </small>
+        </li>
+
+        <li>
+          <hr class="dropdown-divider" />
+        </li>
+
+        <li>
+          <a class="dropdown-item" routerLink="/users/profile">
+            <i class="bi bi-person me-2"></i>
+
+            Profile
+          </a>
+        </li>
+
+        <li>
+          <a class="dropdown-item" routerLink="/users/change-password">
+            <i class="bi bi-key me-2"></i>
+
+            Change Password
+          </a>
+        </li>
+
+        <li>
+          <hr class="dropdown-divider" />
+        </li>
+
+        <li>
+          <button class="dropdown-item text-danger" type="button" (click)="logout()">
+            <i class="bi bi-box-arrow-right me-2"></i>
+
+            Logout
+          </button>
+        </li>
+      </ul>
     </div>
-
-    <!-- Center -->
-    <div class="header-search">
-
-        <div class="input-group">
-
-            <span class="input-group-text bg-white">
-                <i class="bi bi-search"></i>
-            </span>
-
-            <input
-                type="text"
-                class="form-control"
-                placeholder="Search...">
-
-        </div>
-
-    </div>
-
-    <!-- Right -->
-    <div class="header-right">
-
-        <button class="icon-btn">
-            <i class="bi bi-bell"></i>
-        </button>
-
-        <button class="icon-btn">
-            <i class="bi bi-envelope"></i>
-        </button>
-
-        <button class="icon-btn">
-            <i class="bi bi-moon"></i>
-        </button>
-
-        <button class="icon-btn">
-            <i class="bi bi-arrows-fullscreen"></i>
-        </button>
-
-        <div class="dropdown">
-
-            <button
-                class="btn profile-btn dropdown-toggle"
-                data-bs-toggle="dropdown">
-
-                <img
-                    src="https://i.pravatar.cc/40?img=12"
-                    class="profile-image">
-
-                <span>Admin</span>
-
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-end shadow">
-
-                <li>
-
-                    <a class="dropdown-item" href="#">
-
-                        <i class="bi bi-person me-2"></i>
-
-                        Profile
-
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a class="dropdown-item" href="#">
-
-                        <i class="bi bi-key me-2"></i>
-
-                        Change Password
-
-                    </a>
-
-                </li>
-
-                <li><hr class="dropdown-divider"></li>
-
-                <li>
-
-                    <a class="dropdown-item text-danger" href="#">
-
-                        <i class="bi bi-box-arrow-right me-2"></i>
-
-                        Logout
-
-                    </a>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
+  </div>
 </header>

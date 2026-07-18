@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SewingPlanResponse } from '../../../sewing-plan/models/sewing-plan-response';
 import { ProductionLineResponse } from '../../../production-line/models/production-line-response';
@@ -45,7 +45,8 @@ constructor(
 
   private router: Router,
 
-  private route: ActivatedRoute
+  private route: ActivatedRoute,
+  private cdr: ChangeDetectorRef
 
 ) {}
 
@@ -107,8 +108,10 @@ constructor(
     .subscribe(() => {
 
       this.loadProgress();
+      
 
     });
+   
 
 this.form
     .get('productionLineId')
@@ -116,8 +119,12 @@ this.form
     .subscribe(() => {
 
       this.loadProgress();
+      
 
     });
+
+   
+
 
 }
 
@@ -130,10 +137,13 @@ loadSewingPlans(): void {
         next: (res) => {
 
           this.sewingPlans = res;
+         
 
         }
 
       });
+
+     
 
 }
 
@@ -146,6 +156,8 @@ loadProductionLines(): void {
         next: (res) => {
 
           this.productionLines = res;
+           
+          
 
         }
 
@@ -162,10 +174,12 @@ loadById(): void {
         next: (res) => {
 
           this.form.patchValue(res);
+           
 
         }
 
       });
+      
 
 }
 
@@ -181,6 +195,8 @@ loadProgress(): void {
 
     this.progress = undefined;
 
+    this.cdr.detectChanges();
+
     return;
 
   }
@@ -195,6 +211,7 @@ loadProgress(): void {
         next: (res) => {
 
           this.progress = res;
+          this.cdr.detectChanges();
 
         }
 
@@ -207,6 +224,7 @@ save(): void {
   if (this.form.invalid) {
 
     this.form.markAllAsTouched();
+     
 
     return;
 

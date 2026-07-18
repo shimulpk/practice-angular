@@ -1,29 +1,43 @@
 export interface MenuItem {
 
-  title: string;
-  icon: string;
+   title:string;
 
-  route?: string;
+    icon:string;
 
-  expanded?: boolean;
+    route?:string;
 
-  children?: MenuItem[];
+    expanded?:boolean;
+
+    children?:MenuItem[];
+
+    module?:string;
 
 }
 
 export const MENU: MenuItem[] = [
+
+
+
+  {
+    title:'User Directory',
+
+    icon:'bi bi-people',
+
+    route:'/users',
+
+    module:'USER'
+},
 
   // ===========================
   // Merchandising
   // ===========================
 
   {
+title:'Merchandising',
 
-    title: 'Merchandising',
+icon:'bi bi-briefcase-fill',
 
-    icon: 'bi bi-briefcase-fill',
-
-    expanded: true,
+module:'MERCHANDISING',
 
     children: [
 
@@ -128,7 +142,7 @@ export const MENU: MenuItem[] = [
 
     icon: 'bi bi-truck',
 
-    expanded: false,
+   module:'PROCUREMENT',
 
     children: [
 
@@ -182,7 +196,9 @@ export const MENU: MenuItem[] = [
 
     icon: 'bi bi-boxes',
 
-    expanded: false,
+   module:'INVENTORY',
+
+   
 
     children: [
 
@@ -263,7 +279,7 @@ export const MENU: MenuItem[] = [
 
     icon: 'bi bi-gear-wide-connected',
 
-    expanded: false,
+    module:'PRODUCTION',
 
     children: [
 
@@ -301,7 +317,7 @@ export const MENU: MenuItem[] = [
       {
         title: 'Cutting',
         icon: 'bi bi-scissors',
-        expanded: false,
+       module:'CUTTING',
         children: [{
       title: 'Add Cutting Plan',
       icon: 'bi bi-plus-circle',
@@ -331,7 +347,7 @@ export const MENU: MenuItem[] = [
       {
         title: 'Sewing',
         icon: 'bi bi-tools',
-        expanded: false,
+       module:'SEWING',
         children: [
              {
       title: 'Add Sewing Plan',
@@ -362,7 +378,7 @@ export const MENU: MenuItem[] = [
       {
         title: 'Finishing',
         icon: 'bi bi-check2-square',
-        expanded: false,
+       module:'FINISHING',
         children: [
             {
       title: 'Add Finishing Plan',
@@ -393,7 +409,7 @@ export const MENU: MenuItem[] = [
       {
         title: 'Packing',
         icon: 'bi bi-box',
-        expanded: false,
+       module:'PACKING',
         children: [
 
             {

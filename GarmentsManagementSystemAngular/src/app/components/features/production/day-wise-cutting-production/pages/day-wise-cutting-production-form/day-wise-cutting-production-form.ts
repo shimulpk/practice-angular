@@ -40,7 +40,8 @@ export class DayWiseCuttingProductionForm implements OnInit{
 
     private service: DayWiseCuttingProductionService,
 
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
 
   ) { }
 
@@ -73,6 +74,8 @@ loadCuttingPlans(): void {
         this.cuttingPlans = response.filter(
           plan => plan.status === 'PENDING'
         );
+
+        this.cdr.markForCheck();
 
       },
 
@@ -109,6 +112,8 @@ onCuttingPlanChange(): void {
       plan => plan.id === this.production.cuttingPlanId
     );
 
+     this.cdr.markForCheck();
+
   // Progress Summary
   this.service
     .getProgress(this.production.cuttingPlanId)
@@ -117,6 +122,7 @@ onCuttingPlanChange(): void {
       next: (response) => {
 
         this.progress = response;
+         this.cdr.markForCheck();
 
       },
 

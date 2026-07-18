@@ -1,0 +1,168 @@
+<div class="container-fluid">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <!-- Loading -->
+
+            <div
+                class="text-center py-5"
+                *ngIf="loading">
+
+                <div class="spinner-border text-primary"></div>
+
+            </div>
+
+            <!-- Details Card -->
+
+            <div
+                class="card shadow border-0"
+                *ngIf="!loading && user">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h4 class="mb-0">
+
+                        <i class="bi bi-person-circle me-2"></i>
+
+                        User Details
+
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <!-- Name -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="fw-bold text-secondary">
+
+                                Full Name
+
+                            </label>
+
+                            <div class="detail-value">
+
+                                {{ user.name }}
+
+                            </div>
+
+                        </div>
+
+                        <!-- Email -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="fw-bold text-secondary">
+
+                                Email
+
+                            </label>
+
+                            <div class="detail-value">
+
+                                {{ user.email }}
+
+                            </div>
+
+                        </div>
+
+                        <!-- Phone -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="fw-bold text-secondary">
+
+                                Phone
+
+                            </label>
+
+                            <div class="detail-value">
+
+                                {{ user.phone }}
+
+                            </div>
+
+                        </div>
+
+                        <!-- Role -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="fw-bold text-secondary">
+
+                                Role
+
+                            </label>
+
+                            <div class="detail-value">
+
+                                {{ user.role }}
+
+                            </div>
+
+                        </div>
+
+                        <!-- Status -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="fw-bold text-secondary">
+
+                                Status
+
+                            </label>
+
+                            <div>
+
+                                <span
+                                    class="badge bg-success"
+                                    *ngIf="user.active">
+
+                                    Active
+
+                                </span>
+
+                                <span
+                                   >
+
+                                    Inactive
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-end">
+
+                        <button
+                            class="btn btn-secondary"
+                            (click)="back()">
+
+                            <i class="bi bi-arrow-left me-2"></i>
+
+                            Back
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

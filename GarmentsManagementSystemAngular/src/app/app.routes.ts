@@ -1,12 +1,27 @@
 import { Routes } from '@angular/router';
+import { RoleRedirect } from './components/features/auth/pages/role-redirect/role-redirect';
+import { authGuard } from './guards/auth-guard';
+import { Login } from './components/features/auth/pages/login/login';
 
 export const routes: Routes = [
 
+ {
+  path: '',
+  redirectTo: 'login',
+  pathMatch: 'full'
+},
+
+{
+  path: 'login',
+  component: Login
+},
+
   {
-    path: '',
-    redirectTo: 'buyers',
-    pathMatch: 'full'
-  },
+  path: 'users',
+  loadChildren: () =>
+    import('./components/features/user/routes/user.routes')
+      .then(m => m.USER_ROUTES)
+},
 
     {
     path: 'buyers',
@@ -195,8 +210,14 @@ export const routes: Routes = [
 },
 
 {
-    path: '**',
-    redirectTo: 'buyers'
-  },
+    path:'dashboard',
+    component: RoleRedirect,
+    canActivate:[authGuard]
+},
+
+{
+  path: '**',
+  redirectTo: 'login'
+}
 
 ];
