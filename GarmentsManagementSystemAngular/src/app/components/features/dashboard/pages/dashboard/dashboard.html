@@ -1,0 +1,19 @@
+<app-admin-dashboard
+  *ngIf="isAdmin">
+</app-admin-dashboard>
+
+<app-merchandiser-dashboard
+  *ngIf="isMerchandiser">
+</app-merchandiser-dashboard>
+
+<app-store-dashboard
+  *ngIf="isStoreManager">
+</app-store-dashboard>
+
+<div
+  *ngIf="!isAdmin && !isMerchandiser && !isStoreManager"
+  class="container py-5 text-center">
+
+  <h3>Dashboard Coming Soon</h3>
+
+</div>

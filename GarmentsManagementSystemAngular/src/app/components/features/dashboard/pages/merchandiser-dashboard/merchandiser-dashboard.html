@@ -1,0 +1,329 @@
+
+<div class="container-fluid">
+
+  <!-- Header -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+      <h2 class="fw-bold">
+        Merchandiser Dashboard
+      </h2>
+
+      <p class="text-muted mb-0">
+        Monitor buyers, styles, orders and merchandising activities.
+      </p>
+
+    </div>
+
+    <div class="text-end">
+
+      <h6 class="mb-0">
+        {{ today | date:'fullDate' }}
+      </h6>
+
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="text-center py-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <!-- Dashboard -->
+
+  <ng-container *ngIf="!loading && dashboard">
+
+    <!-- ================================= -->
+    <!-- Summary Cards -->
+    <!-- ================================= -->
+
+    <div class="row g-3 mb-4">
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-primary h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-people fs-2 text-primary"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalBuyers }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Buyers
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-success h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-palette fs-2 text-success"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalStyles }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Styles
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-danger h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-bag-check fs-2 text-danger"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalOrders }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Orders
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-warning h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-card-checklist fs-2 text-warning"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalBom }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              BOM
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-info h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-journal-check fs-2 text-info"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalRawMaterialChecks }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              RMC Check
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-secondary h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-grid-3x3-gap fs-2 text-secondary"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalFabricChecks }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Fabric Check
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- Quick Actions -->
+    <!-- ================================= -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Quick Actions
+        </h5>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="row g-3">
+
+          <div class="col-lg-2 col-md-4 col-6">
+            <button class="btn btn-primary w-100">
+              <i class="bi bi-person-plus"></i><br>
+              Buyer
+            </button>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6">
+            <button class="btn btn-success w-100">
+              <i class="bi bi-palette"></i><br>
+              Style
+            </button>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6">
+            <button class="btn btn-danger w-100">
+              <i class="bi bi-bag-plus"></i><br>
+              Order
+            </button>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6">
+            <button class="btn btn-warning w-100">
+              <i class="bi bi-card-checklist"></i><br>
+              BOM
+            </button>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6">
+            <button class="btn btn-info w-100 text-white">
+              <i class="bi bi-journal-check"></i><br>
+              RMC
+            </button>
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6">
+            <button class="btn btn-secondary w-100">
+              <i class="bi bi-grid"></i><br>
+              Fabric
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- Recent Orders -->
+    <!-- ================================= -->
+
+    <div class="card shadow-sm border-0">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Recent Orders
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>Order</th>
+              <th>Buyer</th>
+              <th>Style</th>
+              <th>Quantity</th>
+              <th>Ship Date</th>
+              <th>Status</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.recentOrders.length === 0">
+
+              <td colspan="6" class="text-center text-muted py-4">
+
+                No Recent Orders Found
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let order of dashboard.recentOrders">
+
+              <td>{{ order.orderNumber }}</td>
+
+              <td>{{ order.buyerName }}</td>
+
+              <td>{{ order.styleName }}</td>
+
+              <td>{{ order.orderQuantity }}</td>
+
+              <td>{{ order.shipDate }}</td>
+
+              <td>
+
+                <span class="badge bg-primary">
+
+                  {{ order.status }}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>

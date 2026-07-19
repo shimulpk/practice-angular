@@ -1,0 +1,386 @@
+
+<div class="container-fluid">
+
+  <!-- Header -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+      <h2 class="fw-bold">
+        Store Dashboard
+      </h2>
+
+      <p class="text-muted mb-0">
+        Monitor inventory, goods receive, material issue and stock status.
+      </p>
+
+    </div>
+
+    <div class="text-end">
+
+      <h6 class="mb-0">
+        {{ today | date:'fullDate' }}
+      </h6>
+
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="text-center py-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <!-- Dashboard -->
+
+  <ng-container *ngIf="!loading && dashboard">
+
+    <!-- ========================================= -->
+    <!-- Summary Cards -->
+    <!-- ========================================= -->
+
+    <div class="row g-3 mb-4">
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-primary h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-box-seam fs-2 text-primary"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalItems }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Total Items
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-success h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-box-arrow-in-down fs-2 text-success"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.todayGoodsReceive }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Today's GRN
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-warning h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-box-arrow-up fs-2 text-warning"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.todayMaterialIssue }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Material Issue
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-info h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-archive fs-2 text-info"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.currentStockItems }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Stock Items
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-danger h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-exclamation-triangle fs-2 text-danger"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.lowStockItems }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Low Stock
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-secondary h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-card-checklist fs-2 text-secondary"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.pendingStoreRequisitions }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Pending SR
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Recent Goods Receive -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Recent Goods Receive
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>GRN No</th>
+              <th>Date</th>
+              <th>Supplier</th>
+              <th>Total</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.recentGoodsReceives.length === 0">
+
+              <td colspan="4" class="text-center py-4 text-muted">
+
+                No Goods Receive Found
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let grn of dashboard.recentGoodsReceives">
+
+              <td>{{ grn.grnNo }}</td>
+              <td>{{ grn.grnDate }}</td>
+              <td>{{ grn.supplier }}</td>
+              <td>{{ grn.grandTotal }}</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Recent Material Issue -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Recent Material Issues
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>Issue No</th>
+              <th>Date</th>
+              <th>Department</th>
+              <th>Requested By</th>
+              <th>Status</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.recentMaterialIssues.length === 0">
+
+              <td colspan="5" class="text-center py-4 text-muted">
+
+                No Material Issue Found
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let issue of dashboard.recentMaterialIssues">
+
+              <td>{{ issue.issueNo }}</td>
+              <td>{{ issue.issueDate }}</td>
+              <td>{{ issue.department }}</td>
+              <td>{{ issue.requestedBy }}</td>
+
+              <td>
+
+                <span class="badge bg-primary">
+
+                  {{ issue.status }}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Low Stock -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Low Stock Items
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>Item</th>
+              <th>Category</th>
+              <th>Unit</th>
+              <th>Available Qty</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.lowStockList.length === 0">
+
+              <td colspan="4" class="text-center py-4 text-muted">
+
+                No Low Stock Items
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let stock of dashboard.lowStockList">
+
+              <td>{{ stock.itemName }}</td>
+              <td>{{ stock.category }}</td>
+              <td>{{ stock.unit }}</td>
+
+              <td>
+
+                <span class="badge bg-danger">
+
+                  {{ stock.availableQuantity }}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>

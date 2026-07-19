@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { RoleRedirect } from './components/features/auth/pages/role-redirect/role-redirect';
 import { authGuard } from './guards/auth-guard';
 import { Login } from './components/features/auth/pages/login/login';
+import { Dashboard } from './components/features/dashboard/pages/dashboard/dashboard';
 
 export const routes: Routes = [
 
@@ -210,9 +211,9 @@ export const routes: Routes = [
 },
 
 {
-    path:'dashboard',
-    component: RoleRedirect,
-    canActivate:[authGuard]
+  path: 'dashboard',
+  component: Dashboard,
+  canActivate: [authGuard]
 },
 
 {

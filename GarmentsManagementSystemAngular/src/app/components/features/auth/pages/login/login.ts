@@ -34,7 +34,7 @@ export class Login {
     this.auth.login(this.dto).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(['/buyers']);
+       this.router.navigate(['/dashboard']);
 
         this.cdr.markForCheck();
       },

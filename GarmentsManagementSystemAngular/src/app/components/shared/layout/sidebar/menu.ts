@@ -149,7 +149,7 @@ module:'MERCHANDISING',
       {
         title: 'Dashboard',
         icon: 'bi bi-speedometer2',
-        route: '/procurement/dashboard'
+       route: '/dashboard'
       },
 
       {
@@ -205,7 +205,7 @@ module:'MERCHANDISING',
       {
         title: 'Dashboard',
         icon: 'bi bi-speedometer2',
-        route: '/inventory/dashboard'
+       route: '/dashboard'
       },
 
       {
@@ -286,7 +286,7 @@ module:'MERCHANDISING',
       {
         title: 'Dashboard',
         icon: 'bi bi-speedometer2',
-        route: '/production/dashboard'
+       route: '/dashboard'
       },
 
       {

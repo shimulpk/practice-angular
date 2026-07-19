@@ -1,0 +1,472 @@
+<div class="container-fluid">
+
+  <!-- Header -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+      <h2 class="fw-bold">
+        Welcome Admin
+      </h2>
+
+      <p class="text-muted mb-0">
+        Manage your Garments ERP System
+      </p>
+
+    </div>
+
+    <div class="text-end">
+
+      <h6 class="mb-0">
+        {{ today | date:'fullDate' }}
+      </h6>
+
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="text-center py-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <!-- Dashboard -->
+
+  <ng-container *ngIf="!loading && dashboard">
+
+    <!-- ========================================= -->
+    <!-- Summary Cards -->
+    <!-- ========================================= -->
+
+    <div class="row g-3 mb-4">
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-primary h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-people fs-2 text-primary"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalUsers }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Users
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-success h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-person-badge fs-2 text-success"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalBuyers }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Buyers
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-warning h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-truck fs-2 text-warning"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalVendors }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Vendors
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-info h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-box-seam fs-2 text-info"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalItems }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Items
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-danger h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-bag-check fs-2 text-danger"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalOrders }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Orders
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+     <!-- ========================================= -->
+    <!-- Today's Production -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Today's Production
+        </h5>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="row text-center">
+
+          <!-- Cutting -->
+
+          <div class="col-md-3">
+
+            <h3>{{ dashboard.todayCuttingPcs }}</h3>
+
+            <small class="text-muted">
+              Cutting PCS
+            </small>
+
+            <div class="progress mt-2">
+
+              <div
+                class="progress-bar bg-primary"
+                [style.width.%]="dashboard.todayCuttingPcs > 0 ? 100 : 0">
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Sewing -->
+
+          <div class="col-md-3">
+
+            <h3>{{ dashboard.todaySewingPcs }}</h3>
+
+            <small class="text-muted">
+              Sewing PCS
+            </small>
+
+            <div class="progress mt-2">
+
+              <div
+                class="progress-bar bg-success"
+                [style.width.%]="dashboard.todaySewingPcs > 0 ? 100 : 0">
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Finishing -->
+
+          <div class="col-md-3">
+
+            <h3>{{ dashboard.todayFinishingPcs }}</h3>
+
+            <small class="text-muted">
+              Finishing PCS
+            </small>
+
+            <div class="progress mt-2">
+
+              <div
+                class="progress-bar bg-warning"
+                [style.width.%]="dashboard.todayFinishingPcs > 0 ? 100 : 0">
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Packing -->
+
+          <div class="col-md-3">
+
+            <h3>{{ dashboard.todayPackingPcs }}</h3>
+
+            <small class="text-muted">
+              Packing PCS
+            </small>
+
+            <div class="progress mt-2">
+
+              <div
+                class="progress-bar bg-danger"
+                [style.width.%]="dashboard.todayPackingPcs > 0 ? 100 : 0">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Pending Information -->
+    <!-- ========================================= -->
+
+    <div class="row g-3 mb-4">
+
+      <div class="col-md-4">
+
+        <div class="card shadow-sm h-100">
+
+          <div class="card-body text-center">
+
+            <span class="badge bg-primary mb-2">
+              Pending
+            </span>
+
+            <h3>{{ dashboard.pendingRequisitions }}</h3>
+
+            <p class="mb-0">
+              Pending Store Requisitions
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-4">
+
+        <div class="card shadow-sm h-100">
+
+          <div class="card-body text-center">
+
+            <span class="badge bg-warning text-dark mb-2">
+              Pending
+            </span>
+
+            <h3>{{ dashboard.pendingPurchaseOrders }}</h3>
+
+            <p class="mb-0">
+              Pending Purchase Orders
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-4">
+
+        <div class="card shadow-sm h-100">
+
+          <div class="card-body text-center">
+
+            <span class="badge bg-success mb-2">
+              Available
+            </span>
+
+            <h3>{{ dashboard.currentStockItems }}</h3>
+
+            <p class="mb-0">
+              Available Stock Items
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+      <!-- ========================================= -->
+    <!-- Order Tracking -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Order Tracking
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>Order No</th>
+
+              <th>Buyer</th>
+
+              <th>Style</th>
+
+              <th>Order Qty</th>
+
+              <th>Current Stage</th>
+
+              <th>Delivery Deadline</th>
+
+              <th style="width:180px">
+                Progress
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.orderTracking.length === 0">
+
+              <td
+                colspan="7"
+                class="text-center text-muted py-5">
+
+                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+
+                No Order Tracking Available
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let order of dashboard.orderTracking">
+
+              <td>
+
+                {{ order.orderNumber }}
+
+              </td>
+
+              <td>
+
+                {{ order.buyerName }}
+
+              </td>
+
+              <td>
+
+                {{ order.styleName }}
+
+              </td>
+
+              <td>
+
+                {{ order.orderQuantity }}
+
+              </td>
+
+              <td>
+
+                <span class="badge bg-info">
+
+                  {{ order.currentStage }}
+
+                </span>
+
+              </td>
+
+              <td>
+
+                {{ order.deliveryDeadline }}
+
+              </td>
+
+              <td>
+
+                <div class="progress">
+
+                  <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    [style.width.%]="order.progress">
+
+                    {{ order.progress }}%
+
+                  </div>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>

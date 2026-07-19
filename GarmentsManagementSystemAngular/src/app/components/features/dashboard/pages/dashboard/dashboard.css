@@ -1,0 +1,153 @@
+/* ===============================
+   Dashboard Background
+================================== */
+
+.container-fluid{
+    padding:24px;
+    background:#f5f7fb;
+    min-height:100vh;
+}
+
+
+/* ===============================
+   Card
+================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 24px rgba(0,0,0,.08);
+
+}
+
+
+/* ===============================
+   Card Header
+================================== */
+
+.card-header{
+
+    background:#fff;
+
+    border-bottom:1px solid #ececec;
+
+    font-weight:600;
+
+}
+
+
+/* ===============================
+   Summary Cards
+================================== */
+
+.card-body h3{
+
+    font-weight:700;
+
+    margin-top:10px;
+
+}
+
+.card-body p{
+
+    color:#6c757d;
+
+    font-size:14px;
+
+}
+
+
+/* ===============================
+   Icons
+================================== */
+
+.card-body i{
+
+    font-size:36px;
+
+}
+
+
+/* ===============================
+   Production Section
+================================== */
+
+.card-body small{
+
+    color:#6c757d;
+
+    font-size:13px;
+
+}
+
+
+/* ===============================
+   Table
+================================== */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead th{
+
+    background:#f8f9fa;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+
+/* ===============================
+   Loading
+================================== */
+
+.spinner-border{
+
+    width:3rem;
+
+    height:3rem;
+
+}
+
+
+/* ===============================
+   Responsive
+================================== */
+
+@media(max-width:768px){
+
+    .container-fluid{
+
+        padding:15px;
+
+    }
+
+    .card{
+
+        margin-bottom:15px;
+
+    }
+
+}
