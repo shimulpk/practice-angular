@@ -1,1 +1,356 @@
-<p>purchase-dashboard works!</p>
+
+<div class="container-fluid">
+
+  <!-- Header -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+      <h2 class="fw-bold">
+        Purchase Dashboard
+      </h2>
+
+      <p class="text-muted mb-0">
+        Monitor purchase activities, vendors and procurement workflow.
+      </p>
+
+    </div>
+
+    <div class="text-end">
+
+      <h6 class="mb-0">
+        {{ today | date:'fullDate' }}
+      </h6>
+
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="text-center py-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <!-- Dashboard -->
+
+  <ng-container *ngIf="!loading && dashboard">
+
+    <!-- ========================================= -->
+    <!-- Summary Cards -->
+    <!-- ========================================= -->
+
+    <div class="row g-3 mb-4">
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-primary h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-truck fs-2 text-primary"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.totalVendors }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Vendors
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-warning h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-card-checklist fs-2 text-warning"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.pendingRequisitions }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Pending Requisitions
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-danger h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-bag fs-2 text-danger"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.pendingPurchaseOrders }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Pending PO
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-success h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-cart-check fs-2 text-success"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.todayPurchaseOrders }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Today's PO
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-md-6">
+
+        <div class="card shadow-sm border-start border-5 border-info h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-box-arrow-in-down fs-2 text-info"></i>
+
+            <h3 class="mt-2">
+              {{ dashboard.todayGoodsReceive }}
+            </h3>
+
+            <p class="mb-0 text-muted">
+              Today's GRN
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Recent Purchase Orders -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Recent Purchase Orders
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>PO No</th>
+              <th>Date</th>
+              <th>Vendor</th>
+              <th>Total</th>
+              <th>Status</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.recentPurchaseOrders.length===0">
+
+              <td colspan="5" class="text-center py-4 text-muted">
+
+                No Purchase Orders Found
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let po of dashboard.recentPurchaseOrders">
+
+              <td>{{ po.poNo }}</td>
+              <td>{{ po.poDate }}</td>
+              <td>{{ po.vendorName }}</td>
+              <td>{{ po.grandTotal }}</td>
+
+              <td>
+
+                <span class="badge bg-primary">
+
+                  {{ po.status }}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Pending Requisitions -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Pending Store Requisitions
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>PR No</th>
+              <th>Date</th>
+              <th>Requested By</th>
+              <th>Department</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.pendingRequisitionsList.length===0">
+
+              <td colspan="4" class="text-center py-4 text-muted">
+
+                No Pending Requisition
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let req of dashboard.pendingRequisitionsList">
+
+              <td>{{ req.prNo }}</td>
+              <td>{{ req.requisitionDate }}</td>
+              <td>{{ req.requestedBy }}</td>
+              <td>{{ req.department }}</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Recent Goods Receive -->
+    <!-- ========================================= -->
+
+    <div class="card shadow-sm border-0">
+
+      <div class="card-header">
+
+        <h5 class="mb-0">
+          Recent Goods Receive
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>GRN No</th>
+              <th>Date</th>
+              <th>Supplier</th>
+              <th>Total</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.recentGoodsReceives.length===0">
+
+              <td colspan="4" class="text-center py-4 text-muted">
+
+                No Goods Receive Found
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let grn of dashboard.recentGoodsReceives">
+
+              <td>{{ grn.grnNo }}</td>
+              <td>{{ grn.grnDate }}</td>
+              <td>{{ grn.supplier }}</td>
+              <td>{{ grn.grandTotal }}</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>
+

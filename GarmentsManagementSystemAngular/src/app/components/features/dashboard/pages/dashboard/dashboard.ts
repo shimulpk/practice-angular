@@ -7,11 +7,14 @@ import { Role } from '../../../user/models/role';
 import { AdminDashboard } from '../admin-dashboard/admin-dashboard';
 import { MerchandiserDashboard } from '../merchandiser-dashboard/merchandiser-dashboard';
 import { StoreDashboard } from '../store-dashboard/store-dashboard';
+import { PurchaseDashboard } from '../purchase-dashboard/purchase-dashboard';
 
 @Component({
   selector: 'app-dashboard',
    standalone: true,
-  imports: [CommonModule, AdminDashboard, MerchandiserDashboard,StoreDashboard],
+  imports: [CommonModule, AdminDashboard,
+     MerchandiserDashboard,StoreDashboard,
+     PurchaseDashboard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

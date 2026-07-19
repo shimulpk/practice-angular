@@ -10,8 +10,13 @@
   *ngIf="isStoreManager">
 </app-store-dashboard>
 
+
+<app-purchase-dashboard
+  *ngIf="isPurchaseManager">
+</app-purchase-dashboard>
+
 <div
-  *ngIf="!isAdmin && !isMerchandiser && !isStoreManager"
+  *ngIf="!isAdmin && !isMerchandiser && !isStoreManager && !isPurchaseManager"
   class="container py-5 text-center">
 
   <h3>Dashboard Coming Soon</h3>
