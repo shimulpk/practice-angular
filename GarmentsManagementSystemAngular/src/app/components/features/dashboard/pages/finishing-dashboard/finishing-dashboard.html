@@ -1,1 +1,324 @@
-<p>finishing-dashboard works!</p>
+<div class="container-fluid">
+
+  <!-- Header -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+      <h2 class="fw-bold">
+
+        Finishing Dashboard
+
+      </h2>
+
+      <p class="text-muted mb-0">
+
+        Monitor finishing production and finishing plans.
+
+      </p>
+
+    </div>
+
+    <div>
+
+      <h6 class="mb-0">
+
+        {{ today | date:'fullDate' }}
+
+      </h6>
+
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="text-center py-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <!-- Dashboard -->
+
+  <ng-container *ngIf="!loading && dashboard">
+
+    <!-- Summary -->
+
+    <div class="row g-3 mb-4">
+
+      <div class="col-xl col-lg-4 col-md-6">
+
+        <div class="card border-0 shadow-sm bg-primary text-white h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-award fs-1"></i>
+
+            <h2>{{ dashboard.todayFinished }}</h2>
+
+            <small>Today's Finished</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl col-lg-4 col-md-6">
+
+        <div class="card border-0 shadow-sm bg-danger text-white h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-x-circle fs-1"></i>
+
+            <h2>{{ dashboard.todayReject }}</h2>
+
+            <small>Today's Reject</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl col-lg-4 col-md-6">
+
+        <div class="card border-0 shadow-sm bg-info text-white h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-list-check fs-1"></i>
+
+            <h2>{{ dashboard.totalPlans }}</h2>
+
+            <small>Total Plans</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl col-lg-4 col-md-6">
+
+        <div class="card border-0 shadow-sm bg-warning text-dark h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-hourglass-split fs-1"></i>
+
+            <h2>{{ dashboard.pendingPlans }}</h2>
+
+            <small>In Progress</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-xl col-lg-4 col-md-6">
+
+        <div class="card border-0 shadow-sm bg-success text-white h-100">
+
+          <div class="card-body text-center">
+
+            <i class="bi bi-check-circle fs-1"></i>
+
+            <h2>{{ dashboard.completedPlans }}</h2>
+
+            <small>Completed Plans</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Today's Finishing -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header bg-primary text-white">
+
+        <h5 class="mb-0">
+
+          Today's Finishing Production
+
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover table-striped mb-0">
+
+          <thead class="table-dark">
+
+            <tr>
+
+              <th>Style</th>
+
+              <th>Buyer</th>
+
+              <th class="text-end">Pass Qty</th>
+
+              <th class="text-end">Reject Qty</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.todayFinishings.length==0">
+
+              <td
+                colspan="4"
+                class="text-center py-4 text-muted">
+
+                No Data Found
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let item of dashboard.todayFinishings">
+
+              <td>
+
+                {{ item.styleNo }}
+
+              </td>
+
+              <td>
+
+                {{ item.buyerName }}
+
+              </td>
+
+              <td class="text-end fw-bold text-success">
+
+                {{ item.productionQty }}
+
+              </td>
+
+              <td class="text-end fw-bold text-danger">
+
+                {{ item.rejectQty }}
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- Recent Plans -->
+
+    <div class="card shadow-sm border-0">
+
+      <div class="card-header bg-success text-white">
+
+        <h5 class="mb-0">
+
+          Recent Finishing Plans
+
+        </h5>
+
+      </div>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover table-striped mb-0">
+
+          <thead class="table-dark">
+
+            <tr>
+
+              <th>Plan No</th>
+
+              <th>Style</th>
+
+              <th>Buyer</th>
+
+              <th class="text-end">
+
+                Target Qty
+
+              </th>
+
+              <th>Status</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngIf="dashboard.recentPlans.length==0">
+
+              <td
+                colspan="5"
+                class="text-center py-4 text-muted">
+
+                No Data Found
+
+              </td>
+
+            </tr>
+
+            <tr *ngFor="let plan of dashboard.recentPlans">
+
+              <td>{{ plan.planNo }}</td>
+
+              <td>{{ plan.styleNo }}</td>
+
+              <td>{{ plan.buyerName }}</td>
+
+              <td class="text-end">
+
+                {{ plan.targetQty }}
+
+              </td>
+
+              <td>
+
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-warning text-dark': plan.status=='IN_PROGRESS',
+                    'bg-success': plan.status=='COMPLETED'
+                  }">
+
+                  {{ plan.status }}
+
+                </span>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>

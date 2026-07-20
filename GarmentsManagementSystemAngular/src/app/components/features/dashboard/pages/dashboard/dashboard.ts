@@ -8,13 +8,18 @@ import { AdminDashboard } from '../admin-dashboard/admin-dashboard';
 import { MerchandiserDashboard } from '../merchandiser-dashboard/merchandiser-dashboard';
 import { StoreDashboard } from '../store-dashboard/store-dashboard';
 import { PurchaseDashboard } from '../purchase-dashboard/purchase-dashboard';
+import { ProductionDashboard } from '../production-dashboard/production-dashboard';
+import { CuttingDashboard } from '../cutting-dashboard/cutting-dashboard';
+import { SewingDashboard } from '../sewing-dashboard/sewing-dashboard';
+import { FinishingDashboard } from '../finishing-dashboard/finishing-dashboard';
 
 @Component({
   selector: 'app-dashboard',
    standalone: true,
   imports: [CommonModule, AdminDashboard,
      MerchandiserDashboard,StoreDashboard,
-     PurchaseDashboard],
+     PurchaseDashboard, ProductionDashboard,
+     CuttingDashboard,SewingDashboard,FinishingDashboard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

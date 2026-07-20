@@ -15,8 +15,26 @@
   *ngIf="isPurchaseManager">
 </app-purchase-dashboard>
 
+<app-production-dashboard
+  *ngIf="isProductionManager">
+</app-production-dashboard>
+
+<app-cutting-dashboard
+  *ngIf="isCuttingManager">
+</app-cutting-dashboard>
+
+<app-sewing-dashboard
+  *ngIf="isSewingManager">
+</app-sewing-dashboard>
+
+<app-finishing-dashboard
+  *ngIf="isFinishingManager">
+</app-finishing-dashboard>
+
 <div
-  *ngIf="!isAdmin && !isMerchandiser && !isStoreManager && !isPurchaseManager"
+  *ngIf="!isAdmin && !isMerchandiser && !isStoreManager 
+  && !isPurchaseManager && !isProductionManager && !isCuttingManager && !isSewingManager
+  && !isFinishingManager"
   class="container py-5 text-center">
 
   <h3>Dashboard Coming Soon</h3>
