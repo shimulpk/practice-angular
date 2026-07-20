@@ -12,6 +12,7 @@ import { ProductionDashboard } from '../production-dashboard/production-dashboar
 import { CuttingDashboard } from '../cutting-dashboard/cutting-dashboard';
 import { SewingDashboard } from '../sewing-dashboard/sewing-dashboard';
 import { FinishingDashboard } from '../finishing-dashboard/finishing-dashboard';
+import { PackingDashboard } from '../packing-dashboard/packing-dashboard';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,7 @@ import { FinishingDashboard } from '../finishing-dashboard/finishing-dashboard';
   imports: [CommonModule, AdminDashboard,
      MerchandiserDashboard,StoreDashboard,
      PurchaseDashboard, ProductionDashboard,
-     CuttingDashboard,SewingDashboard,FinishingDashboard],
+     CuttingDashboard,SewingDashboard,FinishingDashboard,PackingDashboard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

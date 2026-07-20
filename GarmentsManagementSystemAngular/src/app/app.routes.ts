@@ -211,6 +211,13 @@ export const routes: Routes = [
 },
 
 {
+  path: 'packing-plans',
+  loadChildren: () =>
+    import('./components/features/production/packing-plan/routes/packing-plan.routes')
+      .then(m => m.PACKING_PLAN_ROUTES)
+},
+
+{
   path: 'dashboard',
   component: Dashboard,
   canActivate: [authGuard]

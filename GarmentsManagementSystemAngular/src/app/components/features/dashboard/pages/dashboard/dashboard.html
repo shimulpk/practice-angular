@@ -31,10 +31,14 @@
   *ngIf="isFinishingManager">
 </app-finishing-dashboard>
 
+<app-packing-dashboard
+  *ngIf="isPackingManager">
+</app-packing-dashboard>
+
 <div
   *ngIf="!isAdmin && !isMerchandiser && !isStoreManager 
   && !isPurchaseManager && !isProductionManager && !isCuttingManager && !isSewingManager
-  && !isFinishingManager"
+  && !isFinishingManager && !isPackingManager"
   class="container py-5 text-center">
 
   <h3>Dashboard Coming Soon</h3>
