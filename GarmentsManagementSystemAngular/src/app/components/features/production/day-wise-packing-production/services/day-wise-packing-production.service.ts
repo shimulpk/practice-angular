@@ -5,26 +5,35 @@ import { Observable } from 'rxjs';
 import { DayWisePackingProductionResponse } from '../models/day-wise-packing-production-response';
 import { DayWisePackingProductionRequest } from '../models/day-wise-packing-production-request';
 import { PackingPlanProgressResponse } from '../models/packing-plan-progress-response';
+import { PackingProductionSummaryResponse } from '../models/packing-production-summary-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DayWisePackingProductionService {
 
-    private apiUrl =
+     private apiUrl =
     `${environment.apiUrl}/day-wise-packing-productions`;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getAll(): Observable<DayWisePackingProductionResponse[]> {
+  // =========================
+  // Summary (List Page)
+  // =========================
 
-    return this.http.get<DayWisePackingProductionResponse[]>(
-      this.apiUrl
+  getSummary(): Observable<PackingProductionSummaryResponse[]> {
+
+    return this.http.get<PackingProductionSummaryResponse[]>(
+      `${this.apiUrl}/summary`
     );
 
   }
+
+  // =========================
+  // Details
+  // =========================
 
   getById(
     id: number
@@ -36,6 +45,24 @@ export class DayWisePackingProductionService {
 
   }
 
+  // =========================
+  // Packing Plan History
+  // =========================
+
+  getByPackingPlan(
+    packingPlanId: number
+  ): Observable<DayWisePackingProductionResponse[]> {
+
+    return this.http.get<DayWisePackingProductionResponse[]>(
+      `${this.apiUrl}/packing-plan/${packingPlanId}`
+    );
+
+  }
+
+  // =========================
+  // Create
+  // =========================
+
   create(
     request: DayWisePackingProductionRequest
   ): Observable<DayWisePackingProductionResponse> {
@@ -46,6 +73,10 @@ export class DayWisePackingProductionService {
     );
 
   }
+
+  // =========================
+  // Update
+  // =========================
 
   update(
     id: number,
@@ -59,6 +90,10 @@ export class DayWisePackingProductionService {
 
   }
 
+  // =========================
+  // Delete
+  // =========================
+
   delete(
     id: number
   ): Observable<string> {
@@ -71,6 +106,10 @@ export class DayWisePackingProductionService {
     );
 
   }
+
+  // =========================
+  // Progress Card
+  // =========================
 
   getProgress(
     packingPlanId: number
@@ -86,5 +125,6 @@ export class DayWisePackingProductionService {
     );
 
   }
+
 
 }

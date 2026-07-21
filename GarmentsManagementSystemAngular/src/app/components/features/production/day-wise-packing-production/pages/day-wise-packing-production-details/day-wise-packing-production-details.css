@@ -1,0 +1,203 @@
+.container-fluid {
+
+    padding: 30px;
+
+}
+
+/* =========================
+   Header
+========================= */
+
+h3 {
+
+    font-weight: 700;
+    color: #2c3e50;
+
+}
+
+/* =========================
+   Card
+========================= */
+
+.card {
+
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+
+}
+
+.card-header {
+
+    padding: 16px 22px;
+
+}
+
+.card-header h5 {
+
+    margin: 0;
+    font-weight: 600;
+
+}
+
+.card-body {
+
+    padding: 25px;
+
+}
+
+/* =========================
+   Summary
+========================= */
+
+.summary-label {
+
+    display: block;
+
+    color: #6c757d;
+
+    font-size: 13px;
+
+    margin-bottom: 6px;
+
+    font-weight: 600;
+
+}
+
+.summary-value {
+
+    background: #f8f9fa;
+
+    border: 1px solid #e9ecef;
+
+    border-radius: 10px;
+
+    padding: 12px 14px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+/* =========================
+   Table
+========================= */
+
+.table {
+
+    margin-bottom: 0;
+
+}
+
+.table thead th {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+.table tbody td {
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+}
+
+.table tbody td:first-child,
+
+.table tbody td:nth-child(2) {
+
+    text-align: left;
+
+}
+
+.table-hover tbody tr:hover {
+
+    background: #f5f9ff;
+
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.btn {
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+}
+
+/* =========================
+   Loading
+========================= */
+
+.spinner-border {
+
+    width: 3rem;
+
+    height: 3rem;
+
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 992px) {
+
+    .container-fluid {
+
+        padding: 20px;
+
+    }
+
+    .card-body {
+
+        padding: 18px;
+
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .summary-value {
+
+        font-size: 14px;
+
+    }
+
+    .table {
+
+        font-size: 13px;
+
+    }
+
+    .btn {
+
+        width: 100%;
+
+    }
+
+}

@@ -1,1 +1,319 @@
-<p>day-wise-packing-production-details works!</p>
+<div class="container-fluid py-4">
+
+  <!-- Header -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+      <h3 class="fw-bold mb-1">
+
+        <i class="bi bi-box-seam me-2 text-primary"></i>
+
+        Packing Production Details
+
+      </h3>
+
+      <small class="text-muted">
+
+        Complete Packing Production History
+
+      </small>
+
+    </div>
+
+    <button
+      class="btn btn-outline-primary"
+      (click)="back()">
+
+      <i class="bi bi-arrow-left me-2"></i>
+
+      Back
+
+    </button>
+
+  </div>
+
+  <!-- Loading -->
+
+  <div
+    *ngIf="loading"
+    class="text-center py-5">
+
+    <div class="spinner-border text-primary"></div>
+
+  </div>
+
+  <div *ngIf="!loading && packingPlan">
+
+    <!-- Summary Card -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+      <div class="card-header bg-primary text-white">
+
+        <h5 class="mb-0">
+
+          <i class="bi bi-card-checklist me-2"></i>
+
+          Packing Plan Summary
+
+        </h5>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="row g-4">
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Packing Plan
+
+            </label>
+
+            <div class="summary-value">
+
+              {{ packingPlan.packingPlanId }}
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Buyer
+
+            </label>
+
+            <div class="summary-value">
+
+              {{ packingPlan.buyerName }}
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Order No
+
+            </label>
+
+            <div class="summary-value">
+
+              {{ packingPlan.orderNo }}
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Style
+
+            </label>
+
+            <div class="summary-value">
+
+              {{ packingPlan.styleNo }}
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Color
+
+            </label>
+
+            <div class="summary-value">
+
+              {{ packingPlan.color }}
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Target Qty
+
+            </label>
+
+            <div class="summary-value text-primary fw-bold">
+
+              {{ packingPlan.inputQty }}
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Packed So Far
+
+            </label>
+
+            <div class="summary-value text-success fw-bold">
+
+              {{ packingPlan.totalPackedQty }}
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-3">
+
+            <label class="summary-label">
+
+              Remaining
+
+            </label>
+
+            <div class="summary-value text-danger fw-bold">
+
+              {{ packingPlan.inputQty - packingPlan.totalPackedQty }}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- History -->
+
+    <div class="card shadow-sm border-0">
+
+      <div class="card-header bg-dark text-white">
+
+        <h5 class="mb-0">
+
+          <i class="bi bi-calendar3 me-2"></i>
+
+          Day Wise Packing History
+
+        </h5>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="table-responsive">
+
+          <table class="table table-hover align-middle">
+
+            <thead class="table-light">
+
+              <tr>
+
+                <th>#</th>
+
+                <th>Date</th>
+
+                <th class="text-center">
+
+                  Packed Qty
+
+                </th>
+
+                <th class="text-center">
+
+                  Cartons
+
+                </th>
+
+                <th class="text-center">
+
+                  Reject Qty
+
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr
+                *ngFor="
+                  let production of productions;
+                  let i = index
+                ">
+
+                <td>
+
+                  {{ i + 1 }}
+
+                </td>
+
+                <td>
+
+                  {{ production.date }}
+
+                </td>
+
+                <td class="text-center fw-bold text-success">
+
+                  {{ production.todayPackedQty }}
+
+                </td>
+
+                <td class="text-center">
+
+                  {{ production.todayPackedCartons }}
+
+                </td>
+
+                <td class="text-center fw-bold text-danger">
+
+                  {{ production.todayRejectQty }}
+
+                </td>
+
+              </tr>
+
+              <tr *ngIf="productions.length === 0">
+
+                <td
+                  colspan="5"
+                  class="text-center py-4">
+
+                  No Production History Found
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

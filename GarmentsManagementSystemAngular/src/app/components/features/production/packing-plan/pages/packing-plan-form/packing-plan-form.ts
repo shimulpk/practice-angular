@@ -35,7 +35,8 @@ export class PackingPlanForm implements OnInit{
     private packingPlanService: PackingPlanService,
     private finishingPlanService: FinishingPlanService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -178,6 +179,7 @@ export class PackingPlanForm implements OnInit{
         next: (response: FinishingPlanResponse[]) => {
 
           this.finishingPlans = response;
+          this.cdr.detectChanges();
 
         },
 

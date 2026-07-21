@@ -1,198 +1,197 @@
-.container-fluid{
+.container-fluid {
 
-    padding:30px;
-
-}
-
-.card{
-
-    border:none;
-
-    border-radius:16px;
-
-    overflow:hidden;
+    padding: 30px;
 
 }
 
-.card-header{
+.card {
 
-    padding:18px 24px;
-
-    background:linear-gradient(135deg,#0d6efd,#3b82f6)!important;
-
-}
-
-.card-header h4{
-
-    font-weight:600;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
 
 }
 
-.card-body{
+.card-header {
 
-    padding:25px;
-
-}
-
-/* Search */
-
-.form-control{
-
-    height:46px;
-
-    border-radius:10px;
-
-    border:1px solid #ced4da;
+    background: linear-gradient(135deg, #0d6efd, #3b82f6) !important;
+    padding: 18px 24px;
 
 }
 
-.form-control:focus{
+.card-header h4 {
 
-    border-color:#0d6efd;
-
-    box-shadow:0 0 0 .15rem rgba(13,110,253,.15);
+    font-weight: 600;
 
 }
 
-/* Table */
+.card-body {
 
-.table{
-
-    margin-bottom:0;
+    padding: 25px;
 
 }
 
-.table thead th{
+/* =========================
+   Search Box
+========================= */
 
-    text-align:center;
+.form-control {
 
-    vertical-align:middle;
-
-    white-space:nowrap;
-
-    font-weight:600;
-
-    font-size:14px;
+    height: 46px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
 
 }
 
-.table tbody td{
+.form-control:focus {
 
-    vertical-align:middle;
-
-    white-space:nowrap;
-
-    font-size:14px;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 .15rem rgba(13,110,253,.15);
 
 }
 
-.table-hover tbody tr:hover{
+/* =========================
+   Table
+========================= */
 
-    background:#f4f8ff;
+.table {
 
-}
-
-/* Badge */
-
-.badge{
-
-    font-size:13px;
-
-    padding:8px 12px;
-
-    border-radius:20px;
+    margin-bottom: 0;
 
 }
 
-/* Action Buttons */
+.table thead th {
 
-.btn-sm{
-
-    width:36px;
-
-    height:36px;
-
-    border-radius:8px;
-
-    padding:0;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
 
 }
 
-.btn-info{
+.table tbody td {
 
-    color:#fff;
-
-}
-
-.btn-warning{
-
-    color:#fff;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 14px;
 
 }
 
-.btn:hover{
+.table-hover tbody tr:hover {
 
-    transform:translateY(-1px);
-
-    transition:.2s;
+    background: #f8fbff;
 
 }
 
-/* Loading */
+/* =========================
+   Badge
+========================= */
 
-.spinner-border{
+.badge {
 
-    width:3rem;
-
-    height:3rem;
-
-}
-
-/* Empty */
-
-.text-center{
-
-    font-weight:500;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 30px;
 
 }
 
-/* Responsive */
+/* =========================
+   Status Badge
+========================= */
 
-@media(max-width:992px){
+.bg-success {
 
-    .container-fluid{
+    background: #198754 !important;
 
-        padding:20px;
+}
+
+.bg-warning {
+
+    background: #ffc107 !important;
+
+}
+
+/* =========================
+   Action Button
+========================= */
+
+.btn-info {
+
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    color: #fff;
+
+}
+
+.btn-info:hover {
+
+    transform: translateY(-2px);
+    transition: .2s;
+
+}
+
+/* =========================
+   Header Button
+========================= */
+
+.card-header .btn {
+
+    border-radius: 10px;
+    font-weight: 600;
+
+}
+
+/* =========================
+   Loading
+========================= */
+
+.spinner-border {
+
+    width: 3rem;
+    height: 3rem;
+
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 992px) {
+
+    .container-fluid {
+
+        padding: 20px;
 
     }
 
-    .card-body{
+    .card-body {
 
-        padding:15px;
-
-    }
-
-    .table{
-
-        font-size:13px;
+        padding: 15px;
 
     }
 
 }
 
-@media(max-width:768px){
+@media (max-width: 768px) {
 
-    .card-header{
+    .card-header {
 
-        display:block !important;
+        display: block !important;
 
     }
 
-    .card-header .btn{
+    .card-header h4 {
 
-        margin-top:10px;
+        margin-bottom: 15px;
 
-        width:100%;
+    }
+
+    .card-header .btn {
+
+        width: 100%;
 
     }
 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { DayWisePackingProductionResponse } from '../../models/day-wise-packing-production-response';
 import { DayWisePackingProductionService } from '../../services/day-wise-packing-production.service';
+import { PackingProductionSummaryResponse } from '../../models/packing-production-summary-response';
 
 @Component({
   selector: 'app-day-wise-packing-production-list',
@@ -14,9 +15,9 @@ import { DayWisePackingProductionService } from '../../services/day-wise-packing
 })
 export class DayWisePackingProductionList implements OnInit{
 
- productions: DayWisePackingProductionResponse[] = [];
+   productions: PackingProductionSummaryResponse[] = [];
 
-  filteredProductions: DayWisePackingProductionResponse[] = [];
+  filteredProductions: PackingProductionSummaryResponse[] = [];
 
   loading = false;
 
@@ -30,16 +31,16 @@ export class DayWisePackingProductionList implements OnInit{
 
   ngOnInit(): void {
 
-    this.loadProductions();
+    this.loadSummary();
 
   }
 
-  loadProductions(): void {
+  loadSummary(): void {
 
     this.loading = true;
 
     this.productionService
-      .getAll()
+      .getSummary()
       .subscribe({
 
         next: (response) => {
@@ -93,47 +94,28 @@ export class DayWisePackingProductionList implements OnInit{
 
   }
 
-  view(id: number): void {
+  view(
+    packingPlanId: number
+  ): void {
 
     this.router.navigate([
-      '/day-wise-packing-productions/view',
-      id
+      '/day-wise-packing-productions',
+      packingPlanId
     ]);
 
   }
 
-  edit(id: number): void {
+  edit(
+    packingPlanId: number
+  ): void {
 
     this.router.navigate([
-      '/day-wise-packing-productions/edit',
-      id
+      '/packing-plans/edit',
+      packingPlanId
     ]);
 
   }
 
-  delete(id: number): void {
+  
 
-    if (!confirm('Delete this production?')) {
-      return;
-    }
-
-    this.productionService
-      .delete(id)
-      .subscribe({
-
-        next: () => {
-
-          this.loadProductions();
-
-        },
-
-        error: (error) => {
-
-          console.error(error);
-
-        }
-
-      });
-
-  }
 }

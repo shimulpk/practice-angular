@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { PackingPlanResponse } from '../../models/packing-plan-response';
@@ -24,7 +24,8 @@ export class PackingPlanList implements OnInit{
 
   constructor(
     private packingPlanService: PackingPlanService,
-    private router: Router
+    private router: Router,
+     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +49,7 @@ export class PackingPlanList implements OnInit{
           this.filteredPackingPlans = response;
 
           this.loading = false;
+          this.cdr.detectChanges();
 
         },
 
