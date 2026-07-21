@@ -1,1 +1,173 @@
-<p>packing-plan-form works!</p>
+<div class="container-fluid py-4 px-4">
+  <div class="card shadow border-0">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">
+        <i class="bi bi-box-seam me-2"></i>
+
+        {{ editMode ? 'Edit Packing Plan' : 'Create Packing Plan' }}
+      </h4>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <!-- =======================
+                     Finishing Plan
+                ======================== -->
+
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <label class="form-label"> Finishing Plan </label>
+
+            <select class="form-select" formControlName="finishingPlanId">
+              <option value="">Select Finishing Plan</option>
+
+              <option *ngFor="let plan of finishingPlans" [value]="plan.id">
+                {{ plan.finishingPlanId }}
+                -
+                {{ plan.buyerName }}
+                -
+                {{ plan.styleNo }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- =======================
+                     Auto Information
+                ======================== -->
+
+        <h5 class="text-primary mb-3">Order Information</h5>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label"> Buyer Name </label>
+
+            <input class="form-control" formControlName="buyerName" readonly />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"> Order No </label>
+
+            <input class="form-control" formControlName="orderNo" readonly />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label"> Style No </label>
+
+            <input class="form-control" formControlName="styleNo" readonly />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label"> Color </label>
+
+            <input class="form-control" formControlName="color" readonly />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label"> Total Order Qty </label>
+
+            <input class="form-control" formControlName="totalOrderQty" readonly />
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- =======================
+                     Packing Information
+                ======================== -->
+
+        <h5 class="text-primary mb-3">Packing Information</h5>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label"> PCS Per Carton </label>
+
+            <input type="number" class="form-control" formControlName="pcsPerCarton" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"> Total Planned Cartons </label>
+
+            <input class="form-control" formControlName="totalPlannedCartons" readonly />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"> Packing Method </label>
+
+            <select class="form-select" formControlName="packingMethod">
+              <option value="">Select Packing Method</option>
+
+              <option value="Solid Packing">Solid Packing</option>
+
+              <option value="Assorted Packing">Assorted Packing</option>
+
+              <option value="Bundle Packing">Bundle Packing</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"> Poly Bag Type </label>
+            <select class="form-select" formControlName="polyBagType">
+              <option value="">Select Poly Bag Type</option>
+
+              <option value="Normal">Normal</option>
+
+              <option value="Printed">Printed</option>
+
+              <option value="Self Adhesive">Self Adhesive</option>
+
+              <option value="Zip Lock">Zip Lock</option>
+
+              <option value="Bio-Degradable">Bio-Degradable</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"> Packing Supervisor </label>
+
+            <input class="form-control" formControlName="packingSupervisor" />
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label"> Start Date </label>
+
+            <input type="date" class="form-control" formControlName="startDate" />
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label"> Expected Shipment Date </label>
+
+            <input type="date" class="form-control" formControlName="expectedShipmentDate" />
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-check mt-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="hangTag"
+                id="hangTag"
+              />
+
+              <label class="form-check-label" for="hangTag"> Hang Tag Required </label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+
+          <button type="submit" class="btn btn-primary" [disabled]="saving">
+            <i class="bi bi-check-circle me-2"></i>
+
+            {{ editMode ? 'Update' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

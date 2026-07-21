@@ -1,0 +1,199 @@
+.container-fluid{
+
+    padding:30px;
+
+}
+
+.card{
+
+    border:none;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+}
+
+.card-header{
+
+    padding:18px 24px;
+
+    background:linear-gradient(135deg,#0d6efd,#3b82f6)!important;
+
+}
+
+.card-header h4{
+
+    font-weight:600;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+/* Search */
+
+.form-control{
+
+    height:46px;
+
+    border-radius:10px;
+
+    border:1px solid #ced4da;
+
+}
+
+.form-control:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 .15rem rgba(13,110,253,.15);
+
+}
+
+/* Table */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    white-space:nowrap;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}
+
+.table tbody td{
+
+    vertical-align:middle;
+
+    white-space:nowrap;
+
+    font-size:14px;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#f4f8ff;
+
+}
+
+/* Badge */
+
+.badge{
+
+    font-size:13px;
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+}
+
+/* Action Buttons */
+
+.btn-sm{
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:8px;
+
+    padding:0;
+
+}
+
+.btn-info{
+
+    color:#fff;
+
+}
+
+.btn-warning{
+
+    color:#fff;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-1px);
+
+    transition:.2s;
+
+}
+
+/* Loading */
+
+.spinner-border{
+
+    width:3rem;
+
+    height:3rem;
+
+}
+
+/* Empty */
+
+.text-center{
+
+    font-weight:500;
+
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+    .container-fluid{
+
+        padding:20px;
+
+    }
+
+    .card-body{
+
+        padding:15px;
+
+    }
+
+    .table{
+
+        font-size:13px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .card-header{
+
+        display:block !important;
+
+    }
+
+    .card-header .btn{
+
+        margin-top:10px;
+
+        width:100%;
+
+    }
+
+}

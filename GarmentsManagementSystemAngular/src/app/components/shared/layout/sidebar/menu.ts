@@ -415,25 +415,25 @@ module:'MERCHANDISING',
             {
       title: 'Add Packing Plan',
       icon: 'bi bi-plus-circle',
-      route: '/packing-plan/add'
+      route: '/packing-plans/add'
     },
 
     {
       title: 'View Packing Plan',
       icon: 'bi bi-list-ul',
-      route: '/packing-plan'
+      route: '/packing-plans'
     },
 
     {
       title: 'Add Day Wise Packing Production',
       icon: 'bi bi-calendar-plus',
-      route: '/packing-production/add'
+      route: '/day-wise-packing-productions/add'
     },
 
     {
       title: 'View Day Wise Packing Production',
       icon: 'bi bi-calendar-check',
-      route: '/packing-production'
+      route: '/day-wise-packing-productions'
     }
         ]
       }

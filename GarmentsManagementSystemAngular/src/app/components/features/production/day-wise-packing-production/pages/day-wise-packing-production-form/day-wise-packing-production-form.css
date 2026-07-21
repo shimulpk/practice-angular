@@ -1,0 +1,217 @@
+.container-fluid{
+
+    padding:30px 40px;
+
+}
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.card-header{
+
+    padding:18px 24px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.card-body{
+
+    padding:35px;
+
+}
+
+.form-label{
+
+    font-weight:600;
+
+    color:#495057;
+
+    margin-bottom:8px;
+
+}
+
+.form-control,
+.form-select{
+
+    height:48px;
+
+    border-radius:10px;
+
+    border:1px solid #ced4da;
+
+    transition:.3s;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#0d6efd;
+
+    box-shadow:0 0 0 .2rem rgba(13,110,253,.15);
+
+}
+
+/* ===========================
+   Summary Section
+=========================== */
+
+.summary-section{
+
+    background:#f8f9fa;
+
+    padding:25px;
+
+    border-radius:16px;
+
+}
+
+.summary-section h5{
+
+    font-weight:700;
+
+    color:#343a40;
+
+    margin-bottom:20px;
+
+}
+
+.summary-card{
+
+    color:#fff;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    text-align:center;
+
+    min-height:130px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+    transition:.3s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.summary-card h6{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    margin-bottom:12px;
+
+    opacity:.95;
+
+}
+
+.summary-card h2{
+
+    margin:0;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+/* Card Colors */
+
+.blue{
+
+    background:linear-gradient(135deg,#0d6efd,#3b82f6);
+
+}
+
+.green{
+
+    background:linear-gradient(135deg,#198754,#28a745);
+
+}
+
+.orange{
+
+    background:linear-gradient(135deg,#fd7e14,#ff9f43);
+
+}
+
+.red{
+
+    background:linear-gradient(135deg,#dc3545,#ff5e57);
+
+}
+
+/* Buttons */
+
+.btn{
+
+    min-width:140px;
+
+    height:46px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+/* Divider */
+
+hr{
+
+    border-top:1px solid #dee2e6;
+
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+    .container-fluid{
+
+        padding:20px;
+
+    }
+
+    .card-body{
+
+        padding:20px;
+
+    }
+
+    .summary-card{
+
+        min-height:110px;
+
+    }
+
+    .summary-card h2{
+
+        font-size:28px;
+
+    }
+
+}

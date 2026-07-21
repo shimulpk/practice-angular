@@ -43,4 +43,10 @@ export interface PackingPlanResponse {
 
   status: string;
 
+    packedSoFar: number;
+
+  remaining: number;
+
+  progressPercentage: number;
+
 }

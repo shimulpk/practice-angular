@@ -218,6 +218,13 @@ export const routes: Routes = [
 },
 
 {
+  path: 'day-wise-packing-productions',
+  loadChildren: () =>
+    import('./components/features/production/day-wise-packing-production/routes/day-wise-packing-production.routes')
+      .then(m => m.DAY_WISE_PACKING_PRODUCTION_ROUTES)
+},
+
+{
   path: 'dashboard',
   component: Dashboard,
   canActivate: [authGuard]

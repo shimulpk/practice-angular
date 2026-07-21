@@ -1,1 +1,445 @@
-<p>packing-plan-list works!</p>
+<div class="container-fluid py-4">
+
+    <!-- Page Header -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h3 class="fw-bold mb-1">
+
+                <i class="bi bi-box-seam-fill text-primary"></i>
+
+                Packing Plans
+
+            </h3>
+
+            <p class="text-muted mb-0">
+
+                Manage All Packing Plans
+
+            </p>
+
+        </div>
+
+        <a
+            routerLink="/packing-plans/add"
+            class="btn btn-primary">
+
+            <i class="bi bi-plus-circle me-2"></i>
+
+            Add Packing Plan
+
+        </a>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card border-0 shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <div class="input-group">
+
+                <span class="input-group-text bg-white">
+
+                    <i class="bi bi-search"></i>
+
+                </span>
+
+               <input
+    type="text"
+    class="form-control"
+    placeholder="Search By Packing Plan, Buyer, Order No or Style..."
+    [(ngModel)]="searchText"
+    (input)="search()">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Loading -->
+
+    <div
+        *ngIf="loading"
+        class="text-center py-5">
+
+        <div
+            class="spinner-border text-primary">
+
+        </div>
+
+    </div>
+
+    <!-- Card List -->
+
+    <div
+        *ngIf="!loading"
+        class="row g-4">
+
+        <div
+            class="col-lg-6 col-xl-4"
+            *ngFor="let plan of filteredPackingPlans">
+
+            <div class="card packing-card h-100 shadow-sm border-0">
+
+                <!-- Header -->
+
+                <div
+                    class="card-header bg-white d-flex justify-content-between align-items-center">
+
+                    <div>
+
+                        <h6 class="fw-bold mb-1">
+
+                            <i class="bi bi-box-seam-fill text-primary"></i>
+
+                            {{ plan.packingPlanId }}
+
+                        </h6>
+
+                    </div>
+
+                    <span
+                        class="badge px-3 py-2"
+                        [ngClass]="{
+
+                        'bg-warning text-dark': plan.status==='PENDING',
+
+                        'bg-success': plan.status==='READY_TO_SHIP'
+
+                    }">
+
+                        {{ plan.status }}
+
+                    </span>
+
+                </div>
+
+                <!-- Body -->
+
+                <div class="card-body">
+
+                    <div class="row mb-3">
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Buyer
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ plan.buyerName }}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Order No
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ plan.orderNo }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Style
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ plan.styleNo }}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Color
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ plan.color }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Method
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ plan.packingMethod }}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <small class="text-muted">
+
+                                Supervisor
+
+                            </small>
+
+                            <div class="fw-semibold">
+
+                                {{ plan.packingSupervisor }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <small class="text-muted">
+
+                            Expected Shipment
+
+                        </small>
+
+                        <div class="fw-semibold">
+
+                            {{ plan.expectedShipmentDate }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- Progress Section Starts Here -->
+
+                                        <h6 class="fw-bold text-center mb-3">
+
+                        Packing Progress
+
+                    </h6>
+
+                    <div class="row g-3 mb-4">
+
+                        <!-- Plan Input -->
+
+                        <div class="col-4">
+
+                           <div class="summary-card summary-blue text-center h-100">
+
+                                <div class="card-body p-3">
+
+                                    <i class="bi bi-box-seam-fill fs-4"></i>
+
+                                    <div class="small mt-2">
+
+                                        Plan Input
+
+                                    </div>
+
+                                    <h5 class="fw-bold mb-0 mt-2">
+
+                                        {{ plan.inputQty }}
+
+                                    </h5>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Packed -->
+
+                        <div class="col-4">
+
+                           <div class="summary-card summary-green text-center h-100">
+
+                                <div class="card-body p-3">
+
+                                    <i class="bi bi-check-circle-fill fs-4"></i>
+
+                                    <div class="small mt-2">
+
+                                        Packed
+
+                                    </div>
+
+                                    <h5 class="fw-bold mb-0 mt-2">
+
+                                        {{ plan.packedSoFar }}
+
+                                    </h5>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Remaining -->
+
+                        <div class="col-4">
+
+                           <div class="summary-card summary-orange text-center h-100">
+
+                                <div class="card-body p-3">
+
+                                    <i class="bi bi-hourglass-split fs-4"></i>
+
+                                    <div class="small mt-2">
+
+                                        Remaining
+
+                                    </div>
+
+                                    <h5 class="fw-bold mb-0 mt-2">
+
+                                        {{ plan.remaining }}
+
+                                    </h5>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Progress Bar -->
+
+                    <div class="mb-2">
+
+                        <div class="progress rounded-pill"
+                             style="height:12px;">
+
+                            <div
+                                class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                                role="progressbar"
+                                [style.width.%]="plan.progressPercentage">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="text-center">
+
+                        <small class="fw-semibold text-success">
+
+                            {{ plan.progressPercentage | number:'1.0-2' }}%
+                            Completed
+
+                        </small>
+
+                    </div>
+
+                    <!-- Progress Section Ends -->
+
+                                        <hr>
+
+                    <div class="d-flex justify-content-between">
+
+                        <button
+                            class="btn btn-outline-primary"
+                            (click)="editPackingPlan(plan.id)">
+
+                            <i class="bi bi-pencil-square me-2"></i>
+
+                            Edit
+
+                        </button>
+
+                        <button
+                            class="btn btn-outline-danger"
+                            (click)="deletePackingPlan(plan.id)">
+
+                            <i class="bi bi-trash me-2"></i>
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Empty State -->
+
+    <div
+        *ngIf="!loading && filteredPackingPlans.length===0"
+        class="text-center py-5">
+
+        <i
+            class="bi bi-box-seam display-1 text-secondary">
+
+        </i>
+
+        <h4 class="mt-3">
+
+            No Packing Plan Found
+
+        </h4>
+
+        <p class="text-muted">
+
+            Create a new Packing Plan to get started.
+
+        </p>
+
+        <a
+            routerLink="/packing-plans/add"
+            class="btn btn-primary">
+
+            <i class="bi bi-plus-circle me-2"></i>
+
+            Add Packing Plan
+
+        </a>
+
+    </div>
+
+</div>

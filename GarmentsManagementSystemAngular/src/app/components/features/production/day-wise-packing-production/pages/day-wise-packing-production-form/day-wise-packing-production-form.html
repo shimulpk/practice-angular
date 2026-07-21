@@ -1,0 +1,268 @@
+<div class="container-fluid py-4">
+
+  <div class="card shadow-lg border-0">
+
+    <div class="card-header bg-primary text-white">
+
+      <h4 class="mb-0">
+
+        <i class="bi bi-box-seam me-2"></i>
+
+        {{ editMode ? 'Edit Day Wise Packing Production'
+        : 'Add Day Wise Packing Production' }}
+
+      </h4>
+
+    </div>
+
+    <div class="card-body">
+
+      <form
+        [formGroup]="form"
+        (ngSubmit)="save()">
+
+        <!-- ========================= -->
+        <!-- Basic Information -->
+        <!-- ========================= -->
+
+        <div class="row g-3">
+
+          <div class="col-md-4">
+
+            <label class="form-label">
+
+              Production Date
+
+            </label>
+
+            <input
+              type="date"
+              class="form-control"
+              formControlName="date">
+
+          </div>
+
+          <div class="col-md-8">
+
+            <label class="form-label">
+
+              Packing Plan
+
+            </label>
+
+            <select
+              class="form-select"
+              formControlName="packingPlanId">
+
+              <option value="">
+
+                Select Packing Plan
+
+              </option>
+
+              <option
+                *ngFor="let plan of packingPlans"
+                [value]="plan.id">
+
+                {{plan.packingPlanId}}
+                -
+                {{plan.buyerName}}
+                -
+                {{plan.styleNo}}
+                -
+                {{plan.color}}
+
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Packing Summary -->
+        <!-- ========================= -->
+
+        <div
+          class="summary-section mt-5"
+          *ngIf="progress">
+
+          <h5>
+
+            Packing Summary
+
+          </h5>
+
+          <div class="row g-4 mt-2">
+
+            <div class="col-md-3">
+
+              <div class="summary-card blue">
+
+                <h6>
+
+                  Target Qty
+
+                </h6>
+
+                <h2>
+
+                  {{progress.targetQty}}
+
+                </h2>
+
+              </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+              <div class="summary-card green">
+
+                <h6>
+
+                  PCS / Carton
+
+                </h6>
+
+                <h2>
+
+                  {{progress.pcsPerCarton}}
+
+                </h2>
+
+              </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+              <div class="summary-card orange">
+
+                <h6>
+
+                  Packed So Far
+
+                </h6>
+
+                <h2>
+
+                  {{progress.packedSoFar}}
+
+                </h2>
+
+              </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+              <div class="summary-card red">
+
+                <h6>
+
+                  Remaining
+
+                </h6>
+
+                <h2>
+
+                  {{progress.remaining}}
+
+                </h2>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Production -->
+        <!-- ========================= -->
+
+        <div class="row g-3 mt-5">
+
+          <div class="col-md-4">
+
+            <label class="form-label">
+
+              Today Packed Qty (PCS)
+
+            </label>
+
+            <input
+              type="number"
+              class="form-control"
+              formControlName="todayPackedQty">
+
+          </div>
+
+          <div class="col-md-4">
+
+            <label class="form-label">
+
+              Today Packed Cartons
+
+            </label>
+
+            <input
+              class="form-control"
+              readonly
+              formControlName="todayPackedCartons">
+
+          </div>
+
+          <div class="col-md-4">
+
+            <label class="form-label">
+
+              Today Reject Qty
+
+            </label>
+
+            <input
+              type="number"
+              class="form-control"
+              formControlName="todayRejectQty">
+
+          </div>
+
+        </div>
+
+        <hr class="my-5">
+
+        <div class="text-end">
+
+          <button
+            type="button"
+            class="btn btn-secondary me-2"
+            (click)="cancel()">
+
+            Cancel
+
+          </button>
+
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="saving">
+
+            <i class="bi bi-check-circle me-2"></i>
+
+            {{editMode ? 'Update' : 'Save'}}
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
