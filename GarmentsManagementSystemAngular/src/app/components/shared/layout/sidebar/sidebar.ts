@@ -24,6 +24,7 @@ export class Sidebar implements OnInit {
   ) {}
 
   ngOnInit(): void {
+     console.log('Sidebar Init');
     this.loadMenu();
   }
 
@@ -43,12 +44,16 @@ export class Sidebar implements OnInit {
 
     const role = this.storage.getRole() as Role;
 
+      console.log("ROLE =", role);
+
     if (!role) {
       this.menus = [];
       return;
     }
 
     const permission = ROLE_PERMISSIONS[role];
+
+      console.log("PERMISSION =", permission);
 
     if (!permission) {
       this.menus = [];
@@ -59,6 +64,7 @@ export class Sidebar implements OnInit {
       MENU,
       permission.modules
     );
+      console.log("FILTERED MENU =", this.menus);
 
   }
 
@@ -66,7 +72,7 @@ export class Sidebar implements OnInit {
   // Recursive Menu Filter
   // ==========================
 
-  private filterMenus(
+private filterMenus(
   menus: MenuItem[],
   allowedModules: string[]
 ): MenuItem[] {
@@ -74,20 +80,26 @@ export class Sidebar implements OnInit {
   return menus
     .map((menu): MenuItem | null => {
 
+      // Parent module check
+      const selfAllowed =
+        menu.module
+          ? allowedModules.includes(menu.module)
+          : true;
+
+      // যদি parent module না থাকে, child filter করো
       const children = menu.children
         ? this.filterMenus(menu.children, allowedModules)
         : [];
 
-      const hasPermission =
-        !menu.module ||
-        allowedModules.includes(menu.module);
-
-      if (!hasPermission && children.length === 0) {
+      // যদি parent-এর module থাকে এবং permission না থাকে
+      // তাহলে পুরো branch বাদ
+      if (menu.module && !selfAllowed) {
         return null;
       }
 
       return {
         ...menu,
+        expanded: false,
         children
       };
 

@@ -1,0 +1,57 @@
+/* ==========================================
+   Layout
+========================================== */
+
+.layout{
+
+    margin-left:290px;
+
+    transition:.3s;
+
+}
+
+/* ==========================================
+   Main Content
+========================================== */
+
+.main-content{
+
+    margin-top:70px;
+
+    min-height:calc(100vh - 70px);
+
+    padding:25px;
+
+    background:#f8fafc;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:991px){
+
+    .layout{
+
+        margin-left:260px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .layout{
+
+        margin-left:230px;
+
+    }
+
+    .main-content{
+
+        padding:15px;
+
+    }
+
+}

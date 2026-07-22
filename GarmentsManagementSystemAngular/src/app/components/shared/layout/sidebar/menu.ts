@@ -40,12 +40,12 @@ icon:'bi bi-briefcase-fill',
 module:'MERCHANDISING',
 
     children: [
-
-      {
-        title: 'Dashboard',
-        icon: 'bi bi-speedometer2',
-        route: '/dashboard'
-      },
+{
+  title: 'Dashboard',
+  icon: 'bi bi-speedometer2',
+  route: '/dashboard',
+  module: 'MERCHANDISING'
+},
 
       {
         title: 'Add Buyer',
@@ -146,11 +146,12 @@ module:'MERCHANDISING',
 
     children: [
 
-      {
-        title: 'Dashboard',
-        icon: 'bi bi-speedometer2',
-       route: '/dashboard'
-      },
+     {
+  title: 'Dashboard',
+  icon: 'bi bi-speedometer2',
+  route: '/dashboard',
+  module: 'PROCUREMENT'
+},
 
       {
         title: 'Add Vendor',
@@ -202,11 +203,12 @@ module:'MERCHANDISING',
 
     children: [
 
-      {
-        title: 'Dashboard',
-        icon: 'bi bi-speedometer2',
-       route: '/dashboard'
-      },
+     {
+  title: 'Dashboard',
+  icon: 'bi bi-speedometer2',
+  route: '/dashboard',
+  module: 'INVENTORY'
+},
 
       {
         title: 'Add Item',
@@ -282,12 +284,12 @@ module:'MERCHANDISING',
     module:'PRODUCTION',
 
     children: [
-
-      {
-        title: 'Dashboard',
-        icon: 'bi bi-speedometer2',
-       route: '/dashboard'
-      },
+{
+  title: 'Dashboard',
+  icon: 'bi bi-speedometer2',
+  route: '/dashboard',
+  module: 'PRODUCTION'
+},
 
       {
       title: 'Add Production Line',
@@ -318,28 +320,35 @@ module:'MERCHANDISING',
         title: 'Cutting',
         icon: 'bi bi-scissors',
        module:'CUTTING',
+      
+
+       
         children: [{
       title: 'Add Cutting Plan',
       icon: 'bi bi-plus-circle',
-      route: '/cutting-plan/add'
+      route: '/cutting-plan/add',
+        module: 'CUTTING'
     },
 
     {
       title: 'View Cutting Plan',
       icon: 'bi bi-list-ul',
-      route: '/cutting-plan'
+      route: '/cutting-plan',
+        module: 'CUTTING'
     },
 
     {
       title: 'Add Day Wise Cutting Production',
       icon: 'bi bi-calendar-plus',
-      route: '/cutting-production/add'
+      route: '/cutting-production/add',
+        module: 'CUTTING'
     },
 
     {
       title: 'View Day Wise Cutting Production',
       icon: 'bi bi-calendar-check',
-      route: '/cutting-production'
+      route: '/cutting-production',
+        module: 'CUTTING'
     }
 ]
       },
@@ -352,25 +361,29 @@ module:'MERCHANDISING',
              {
       title: 'Add Sewing Plan',
       icon: 'bi bi-plus-circle',
-      route: '/sewing-plan/add'
+      route: '/sewing-plan/add',
+       module: 'SEWING'
     },
 
     {
       title: 'View Sewing Plan',
       icon: 'bi bi-list-ul',
-      route: '/sewing-plan'
+      route: '/sewing-plan',
+       module: 'SEWING'
     },
 
     {
       title: 'Add Day Wise Sewing Production',
       icon: 'bi bi-calendar-plus',
-      route: '/sewing-production/add'
+      route: '/sewing-production/add',
+       module: 'SEWING'
     },
 
     {
       title: 'View Day Wise Sewing Production',
       icon: 'bi bi-calendar-check',
-      route: '/sewing-production'
+      route: '/sewing-production',
+       module: 'SEWING'
     }
         ]
       },
@@ -383,25 +396,29 @@ module:'MERCHANDISING',
             {
       title: 'Add Finishing Plan',
       icon: 'bi bi-plus-circle',
-      route: '/finishing-plan/add'
+      route: '/finishing-plan/add',
+       module: 'FINISHING'
     },
 
     {
       title: 'View Finishing Plan',
       icon: 'bi bi-list-ul',
-      route: '/finishing-plan'
+      route: '/finishing-plan',
+       module: 'FINISHING'
     },
 
    {
   title: 'Add Day Wise Finishing Production',
   icon: 'bi bi-calendar-plus',
-  route: '/day-wise-finishing-production/add'
+  route: '/day-wise-finishing-production/add',
+   module: 'FINISHING'
 },
 
 {
   title: 'View Day Wise Finishing Production',
   icon: 'bi bi-calendar-check',
-  route: '/day-wise-finishing-production'
+  route: '/day-wise-finishing-production',
+   module: 'FINISHING'
 },
         ]
       },
@@ -415,25 +432,29 @@ module:'MERCHANDISING',
             {
       title: 'Add Packing Plan',
       icon: 'bi bi-plus-circle',
-      route: '/packing-plans/add'
+      route: '/packing-plans/add',
+        module: 'PACKING'
     },
 
     {
       title: 'View Packing Plan',
       icon: 'bi bi-list-ul',
-      route: '/packing-plans'
+      route: '/packing-plans',
+        module: 'PACKING'
     },
 
     {
       title: 'Add Day Wise Packing Production',
       icon: 'bi bi-calendar-plus',
-      route: '/day-wise-packing-productions/add'
+      route: '/day-wise-packing-productions/add',
+        module: 'PACKING'
     },
 
     {
       title: 'View Day Wise Packing Production',
       icon: 'bi bi-calendar-check',
-      route: '/day-wise-packing-productions'
+      route: '/day-wise-packing-productions',
+        module: 'PACKING'
     }
         ]
       }

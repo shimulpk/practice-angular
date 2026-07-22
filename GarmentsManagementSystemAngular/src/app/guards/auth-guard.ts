@@ -1,6 +1,8 @@
 import { inject } from "@angular/core";
-import { CanActivateFn, Router } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from "@angular/router";
 import { StorageService } from "../components/features/auth/services/storage.service";
+import { ROLE_PERMISSIONS } from "../core/security/role-permissions";
+import { Role } from "../components/features/user/models/role";
 
 /** Blocks unauthenticated users and redirects to /login */
 export const authGuard: CanActivateFn = () => {
@@ -15,16 +17,38 @@ export const authGuard: CanActivateFn = () => {
 };
 
 /** Only allows the specified roles through */
-export const roleGuard = (allowedRoles: string[]): CanActivateFn => {
-  return () => {
-    const storage = inject(StorageService);
-    const router  = inject(Router);
-    const role    = storage.getRole();
+export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
 
-    if (role && allowedRoles.includes(role)) return true;
+  const storage = inject(StorageService);
+  const router = inject(Router);
 
-    // Redirect to their own dashboard instead of a 403
+  const role = storage.getRole() as Role;
+
+  if (!role) {
+    router.navigate(['/login']);
+    return false;
+  }
+
+  const permission = ROLE_PERMISSIONS[role];
+
+  if (!permission) {
     router.navigate(['/dashboard']);
     return false;
-  };
+  }
+
+  const requiredModule = route.data['module'] as string;
+
+  if (!requiredModule) {
+    return true;
+  }
+
+  if (
+    permission.modules.includes(requiredModule) ||
+    role === Role.ADMIN
+  ) {
+    return true;
+  }
+
+  router.navigate(['/dashboard']);
+  return false;
 };

@@ -42,16 +42,29 @@ export class StorageService {
     return raw ? CryptoUtil.decrypt(raw) : null;
   }
 
-  getUser(): LoginResponse | null {
-    const raw = localStorage.getItem(KEYS.USER);
-    if (!raw) return null;
-    const json = CryptoUtil.decrypt(raw);
-    try {
-      return json ? JSON.parse(json) : null;
-    } catch {
-      return null;
-    }
+ getUser(): LoginResponse | null {
+
+  const raw = localStorage.getItem(KEYS.USER);
+
+  console.log("RAW =", raw);
+
+  if (!raw) return null;
+
+  const json = CryptoUtil.decrypt(raw);
+
+  console.log("DECRYPT =", json);
+
+  try {
+    const user = json ? JSON.parse(json) : null;
+
+    console.log("USER =", user);
+
+    return user;
+  } catch (e) {
+    console.log("PARSE ERROR =", e);
+    return null;
   }
+}
 
   getRole(): string | null {
     return this.getUser()?.role ?? null;
