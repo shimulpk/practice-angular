@@ -50,80 +50,93 @@ module:'MERCHANDISING',
       {
         title: 'Add Buyer',
         icon: 'bi bi-person-plus',
-        route: '/buyers/add'
+        route: '/buyers/add',
+          module: 'MERCHANDISING'
       },
 
       {
         title: 'View Buyer',
         icon: 'bi bi-people',
-        route: '/buyers'
+        route: '/buyers',
+          module: 'MERCHANDISING'
       },
 
       {
         title: 'Add UOM',
         icon: 'bi bi-plus-square',
-        route: '/uoms/add'
+        route: '/uoms/add',
+          module: 'MERCHANDISING'
       },
 
       {
         title: 'View UOM',
         icon: 'bi bi-list-ul',
-        route: '/uoms'
+        route: '/uoms',
+          module: 'MERCHANDISING'
       },
 
      {
     title: 'Add Style',
     icon: 'bi bi-palette',
-    route: '/styles/add'
+    route: '/styles/add',
+      module: 'MERCHANDISING'
 },
 
 {
     title: 'Style List',
     icon: 'bi bi-list-ul',
-    route: '/styles'
+    route: '/styles',
+      module: 'MERCHANDISING'
 },
 
 {
     title: 'BOM Style List',
     icon: 'bi bi-diagram-3',
-    route: '/bom'
+    route: '/bom',
+      module: 'MERCHANDISING'
 },
 
       {
         title: 'Create Order',
         icon: 'bi bi-cart-plus',
-        route: '/orders/add'
+        route: '/orders/add',
+          module: 'MERCHANDISING'
       },
 
       {
         title: 'Order List',
         icon: 'bi bi-list-check',
-        route: '/orders'
+        route: '/orders',
+          module: 'MERCHANDISING'
       },
 
       
       {
         title: 'Raw Material Check',
         icon: 'bi bi-search',
-        route: '/raw-material-check/add'
+        route: '/raw-material-check/add',
+          module: 'MERCHANDISING'
       },
 
       {
         title: 'Raw Material Details',
         icon: 'bi bi-box-seam',
-        route: '/raw-material-check'
+        route: '/raw-material-check',
+          module: 'MERCHANDISING'
       },
 
        {
         title: 'Fabric Record Check',
         icon: 'bi bi-box-seam',
-        route: '/fabric-record-check/add'
+        route: '/fabric-record-check/add',
+          module: 'MERCHANDISING'
       },
 
        {
         title: 'View Fabric Record',
         icon: 'bi bi-box-seam',
-        route: '/fabric-record-check'
+        route: '/fabric-record-check',
+          module: 'MERCHANDISING'
       }
 
 
@@ -156,19 +169,22 @@ module:'MERCHANDISING',
       {
         title: 'Add Vendor',
         icon: 'bi bi-person-plus',
-        route: '/vendors/add'
+        route: '/vendors/add',
+        module:'PROCUREMENT'
       },
 
       {
         title: 'View Vendor',
         icon: 'bi bi-people',
-        route: '/vendors'
+        route: '/vendors',
+        module:'PROCUREMENT'
       },
 
        {
       title: 'Pending Requisition',
       icon: 'bi bi-hourglass-split',
-      route: '/pending-store-requisition'
+      route: '/pending-store-requisition',
+      module:'PROCUREMENT'
     },
 
   
@@ -176,12 +192,17 @@ module:'MERCHANDISING',
      
       { title: 'Create Purchase Orders', 
         icon: 'bi bi-file-earmark-plus',
-         route: '/purchase-orders/add' },
+         route: '/purchase-orders/add',
+         module:'PROCUREMENT'
+        },
 
          
       { title: 'View PO List',
          icon: 'bi bi-card-list',
-          route: '/purchase-orders' }
+          route: '/purchase-orders',
+          module:'PROCUREMENT'
+        
+        }
 
     ]
 
@@ -213,56 +234,65 @@ module:'MERCHANDISING',
       {
         title: 'Add Item',
         icon: 'bi bi-plus-circle',
-        route: '/items/add'
+        route: '/items/add',
+        module:'INVENTORY'
       },
 
       {
         title: 'View Item',
         icon: 'bi bi-list',
-        route: '/items'
+        route: '/items',
+        module:'INVENTORY'
       },
 
        {
       title: 'Create Store Requisition',
       icon: 'bi bi-file-earmark-plus',
-      route: '/store-requisitions/add'
+      route: '/store-requisitions/add',
+      module:'INVENTORY'
     },
 
     {
       title: 'View Store Requisition',
       icon: 'bi bi-file-earmark-text',
-      route: '/store-requisitions'
+      route: '/store-requisitions',
+      module:'INVENTORY'
     },
 
       
       {
         title: 'Create GRN',
         icon: 'bi bi-box-arrow-in-down',
-        route: '/inventory/grn/create'
+        route: '/inventory/grn/create',
+        module:'INVENTORY'
   },
 
   {
         title: 'View GRNs',
         icon: 'bi bi-journal-text',
-        route: '/inventory/grn'
+        route: '/inventory/grn',
+        module:'INVENTORY'
 },
 
 {
   title: 'Current Stock Report',
   icon: 'bi bi-box-seam',
-  route: '/stocks'
+  route: '/stocks',
+  module:'INVENTORY'
 },
 
 {
   title: 'Create Material Issue',
   icon: 'bi bi-box-arrow-up',
-  route: '/material-issue/create'
+  route: '/material-issue/create',
+  module:'INVENTORY'
 },
 
 {
   title: 'View Material Issues',
   icon: 'bi bi-journal-check',
-  route: '/material-issue'
+  route: '/material-issue',
+  module:'INVENTORY'
 }
 
 

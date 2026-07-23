@@ -80,20 +80,21 @@ private filterMenus(
   return menus
     .map((menu): MenuItem | null => {
 
-      // Parent module check
-      const selfAllowed =
-        menu.module
-          ? allowedModules.includes(menu.module)
-          : true;
-
-      // যদি parent module না থাকে, child filter করো
       const children = menu.children
         ? this.filterMenus(menu.children, allowedModules)
         : [];
 
-      // যদি parent-এর module থাকে এবং permission না থাকে
-      // তাহলে পুরো branch বাদ
-      if (menu.module && !selfAllowed) {
+      const selfAllowed =
+        !menu.module ||
+        allowedModules.includes(menu.module);
+
+      // Parent নিজেও allowed না, child-ও নেই
+      if (!selfAllowed && children.length === 0) {
+        return null;
+      }
+
+      // Parent-এর module নেই এবং child-ও নেই
+      if (!menu.module && children.length === 0) {
         return null;
       }
 
