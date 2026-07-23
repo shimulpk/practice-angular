@@ -46,18 +46,18 @@ export class StorageService {
 
   const raw = localStorage.getItem(KEYS.USER);
 
-  console.log("RAW =", raw);
+  
 
   if (!raw) return null;
 
   const json = CryptoUtil.decrypt(raw);
 
-  console.log("DECRYPT =", json);
+ 
 
   try {
     const user = json ? JSON.parse(json) : null;
 
-    console.log("USER =", user);
+   
 
     return user;
   } catch (e) {

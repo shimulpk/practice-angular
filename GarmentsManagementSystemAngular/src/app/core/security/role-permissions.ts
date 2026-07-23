@@ -23,6 +23,13 @@ export const ROLE_PERMISSIONS: Record<Role, RolePermission> = {
 
         'PRODUCTION',
 
+         'CUTTING',
+
+          'SEWING',
+
+           'FINISHING',
+            'PACKING',
+
         'REPORT'
 
     ],
@@ -109,7 +116,7 @@ export const ROLE_PERMISSIONS: Record<Role, RolePermission> = {
 
 [Role.CUTTING_MANAGER]: {
   modules: [
-    'PRODUCTION',
+   
     'CUTTING'
   ],
   actions: ['VIEW', 'CREATE', 'EDIT']
@@ -117,7 +124,7 @@ export const ROLE_PERMISSIONS: Record<Role, RolePermission> = {
 
 [Role.SEWING_MANAGER]: {
   modules: [
-    'PRODUCTION',
+   
     'SEWING'
   ],
   actions: ['VIEW', 'CREATE', 'EDIT']
@@ -125,7 +132,7 @@ export const ROLE_PERMISSIONS: Record<Role, RolePermission> = {
 
 [Role.FINISHING_MANAGER]: {
   modules: [
-    'PRODUCTION',
+   
     'FINISHING'
   ],
   actions: ['VIEW', 'CREATE', 'EDIT']
@@ -133,7 +140,7 @@ export const ROLE_PERMISSIONS: Record<Role, RolePermission> = {
 
 [Role.PACKING_MANAGER]: {
   modules: [
-    'PRODUCTION',
+  
     'PACKING'
   ],
   actions: ['VIEW', 'CREATE', 'EDIT']

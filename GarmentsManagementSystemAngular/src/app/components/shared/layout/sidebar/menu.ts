@@ -281,7 +281,7 @@ module:'MERCHANDISING',
 
     icon: 'bi bi-gear-wide-connected',
 
-    module:'PRODUCTION',
+    // module:'PRODUCTION',
 
     children: [
 {
@@ -294,25 +294,30 @@ module:'MERCHANDISING',
       {
       title: 'Add Production Line',
       icon: 'bi bi-plus-circle',
-      route: '/production-lines/add'
+      route: '/production-lines/add',
+       module: 'PRODUCTION'
       },
 
      {
       title: 'View Production Lines',
        icon: 'bi bi-list-ul',
-       route: '/production-lines'
+       route: '/production-lines',
+        module: 'PRODUCTION'
       },
 
      {
   title: 'Add Machine',
   icon: 'bi bi-plus-circle',
-  route: '/machines/add'
+  route: '/machines/add',
+   module: 'PRODUCTION'
+
 },
 
 {
   title: 'View Machines',
   icon: 'bi bi-list-ul',
-  route: '/machines'
+  route: '/machines',
+   module: 'PRODUCTION'
 },
 
       // Nested Menu
